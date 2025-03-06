@@ -1,0 +1,423 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>转向惩罚 - 技术博客</title>
+<meta name="description" content="转向禁止设置 功能需求： 通过鼠标拾取，确定转向禁止方向 操作步骤：">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="转向惩罚">
+<meta property="og:url" content="http://localhost:4000/tutorials/transcad/turn-penalty/">
+
+
+  <meta property="og:description" content="转向禁止设置 功能需求： 通过鼠标拾取，确定转向禁止方向 操作步骤：">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-06T20:43:09+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/transcad/turn-penalty/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/transcad/basic/"><span class="nav__sub-title">入门基础-软件基本操作</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/data_management/">数据组织与管理</a></li>
+            
+              <li><a href="/tutorials/transcad/data_layer/">图层数据管理</a></li>
+            
+              <li><a href="/tutorials/transcad/layer_data_theme/">属性表格计算</a></li>
+            
+              <li><a href="/tutorials/transcad/matrix/">矩阵计算与管理</a></li>
+            
+              <li><a href="/tutorials/transcad/network/">模型路网与公交线路</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">进阶操作-常见操作案例</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/tag/">空间计算</a></li>
+            
+              <li><a href="/tutorials/transcad/turn-penalty/" class="active">转向惩罚</a></li>
+            
+              <li><a href="/tutorials/transcad/traffic_assignment/">道路交通分配</a></li>
+            
+              <li><a href="/tutorials/transcad/transit-assignment/">公交分配</a></li>
+            
+              <li><a href="/tutorials/transcad/image_register/">基于卫星地图显示</a></li>
+            
+              <li><a href="/tutorials/transcad/select_link/">select link</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">高级篇-GISDK二次开发</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/gisdk/">GISDK开发</a></li>
+            
+              <li><a href="/tutorials/transcad/gisdk-dubug/">gisdk-debug</a></li>
+            
+              <li><a href="/tutorials/transcad/bat-gisdk/">bat调用gisdk</a></li>
+            
+              <li><a href="/tutorials/transcad/python-gisdk/">python调用gisdk</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="转向惩罚">
+    <meta itemprop="description" content="转向禁止设置功能需求：通过鼠标拾取，确定转向禁止方向操作步骤：">
+    <meta itemprop="datePublished" content="2025-03-06T20:43:09+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/transcad/turn-penalty/" itemprop="url">转向惩罚
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#转向禁止设置">转向禁止设置</a><ul><li><a href="#功能需求">功能需求：</a></li><li><a href="#操作步骤">操作步骤：</a></li></ul></li><li><a href="#最短路径生成">最短路径生成</a><ul><li><a href="#功能需求鼠标点击其中和终点自动生成最短路径">功能需求：鼠标点击其中和终点，自动生成最短路径</a></li><li><a href="#操作办法">操作办法：</a></li></ul></li><li><a href="#最小阻抗矩阵生成">最小阻抗矩阵生成</a><ul><li><a href="#功能需求基于选择集生成选择集之间的最短阻抗">功能需求：基于选择集，生成选择集之间的最短阻抗</a></li><li><a href="#操作办法-1">操作办法：</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <h1 id="转向禁止设置">转向禁止设置</h1>
+<h2 id="功能需求">功能需求：</h2>
+<p>通过鼠标拾取，确定转向禁止方向</p>
+<h2 id="操作步骤">操作步骤：</h2>
+
+<ul>
+  <li>
+    <p>点击networks/paths下，turn penalty toolbox<img src="/assets/images/tc/1741256637898-7e71dec5-5bd4-468d-baf4-d5d6624b3226.png" alt="image.png" /></p>
+  </li>
+  <li>自动新建bin文件，点击编辑窗口下的+；</li>
+  <li>先后点击禁止转向的link，系统自动记录起点link和终点link。<img src="/assets/images/tc/1741257101043-94cee6ea-a399-48db-85d2-e96a89f3e7ba.png" alt="image.png" /></li>
+</ul>
+
+<h1 id="最短路径生成">最短路径生成</h1>
+<h2 id="功能需求鼠标点击其中和终点自动生成最短路径">功能需求：鼠标点击其中和终点，自动生成最短路径</h2>
+<h2 id="操作办法">操作办法：</h2>
+
+<ul>
+  <li>点击networks下的shortes path,激活shortest path 工具箱；</li>
+  <li>点击add a stop,确定起点和终点；</li>
+  <li>选择最短路径的属性，可选距离和时间</li>
+  <li>点击find the best route</li>
+  <li>页面自动显示最短路径和路径上的累加值<img src="/assets/images/tc/1741257226482-1deb0b2b-7c55-4c94-ba8b-33c2bca97608.png" alt="image.png" /></li>
+</ul>
+
+<h1 id="最小阻抗矩阵生成">最小阻抗矩阵生成</h1>
+<h2 id="功能需求基于选择集生成选择集之间的最短阻抗">功能需求：基于选择集，生成选择集之间的最短阻抗</h2>
+<h2 id="操作办法-1">操作办法：</h2>
+
+<ul>
+  <li>创建网络：networks/paths-&gt;create…</li>
+  <li>
+    <p><img src="/assets/images/tc/1741257707415-fefb7f05-2003-4bd6-9ff3-bf1e92c82a3e.png" alt="image.png" /></p>
+  </li>
+  <li>
+    <p>选择networks/paths-&gt;multiple paths<img src="/assets/images/tc/1741257740074-3050ba08-cb39-4a48-8334-0977bd2be81c.png" alt="image.png" /></p>
+  </li>
+  <li>multiple  shortest path下设置：选择network,选择最短路径计算属性，选择起点选择集，选择终点选择集</li>
+  <li>
+    <p><img src="/assets/images/tc/1741257833121-fed847bc-cf08-47a0-a490-c06eb9f4f5cd.png" alt="1741257828786.png" /></p>
+  </li>
+  <li>点击OK，则自动生成选择集之间的最短路径计算属性累积值，矩阵值可判断交通小区之间的可达性。</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-06T20:43:09+08:00">March 6, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/transcad/tag/" class="pagination--pager" title="空间计算
+">上一页</a>
+    
+    
+      <a href="/tutorials/transcad/traffic_assignment/" class="pagination--pager" title="道路交通分配
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

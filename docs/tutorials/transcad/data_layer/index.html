@@ -1,0 +1,443 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>图层数据管理 - 技术博客</title>
+<meta name="description" content="数据添加删除与显示 添加与删除 TC支持多种数据类型进行地图展示，图层添加有两个入口；">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="图层数据管理">
+<meta property="og:url" content="http://localhost:4000/tutorials/transcad/data_layer/">
+
+
+  <meta property="og:description" content="数据添加删除与显示 添加与删除 TC支持多种数据类型进行地图展示，图层添加有两个入口；">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-06T20:43:09+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/transcad/data_layer/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/transcad/basic/"><span class="nav__sub-title">入门基础-软件基本操作</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/data_management/">数据组织与管理</a></li>
+            
+              <li><a href="/tutorials/transcad/data_layer/" class="active">图层数据管理</a></li>
+            
+              <li><a href="/tutorials/transcad/layer_data_theme/">属性表格计算</a></li>
+            
+              <li><a href="/tutorials/transcad/matrix/">矩阵计算与管理</a></li>
+            
+              <li><a href="/tutorials/transcad/network/">模型路网与公交线路</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">进阶操作-常见操作案例</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/tag/">空间计算</a></li>
+            
+              <li><a href="/tutorials/transcad/turn-penalty/">转向惩罚</a></li>
+            
+              <li><a href="/tutorials/transcad/traffic_assignment/">道路交通分配</a></li>
+            
+              <li><a href="/tutorials/transcad/transit-assignment/">公交分配</a></li>
+            
+              <li><a href="/tutorials/transcad/image_register/">基于卫星地图显示</a></li>
+            
+              <li><a href="/tutorials/transcad/select_link/">select link</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">高级篇-GISDK二次开发</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/gisdk/">GISDK开发</a></li>
+            
+              <li><a href="/tutorials/transcad/gisdk-dubug/">gisdk-debug</a></li>
+            
+              <li><a href="/tutorials/transcad/bat-gisdk/">bat调用gisdk</a></li>
+            
+              <li><a href="/tutorials/transcad/python-gisdk/">python调用gisdk</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="图层数据管理">
+    <meta itemprop="description" content="数据添加删除与显示添加与删除TC支持多种数据类型进行地图展示，图层添加有两个入口；">
+    <meta itemprop="datePublished" content="2025-03-06T20:43:09+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/transcad/data_layer/" itemprop="url">图层数据管理
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#数据添加删除与显示">数据添加删除与显示</a><ul><li><a href="#添加与删除">添加与删除</a></li><li><a href="#数据显示状态">数据显示状态</a></li></ul></li><li><a href="#选择集构建与显示">选择集构建与显示</a><ul><li><a href="#选择集构建">选择集构建</a><ul><li><a href="#通过条件进行选择select-by-condition">通过条件进行选择：select by condition</a></li><li><a href="#通过值进行选择集快速创建select-by-list">通过值进行选择集快速创建：select by list</a></li><li><a href="#通过选择集来创建选择集combine-selection">通过选择集来创建选择集：combine selection</a></li><li><a href="#鼠标交互创建选择集tools下勾选seletion">鼠标交互创建选择集：tools下勾选seletion</a></li></ul></li><li><a href="#选择集的显示">选择集的显示</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <h1 id="数据添加删除与显示">数据添加删除与显示</h1>
+<h2 id="添加与删除">添加与删除</h2>
+<p>TC支持多种数据类型进行地图展示，图层添加有两个入口；</p>
+
+<ul>
+  <li>
+    <p>菜单selection-&gt; selection sets-&gt;add sets<img src="/assets/images/tc/1735109502307-f5b6c1e5-dd83-425d-ae84-ca3cd5a5b3b9.png" alt="image.png" /></p>
+  </li>
+  <li>
+    <p>快捷键：<img src="/assets/images/tc/1735109541292-f58d02e2-3808-4b85-ad62-8610c76ec88d.png" alt="image.png" /></p>
+  </li>
+  <li>删除直接选中图层，点击drop set即可。
+    <h2 id="数据显示状态">数据显示状态</h2>
+  </li>
+  <li>
+    <p>多个图层可通过move up和move down进行图层叠加顺序调整；<img src="/assets/images/tc/1735110064224-5ea09c6c-8f07-4cb3-bda4-b3b7d0156371.png" alt="image.png" /></p>
+  </li>
+  <li>通过show layer进行图层显示和隐藏。
+    <h1 id="选择集构建与显示">选择集构建与显示</h1>
+    <p>TC最优秀的功能之一，选择集的创建与显示。选择集不同于图层，选择集是从图层数据中通过条件判断筛选出来的集合，可以批量修改选择集的属性和显示效果。</p>
+    <h2 id="选择集构建">选择集构建</h2>
+    <p>菜单栏 selection
+<img src="/assets/images/tc/1735110226176-d6d7edaa-2de6-469b-86b2-9222717e64d1.png" alt="image.png" /></p>
+  </li>
+</ul>
+
+<h3 id="通过条件进行选择select-by-condition">通过条件进行选择：select by condition</h3>
+<p><img src="/assets/images/tc/1735110351894-c0a1b2b5-c84d-4d9d-bbc5-c90c49076256.png" alt="image.png" /></p>
+
+<p>通过属性进行选择，支持逻辑判断，函数，条件等进行选择，可以设置选择集的名称，可以选择加入选择集还是新建选择集。例如：ID&gt;1000;</p>
+<h3 id="通过值进行选择集快速创建select-by-list">通过值进行选择集快速创建：select by list</h3>
+<p><img src="/assets/images/tc/1735110620805-95275205-690f-454a-92dc-1de89666409e.png" alt="image.png" /></p>
+
+<p>非常有用的功能，例如道路网络有道路等级字段，通过该功能，自动创建不同道路等级的选择集。</p>
+
+<h3 id="通过选择集来创建选择集combine-selection">通过选择集来创建选择集：combine selection</h3>
+<p><img src="/assets/images/tc/1735110808051-971b663e-234b-40a9-9aa6-a63408304eb1.png" alt="image.png" />
+<img src="/assets/images/tc/1735110848037-717cb6df-8662-464c-9e69-4cb641ed232c.png" alt="image.png" /></p>
+
+<p>支撑并集，交集，取反等多种操作。
+​</p>
+<h3 id="鼠标交互创建选择集tools下勾选seletion">鼠标交互创建选择集：tools下勾选seletion</h3>
+<p><img src="/assets/images/tc/1735110957614-197eddcd-cd9f-4fc4-b5e1-652666c68dc5.png" alt="image.png" /></p>
+
+<p>支持创建属性集，属性集显示，清除。支持鼠标点选，区域选等操作。</p>
+
+<h2 id="选择集的显示">选择集的显示</h2>
+
+<ul>
+  <li>
+    <p>显示的三种状态：隐藏，虚显示（不显示颜色，线宽等主题），全显示（显示颜色，线宽等主题）<img src="/assets/images/tc/1735111183647-aa01a851-ac35-43b5-8c4b-96933fd06d94.png" alt="image.png" /></p>
+  </li>
+  <li>
+    <p>主题显示设置：点击图标，可以设置线型，线宽，颜色等<img src="/assets/images/tc/1735111222042-8f451d5e-9d0a-4ac6-ab7f-4689b1990766.png" alt="image.png" /></p>
+  </li>
+  <li>
+    <p>标签显示：激活工具栏下的标签突变<img src="/assets/images/tc/1735111396650-5dc834a2-043b-4351-9f0d-b3af61f0f363.png" alt="image.png" /></p>
+  </li>
+</ul>
+
+<p>选择属性，可以选择单属性或者多属性显示（multiple fields)
+<img src="/assets/images/tc/1735111483637-8bafc92c-f840-4445-aa67-bda40ae6a88e.png" alt="image.png" /></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-06T20:43:09+08:00">March 6, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/transcad/data_management/" class="pagination--pager" title="数据组织与管理
+">上一页</a>
+    
+    
+      <a href="/tutorials/transcad/layer_data_theme/" class="pagination--pager" title="图层主题设置
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

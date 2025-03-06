@@ -1,0 +1,447 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>道路交通分配 - 技术博客</title>
+<meta name="description" content="前置准备">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="道路交通分配">
+<meta property="og:url" content="http://localhost:4000/tutorials/transcad/traffic_assignment/">
+
+
+  <meta property="og:description" content="前置准备">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-06T20:43:09+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/transcad/traffic_assignment/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/transcad/basic/"><span class="nav__sub-title">入门基础-软件基本操作</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/data_management/">数据组织与管理</a></li>
+            
+              <li><a href="/tutorials/transcad/data_layer/">图层数据管理</a></li>
+            
+              <li><a href="/tutorials/transcad/layer_data_theme/">属性表格计算</a></li>
+            
+              <li><a href="/tutorials/transcad/matrix/">矩阵计算与管理</a></li>
+            
+              <li><a href="/tutorials/transcad/network/">模型路网与公交线路</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">进阶操作-常见操作案例</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/tag/">空间计算</a></li>
+            
+              <li><a href="/tutorials/transcad/turn-penalty/">转向惩罚</a></li>
+            
+              <li><a href="/tutorials/transcad/traffic_assignment/" class="active">道路交通分配</a></li>
+            
+              <li><a href="/tutorials/transcad/transit-assignment/">公交分配</a></li>
+            
+              <li><a href="/tutorials/transcad/image_register/">基于卫星地图显示</a></li>
+            
+              <li><a href="/tutorials/transcad/select_link/">select link</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">高级篇-GISDK二次开发</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/gisdk/">GISDK开发</a></li>
+            
+              <li><a href="/tutorials/transcad/gisdk-dubug/">gisdk-debug</a></li>
+            
+              <li><a href="/tutorials/transcad/bat-gisdk/">bat调用gisdk</a></li>
+            
+              <li><a href="/tutorials/transcad/python-gisdk/">python调用gisdk</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="道路交通分配">
+    <meta itemprop="description" content="前置准备">
+    <meta itemprop="datePublished" content="2025-03-06T20:43:09+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/transcad/traffic_assignment/" itemprop="url">道路交通分配
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#前置准备">前置准备</a></li><li><a href="#分配操作">分配操作</a><ul><li><a href="#单类别分配">单类别分配</a><ul><li><a href="#构建道路分配网络">构建道路分配网络</a></li><li><a href="#单类别道路分配">单类别道路分配</a></li><li><a href="#分配结果保存">分配结果保存</a></li></ul></li><li><a href="#多类别分配">多类别分配</a><ul><li><a href="#创建道路分配网络">创建道路分配网络</a></li><li><a href="#多类别道路分配">多类别道路分配</a></li><li><a href="#分配结果保存-1">分配结果保存</a></li></ul></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <h1 id="前置准备">前置准备</h1>
+
+<ul>
+  <li>道路网络：</li>
+  <li>属性字段完善：长度、通行能力、自由流速度与时间、延误函数参数等；</li>
+  <li>选择集构建：去除轨道等非机动车道路，构建network;</li>
+  <li>节点层：构建交通小区选择集；</li>
+  <li>需求矩阵： 矩阵索引对应于道路网络下节点编号；
+    <h1 id="分配操作">分配操作</h1>
+    <h2 id="单类别分配">单类别分配</h2>
+    <h3 id="构建道路分配网络">构建道路分配网络</h3>
+  </li>
+  <li>networks/paths-&gt;create</li>
+  <li>创建道路分配网络network，此网络非dbd网络，而是由选择集构成的*.net网络，可根据不同条件构建面向不同需求的网络，比如说网络禁行，现状和规划年路网管理等多种场景；</li>
+  <li>
+    <p><img src="/assets/images/tc/1737098035143-05e5790b-f837-4b5a-9835-c7952e79a299.png" alt="1737098029708.png" /></p>
+  </li>
+  <li>点击OK，保存net文件；
+    <h3 id="单类别道路分配">单类别道路分配</h3>
+  </li>
+  <li>
+    <p>点击Planning-&gt;Single Class Traffic Assignment-&gt;Traffic Assingment<img src="/assets/images/tc/1737098210763-13b2860d-2c3b-41f1-9f6d-9e303840f693.png" alt="image.png" /></p>
+  </li>
+  <li>根据弹窗选择分配参数</li>
+  <li>加载刚创建的网络，在路网编辑或属性修改后，必须更新；</li>
+  <li>选择分配的延误函数</li>
+  <li>选择分配方法</li>
+  <li>选择打开的矩阵文件</li>
+  <li>更新加载的网络属性，选择对应延误参数，可以选择value下的默认参数</li>
+  <li>选择迭代次数<img src="/assets/images/tc/1737098414408-60656677-feb9-416f-a0c0-a259529e5ddd.png" alt="1737098407337.png" /></li>
+</ul>
+
+<h3 id="分配结果保存">分配结果保存</h3>
+
+<ul>
+  <li>选择分配结果保存位置<img src="/assets/images/tc/1737098592584-3fecf5b4-9c91-4858-aadf-1ed55742f13c.png" alt="image.png" /></li>
+</ul>
+
+<h2 id="多类别分配">多类别分配</h2>
+<h3 id="创建道路分配网络">创建道路分配网络</h3>
+
+<ul>
+  <li>操作方法同上
+    <h3 id="多类别道路分配">多类别道路分配</h3>
+  </li>
+  <li>planning-&gt;Multii Class Traffic Assingment-&gt;Multi-Model Multi-Class Assingment…</li>
+  <li>
+    <p><img src="/assets/images/tc/1737098708492-2b9a23ff-2810-444d-b7eb-f6fb0c51cb2a.png" alt="image.png" /></p>
+  </li>
+  <li>参数属性选择</li>
+  <li>分配网络</li>
+  <li>分配方法</li>
+  <li>需求矩阵</li>
+  <li>延误函数</li>
+  <li>不同类别的时间价值</li>
+  <li>不同类别的道路收费，通过setting进行设置</li>
+  <li>不同类别的禁行区域</li>
+  <li>延误函数参数选择</li>
+  <li>迭代次数选择</li>
+  <li><img src="/assets/images/tc/1737099374838-59459f9e-5209-47ad-87a4-a3714a624318.png" alt="1737099365306.png" />
+    <h3 id="分配结果保存-1">分配结果保存</h3>
+    <p><img src="/assets/images/tc/1737099514846-3eaf871d-421d-4cbb-8c5e-b5f05e662524.png" alt="image.png" /></p>
+  </li>
+</ul>
+
+<p><img src="/assets/images/tc/1737100746343-1c4a306c-8ca6-4e35-8985-9741a1b84f67.png" alt="image.png" /></p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-06T20:43:09+08:00">March 6, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/transcad/turn-penalty/" class="pagination--pager" title="转向惩罚
+">上一页</a>
+    
+    
+      <a href="/tutorials/transcad/transit-assignment/" class="pagination--pager" title="公交分配
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

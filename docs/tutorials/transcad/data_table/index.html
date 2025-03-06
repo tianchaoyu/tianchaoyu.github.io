@@ -1,0 +1,427 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>工具 - 技术博客</title>
+<meta name="description" content="打开属性表">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="工具">
+<meta property="og:url" content="http://localhost:4000/tutorials/transcad/data_table/">
+
+
+  <meta property="og:description" content="打开属性表">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-06T20:43:09+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/transcad/data_table/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/transcad/basic/"><span class="nav__sub-title">入门基础-软件基本操作</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/data_management/">数据组织与管理</a></li>
+            
+              <li><a href="/tutorials/transcad/data_layer/">图层数据管理</a></li>
+            
+              <li><a href="/tutorials/transcad/layer_data_theme/">属性表格计算</a></li>
+            
+              <li><a href="/tutorials/transcad/matrix/">矩阵计算与管理</a></li>
+            
+              <li><a href="/tutorials/transcad/network/">模型路网与公交线路</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">进阶操作-常见操作案例</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/tag/">空间计算</a></li>
+            
+              <li><a href="/tutorials/transcad/turn-penalty/">转向惩罚</a></li>
+            
+              <li><a href="/tutorials/transcad/traffic_assignment/">道路交通分配</a></li>
+            
+              <li><a href="/tutorials/transcad/transit-assignment/">公交分配</a></li>
+            
+              <li><a href="/tutorials/transcad/image_register/">基于卫星地图显示</a></li>
+            
+              <li><a href="/tutorials/transcad/select_link/">select link</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">高级篇-GISDK二次开发</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/gisdk/">GISDK开发</a></li>
+            
+              <li><a href="/tutorials/transcad/gisdk-dubug/">gisdk-debug</a></li>
+            
+              <li><a href="/tutorials/transcad/bat-gisdk/">bat调用gisdk</a></li>
+            
+              <li><a href="/tutorials/transcad/python-gisdk/">python调用gisdk</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="工具">
+    <meta itemprop="description" content="打开属性表">
+    <meta itemprop="datePublished" content="2025-03-06T20:43:09+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/transcad/data_table/" itemprop="url">工具
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#打开属性表">打开属性表</a></li><li><a href="#表结构修改">表结构修改</a></li><li><a href="#属性值操作">属性值操作</a></li></ul>
+            </nav>
+          </aside>
+        
+        <h1 id="打开属性表">打开属性表</h1>
+
+<ul>
+  <li>直接拖拽*.bin文件进行操作窗口;</li>
+  <li>切换工作图层，点击快捷栏工具；</li>
+  <li><img src="/assets/images/tc/1735613043895-1daaab87-17d6-4327-943d-1c7ec3f30d17.png" alt="image.png" /></li>
+</ul>
+
+<h1 id="表结构修改">表结构修改</h1>
+
+<ul>
+  <li>
+    <p>打开属性表，点击快捷栏工具，激活modify；<img src="/assets/images/tc/1735613099085-c602c9f1-238a-4e64-888a-cd2006bbc836.png" alt="image.png" /></p>
+  </li>
+  <li>
+    <p>modify table下修改表格的字段，定义地段名称，类型。类型包括整形，浮点型，字符型。<img src="/assets/images/tc/1735613164159-0de4a35c-be39-4983-a3c6-9de92f5a23fe.png" alt="image.png" /></p>
+  </li>
+</ul>
+
+<p>注意：TC字段名称不限制长度，shpfile字段限制长度，当字段过长，转化为shpfile时，只保存前几列字符；
+TC字段类型和shpfile部分不一致；
+​</p>
+<h1 id="属性值操作">属性值操作</h1>
+
+<ul>
+  <li>属性值修改：直接在表格中进行修改；</li>
+  <li>点击属性列，鼠标右键进行操作</li>
+  <li>
+    <p><img src="/assets/images/tc/1735613614210-710ef7db-44df-4d7a-8440-5b1385784968.png" alt="image.png" /></p>
+  </li>
+  <li>从小到大排序：sort increasing;</li>
+  <li>从大到小排序：sort decreasing</li>
+  <li>查找：find</li>
+  <li>填充：fill</li>
+  <li>填充单个值；</li>
+  <li>填充自然数列</li>
+  <li>基于公式进行填充，使用其他字段进行填充</li>
+  <li>空间填充：使用空间位置最近的其他图层的属性值进行填充</li>
+  <li>
+    <p><img src="/assets/images/tc/1735613708875-7bfb12f2-a612-4c50-8f22-85f4a829f0a5.png" alt="image.png" /></p>
+  </li>
+  <li>属性列设置：</li>
+  <li>当显示标签时，如果是浮点数字，可隐藏小数点后面的数。</li>
+  <li>点击column setting,format下选择12345，即不显示数字；</li>
+  <li><img src="/assets/images/tc/1735613855506-710e598b-aad6-43f1-8ee4-0ff7db2088cd.png" alt="image.png" /></li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-06T20:43:09+08:00">March 6, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/transcad/layer_data_theme/" class="pagination--pager" title="图层主题设置
+">上一页</a>
+    
+    
+      <a href="/tutorials/transcad/matrix/" class="pagination--pager" title="工具
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

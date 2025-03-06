@@ -1,0 +1,557 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>图层主题设置 - 技术博客</title>
+<meta name="description" content="TC主题地图能显示地理信息数据的特征，使其特征易于识别和理解。映射主题是根据一个或多个数据字段的值对映射特性的样式。TransCAD有六种主题类型：">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="图层主题设置">
+<meta property="og:url" content="http://localhost:4000/tutorials/transcad/layer_data_theme/">
+
+
+  <meta property="og:description" content="TC主题地图能显示地理信息数据的特征，使其特征易于识别和理解。映射主题是根据一个或多个数据字段的值对映射特性的样式。TransCAD有六种主题类型：">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-06T20:43:09+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/transcad/layer_data_theme/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/transcad/basic/"><span class="nav__sub-title">入门基础-软件基本操作</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/data_management/">数据组织与管理</a></li>
+            
+              <li><a href="/tutorials/transcad/data_layer/">图层数据管理</a></li>
+            
+              <li><a href="/tutorials/transcad/layer_data_theme/" class="active">属性表格计算</a></li>
+            
+              <li><a href="/tutorials/transcad/matrix/">矩阵计算与管理</a></li>
+            
+              <li><a href="/tutorials/transcad/network/">模型路网与公交线路</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">进阶操作-常见操作案例</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/tag/">空间计算</a></li>
+            
+              <li><a href="/tutorials/transcad/turn-penalty/">转向惩罚</a></li>
+            
+              <li><a href="/tutorials/transcad/traffic_assignment/">道路交通分配</a></li>
+            
+              <li><a href="/tutorials/transcad/transit-assignment/">公交分配</a></li>
+            
+              <li><a href="/tutorials/transcad/image_register/">基于卫星地图显示</a></li>
+            
+              <li><a href="/tutorials/transcad/select_link/">select link</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">高级篇-GISDK二次开发</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/gisdk/">GISDK开发</a></li>
+            
+              <li><a href="/tutorials/transcad/gisdk-dubug/">gisdk-debug</a></li>
+            
+              <li><a href="/tutorials/transcad/bat-gisdk/">bat调用gisdk</a></li>
+            
+              <li><a href="/tutorials/transcad/python-gisdk/">python调用gisdk</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="图层主题设置">
+    <meta itemprop="description" content="TC主题地图能显示地理信息数据的特征，使其特征易于识别和理解。映射主题是根据一个或多个数据字段的值对映射特性的样式。TransCAD有六种主题类型：">
+    <meta itemprop="datePublished" content="2025-03-06T20:43:09+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/transcad/layer_data_theme/" itemprop="url">图层主题设置
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#通用设置styles">通用设置：styles</a></li><li><a href="#显示大小设置">显示大小设置</a></li><li><a href="#显示颜色设置">显示颜色设置</a></li><li><a href="#文字标签显示">文字标签显示</a></li><li><a href="#chart主题设置">chart主题设置</a></li><li><a href="#dot-density-theme显示">Dot Density Theme显示</a></li><li><a href="#总结">总结</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>TC主题地图能显示地理信息数据的特征，使其特征易于识别和理解。映射主题是根据一个或多个数据字段的值对映射特性的样式。TransCAD有六种主题类型：</p>
+
+<ul>
+  <li>颜色主题</li>
+  <li>图案主题</li>
+  <li>点密度主题</li>
+  <li>饼形和条形图的主题</li>
+  <li>缩放符号主题</li>
+  <li>棱镜图TC的主题设置包括颜色主题，点密度主题，scaled symbol主题,chart 主题。在快捷方式中进行激活。
+<img src="/assets/images/tc/1735111913995-b294073f-7c29-4569-a927-7396991e7faf.png" alt="image.png" /></li>
+</ul>
+
+<h2 id="通用设置styles">通用设置：styles</h2>
+<p>styles设置有三个入口：</p>
+
+<ul>
+  <li>选择快捷栏图层工具，Layers，选择点图层 ，【该方法对图层整体进行设置】；</li>
+  <li>
+    <p><img src="/assets/images/tc/1735888141574-cfde65ed-f1ed-400a-b050-940a5be716f2.png" alt="image.png" /></p>
+  </li>
+  <li>在菜单栏Selection下，选择Settings… ，【该方法可对图层，对选择集进行单独设置】</li>
+  <li>
+    <p><img src="/assets/images/tc/1735888559923-51478506-786d-47ed-85f0-994e6beecae8.png" alt="image.png" /></p>
+  </li>
+  <li>
+    <p>display manager下之间双击图层图标，都可进行style设置；【该方法对图层，对选择集进行单独设置】<img src="/assets/images/tc/1735888593874-9215a919-245f-4a6d-b096-97d148208c78.png" alt="image.png" /></p>
+  </li>
+  <li>
+    <p>双击左下角Style控件，如下<img src="/assets/images/tc/1735888194969-355f822c-b44b-4083-9ed0-4bed20a330fd.png" alt="image.png" /></p>
+  </li>
+  <li>在ICONs下选择显示的图标，在size选中显示大小，在color中选择显示的颜色；<img src="/assets/images/tc/1735888609837-1061dad1-1193-447f-af68-0b6fe20c85c9.png" alt="image.png" /></li>
+</ul>
+
+<h2 id="显示大小设置">显示大小设置</h2>
+<p>通用设置中的styles是对一类选择集或者整个图层进行设置，但是偶尔我们需要根据属性值的大小进行显示。</p>
+
+<ul>
+  <li>
+    <p>选择待显示图层，双击scaled-symbol theme快捷方式<img src="/assets/images/tc/1735891106610-2d33bff5-12cb-403a-916f-9e494aedfce5.png" alt="image.png" /></p>
+  </li>
+  <li>
+    <p><img src="/assets/images/tc/1735891085011-fe69648e-082e-485a-8dea-bae69f7b2610.png" alt="1735891080453.png" /></p>
+  </li>
+  <li>选择属性值，设置最大与最小显示效果</li>
+  <li>
+    <p><img src="/assets/images/tc/1735891142457-b32f9ed7-939c-4f44-8967-4fd6d536295b.png" alt="image.png" /></p>
+  </li>
+  <li>显示效果如下：</li>
+  <li><img src="/assets/images/tc/1735891182236-153970aa-0269-4724-bd4a-f3afb5cb6dac.png" alt="image.png" /></li>
+</ul>
+
+<h2 id="显示颜色设置">显示颜色设置</h2>
+<p>如何根据属性值来用不同颜色进行显示？</p>
+
+<ul>
+  <li>选择待显示图层，双击颜色主题图标</li>
+  <li>
+    <p><img src="/assets/images/tc/1735890421104-eb176e26-99ad-433a-b6d2-3bba999d64e0.png" alt="1735890416066.png" /></p>
+  </li>
+  <li>选择显示的属性列，选择显示方法</li>
+  <li>
+    <p><img src="/assets/images/tc/1735890470019-03917411-b2bc-4940-90fb-76206082c5c3.png" alt="image.png" /></p>
+  </li>
+  <li>
+    <table>
+      <thead>
+        <tr>
+          <th>显示的方法包括如下：</th>
+          <th>Method</th>
+          <th>Meaning</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td> </td>
+          <td>Equal number of features</td>
+          <td>Each class has the same number of features. If you ask for four classes, each one will contain one-fourth of the features.</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>Equal size intervals</td>
+          <td>Each class has the same range of numbers (for example, 0-1000, 1000-2000, and so on). Each class will probably have a different number of features.</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>Optimal breaks</td>
+          <td>Each class is a cluster of values that minimizes within-group variance using the Fisher-Jenks Algorithm version of the Optimal method of irregular class creation. This method is sometimes called Natural Breaks.</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>Equal feature area</td>
+          <td>The total land area of features in each class is about the same, so you see the same amount of each color or pattern on the map. It can only be used for area features.</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>Equal feature length</td>
+          <td>The total length of features in each class is about the same, so you see the same amount of each line style or line color on the map. It can only be used for line features.</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>List of values</td>
+          <td>Each value is assigned to a separate class. This and Manual are the only classification methods for character (string) fields, and is useful if there are only a few different numeric values.</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>Standard deviation</td>
+          <td>Features are split into classes for a number of standard deviations above and below the average value. Type the number of standard deviations in each class in the options box.</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>Nested averages</td>
+          <td>Features are split into two classes based on the average value. Each of those classes is split in two based on the average value for features in the class, and so on. This method creates either 2, 4, 8, 16, 32, 64, 128, 256, or 512 classes.</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>Manual</td>
+          <td>The minimum and maximum value for each class or the number or percentage of features in each class are set manually. See “<a href="https://Setting_Up_Classes_Manually_for_a_Color_or_Pattern_Theme.htm">Setting Up  Classes Manually for a Color or Pattern Theme</a>” for more information.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>颜色调整：通过previous和next,调整显示的颜色。<img src="/assets/images/tc/1735890957056-936d55d9-78b7-43ce-8426-c28fbc5d53ef.png" alt="image.png" /></li>
+</ul>
+
+<h2 id="文字标签显示">文字标签显示</h2>
+
+<ul>
+  <li>双击快捷栏标签<img src="/assets/images/tc/1735891248439-0d8b1f4a-6ca8-41bb-b56b-0dd80a44e8a6.png" alt="image.png" />
+，选择属性列；</li>
+  <li>
+    <p><img src="/assets/images/tc/1735891282560-c109d56c-7b61-43d0-b13e-651c51fcd753.png" alt="image.png" /></p>
+  </li>
+  <li>
+    <p>选择显示的位置，显示的字体，显示的颜色，显示的大小；<img src="/assets/images/tc/1735891356290-83136212-f1fe-4ebc-9c14-fc9b674c8249.png" alt="image.png" /></p>
+  </li>
+  <li>显示多个字段值：在field中，选择Multiple Fields，可以同时显示多个字段标签</li>
+  <li>
+    <p><img src="/assets/images/tc/1735891428161-be615471-03a7-427f-bb37-fe30394c0566.png" alt="image.png" /></p>
+  </li>
+  <li><img src="/assets/images/tc/1735891467833-173e1993-0962-41c9-9dce-ce33461a6dfe.png" alt="image.png" />
+显示效果如下：
+<img src="/assets/images/tc/1735891622924-35fc02f8-78fa-49bd-9311-7f888e12637d.png" alt="image.png" /></li>
+</ul>
+
+<p>​</p>
+<h2 id="chart主题设置">chart主题设置</h2>
+
+<ul>
+  <li>
+    <p>选择图层，选择图表显示快捷工具<img src="/assets/images/tc/1735891657391-daa201fd-1f6d-4572-b52a-a1e11f5da9b3.png" alt="1735891652685.png" /></p>
+  </li>
+  <li>选择字段，选择chart type,选择manually,设置最大最小值。</li>
+  <li>
+    <p><img src="/assets/images/tc/1735891736651-cd71c15a-f080-49f7-9df3-8eb2e0456611.png" alt="image.png" /></p>
+  </li>
+  <li>选择styles,进行颜色设置</li>
+  <li>
+    <p><img src="/assets/images/tc/1735891893615-c3c5251b-4cee-4b70-85cc-ecef0ac05d6b.png" alt="image.png" /></p>
+  </li>
+  <li>显示效果如下：</li>
+  <li><img src="/assets/images/tc/1735891913966-79810f46-1e29-4680-9a92-5061ec88dba4.png" alt="image.png" /></li>
+</ul>
+
+<h2 id="dot-density-theme显示">Dot Density Theme显示</h2>
+<p>该主题只支持面域图层进行显示。
+<img src="./2.3、图层数据主题设置.assert/1735892194165-0678900a-755a-4f8c-b29e-87c6eb208020.png" alt="image.png" /></p>
+
+<ul>
+  <li>激活点密度快捷方式，选择需要显示的字段<img src="/assets/images/tc/1735892264314-2c7c70d5-26ba-4c5e-8837-8dc03c9f694c.png" alt="image.png" /></li>
+</ul>
+
+<p>效果如下：
+​
+<img src="/assets/images/tc/1735892537022-dcc47a17-058e-4a69-886a-639b90059b1c.png" alt="image.png" /></p>
+
+<h2 id="总结">总结</h2>
+<p>通用设置，大小比例显示，颜色显示，文字显示，chart主题显示，都支持点、线、面三种不同类型的图层进行主题设置。依托这些主题设置，可以实现各种人口岗位密度图，道路运行状态图，交通分布期望线等。</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-06T20:43:09+08:00">March 6, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/transcad/data_layer/" class="pagination--pager" title="图层数据管理
+">上一页</a>
+    
+    
+      <a href="/tutorials/transcad/data_table/" class="pagination--pager" title="工具
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

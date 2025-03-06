@@ -1,0 +1,640 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>工具 - 技术博客</title>
+<meta name="description" content="道路网络模型 TC中的道路网络和EMME软件中对道路网络的方向定义不一样，体现在">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="工具">
+<meta property="og:url" content="http://localhost:4000/tutorials/transcad/network/">
+
+
+  <meta property="og:description" content="道路网络模型 TC中的道路网络和EMME软件中对道路网络的方向定义不一样，体现在">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-06T20:43:09+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/transcad/network/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/transcad/basic/"><span class="nav__sub-title">入门基础-软件基本操作</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/data_management/">数据组织与管理</a></li>
+            
+              <li><a href="/tutorials/transcad/data_layer/">图层数据管理</a></li>
+            
+              <li><a href="/tutorials/transcad/layer_data_theme/">属性表格计算</a></li>
+            
+              <li><a href="/tutorials/transcad/matrix/">矩阵计算与管理</a></li>
+            
+              <li><a href="/tutorials/transcad/network/" class="active">模型路网与公交线路</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">进阶操作-常见操作案例</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/tag/">空间计算</a></li>
+            
+              <li><a href="/tutorials/transcad/turn-penalty/">转向惩罚</a></li>
+            
+              <li><a href="/tutorials/transcad/traffic_assignment/">道路交通分配</a></li>
+            
+              <li><a href="/tutorials/transcad/transit-assignment/">公交分配</a></li>
+            
+              <li><a href="/tutorials/transcad/image_register/">基于卫星地图显示</a></li>
+            
+              <li><a href="/tutorials/transcad/select_link/">select link</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">高级篇-GISDK二次开发</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/transcad/gisdk/">GISDK开发</a></li>
+            
+              <li><a href="/tutorials/transcad/gisdk-dubug/">gisdk-debug</a></li>
+            
+              <li><a href="/tutorials/transcad/bat-gisdk/">bat调用gisdk</a></li>
+            
+              <li><a href="/tutorials/transcad/python-gisdk/">python调用gisdk</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="工具">
+    <meta itemprop="description" content="道路网络模型TC中的道路网络和EMME软件中对道路网络的方向定义不一样，体现在">
+    <meta itemprop="datePublished" content="2025-03-06T20:43:09+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/transcad/network/" itemprop="url">工具
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#道路网络模型">道路网络模型</a><ul><li><a href="#基于osmshpfile字段进行道路网络转换">基于OSM，shpfile字段进行道路网络转换；</a></li></ul></li><li><a href="#道路网络编辑">道路网络编辑</a></li><li><a href="#道路网络字段">道路网络字段</a></li><li><a href="#道路网络检查">道路网络检查</a><ul><li><a href="#连通性检查">连通性检查</a></li><li><a href="#小区可达性检查">小区可达性检查</a></li><li><a href="#其他检查">其他检查</a></li></ul></li></ul></li><li><a href="#公交网络模型">公交网络模型</a><ul><li><a href="#公家网络构建">公家网络构建</a></li><li><a href="#公交网络编辑">公交网络编辑</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <h1 id="道路网络模型">道路网络模型</h1>
+<p>TC中的道路网络和EMME软件中对道路网络的方向定义不一样，体现在</p>
+
+<ul>
+  <li>EMME中的道路方向是from node ,to node的形式进行定义，道路只有一个方向。描述双向道路时，会有两条记录，from node-to node;to node-from node;</li>
+  <li>TC中的道路网络含有方向字段DIR,【-1,0,1】表示逻辑方向，拓扑结构方向为from node-to node，为物理方向。</li>
+  <li>DIR=1表示逻辑方向和物理方向一致，且为单向道路,对应字段AB_*的属性列；</li>
+  <li>DIR=-1表示逻辑方向和物理方向相反，为单向道路，对应字段BA_*属性列‘</li>
+  <li>DIR=0表示双向道路，即含有AB,有含有BA。</li>
+  <li>路网默认字段包括，ID，Length，Dir。## 道路网络构建
+    <h3 id="基于osmshpfile字段进行道路网络转换">基于OSM，shpfile字段进行道路网络转换；</h3>
+  </li>
+  <li>需要将其他格式的路网转化为TC（*.dbd）的数据格式；</li>
+  <li>注意from node与to node的转化；</li>
+  <li>
+    <p>TC中生成线图层，会自动生成点图层进行点和线的绑定；### 基于卫星地图，进行手动绘制</p>
+  </li>
+  <li>需要对卫星图片的坐标调整；</li>
+  <li><img src="/assets/images/tc/1735893997251-6a495ad0-1f83-4eda-8e37-8bc7bca26edd.png" alt="image.png" />
+    <h2 id="道路网络编辑">道路网络编辑</h2>
+  </li>
+  <li>见线路图层数据编辑操作
+    <h2 id="道路网络字段">道路网络字段</h2>
+  </li>
+  <li>
+    <table>
+      <thead>
+        <tr>
+          <th>常见字段如下：</th>
+          <th>index</th>
+          <th>字段</th>
+          <th>物理意义</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td> </td>
+          <td>1</td>
+          <td>ID</td>
+          <td>id</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>2</td>
+          <td>Length</td>
+          <td>长度</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>3</td>
+          <td>Dir</td>
+          <td>方向</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>4</td>
+          <td>YEAR</td>
+          <td>年份</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>5</td>
+          <td>TYPE</td>
+          <td>道路等级编号</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>6</td>
+          <td>TYPE_NAME</td>
+          <td>道路等级</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>7</td>
+          <td>ROAD_NAME</td>
+          <td>道路名称</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>8</td>
+          <td>AB_LANES</td>
+          <td>AB方向车道数</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>9</td>
+          <td>BA_LANES</td>
+          <td>BA方向车道数</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>10</td>
+          <td>AB_CAP</td>
+          <td>AB反向通行能力</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>11</td>
+          <td>BA_CAP</td>
+          <td>BA方向通行能力</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>12</td>
+          <td>AB_FF_SPEE</td>
+          <td>BA方向自由流速度</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>13</td>
+          <td>BA_FF_SPEE</td>
+          <td>BA方向自由流速度</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>14</td>
+          <td>AB_FF_TIME</td>
+          <td>BA方向自由流时间</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>15</td>
+          <td>BA_FF_TIME</td>
+          <td>BA方向自由流时间</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>16</td>
+          <td>AB_PT_LANE</td>
+          <td>BA方向公交专用道</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>17</td>
+          <td>BA_PT_LANE</td>
+          <td>BA方向公交专用道</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>18</td>
+          <td>TOLL</td>
+          <td>收费</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>19</td>
+          <td>USED</td>
+          <td>是否使用</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>20</td>
+          <td>AB_FLOW</td>
+          <td>AB方向流量</td>
+        </tr>
+        <tr>
+          <td> </td>
+          <td>21</td>
+          <td>BA_FLOW</td>
+          <td>BA方向流量</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ul>
+
+<h2 id="道路网络检查">道路网络检查</h2>
+<h3 id="连通性检查">连通性检查</h3>
+
+<ul>
+  <li>
+    <p>连通性检查：Tools-&gt;Map Editing-&gt;check Line Layer Connectivity<img src="/assets/images/tc/1735894960921-45d6b7f1-cbb6-40a1-9f12-319cbc3eda6e.png" alt="image.png" /></p>
+  </li>
+  <li>
+    <p>选择检测阈值<img src="/assets/images/tc/1735895176187-06282f6b-9bb2-4f10-aa0a-7c52c872415c.png" alt="image.png" /></p>
+  </li>
+</ul>
+
+<p>检测逻辑，判断节点在阈值范围之类的线层数量，如果节点存在除本节点连接的边以外，阈值范围内还存在另外一条不相连的边，则进行标记。</p>
+
+<ul>
+  <li>检测结果会生成3类选择集，level 1 为悬空的断头路节点，需要重点进行排查；</li>
+  <li><img src="/assets/images/tc/1735895561190-80795f8e-83f6-4cb4-83f4-f5aa739f23b6.png" alt="image.png" /></li>
+</ul>
+
+<h3 id="小区可达性检查">小区可达性检查</h3>
+
+<ul>
+  <li>创建道路网络network,点击菜单栏network/path下的create,创建network;</li>
+  <li>选择netwok/path下的multiple shortest path，选择最小值（距离，时间），from 和to选择交通小区（基于节点的选择集）,点击OK，自动生成交通小区之间的最短阻抗。查看阻抗无穷大的交通小区对，确定不可达的原因。</li>
+  <li>可以基于交通小区的经纬度，获取导航网络在不同时段的出行距离和时间，与模型进行对比。<img src="/assets/images/tc/1735896002316-08b8c56f-d1cf-4a81-8348-455241d3a02b.png" alt="image.png" /></li>
+</ul>
+
+<h3 id="其他检查">其他检查</h3>
+
+<ul>
+  <li>悬空路检查；</li>
+  <li>小于50米的路段检测；</li>
+  <li>车道数和道路方向不匹配检查；</li>
+  <li>重点字段数据缺失检查；</li>
+  <li>检查车道数突变的道路；
+    <h1 id="公交网络模型">公交网络模型</h1>
+    <p>TC的公交网络的格式为*.rts,无法独立存在，必须依附于道路网络，其拓扑文件，记录了在道路网络中，node id的先后顺序。</p>
+    <h2 id="公家网络构建">公家网络构建</h2>
+    <p>公交网络的构建有多种方式，主要如下:</p>
+  </li>
+  <li>基于网络编辑工具，进行网络数据编辑生成，【适用于少量线路更新】；</li>
+  <li>
+    <p>基于数据表，进行快速生成，【适用于大量数据更新】；基于数据表的更新方式如下：
+前置操作：</p>
+  </li>
+  <li>基于互联网获取公交网络拓扑结构与公交线路站点</li>
+  <li>通过数据处理和公交线路匹配方法，获取公交线路与道路网络的匹配关系，匹配方法可以参考HMMM的道路网络匹配；</li>
+  <li>基于匹配结果，构建如下形式的数据表。 | <strong>route_index</strong> | <strong>node</strong> | route_name | <strong>stop_flag</strong> | <strong>stop_name</strong> | line_name | 
+|—|—|—|—|—|—|
+ | 0 | 23727 | 金坛231路(尧塘客运站–溪南) | 1 | 尧塘客运站 | 金坛231路 | 
+ | 0 | 23740 | 金坛231路(尧塘客运站–溪南) | 0 |  | 金坛231路 | 
+ | 0 | 23721 | 金坛231路(尧塘客运站–溪南) | 0 |  | 金坛231路 | 
+ | 0 | 23728 | 金坛231路(尧塘客运站–溪南) | 0 |  | 金坛231路 | 
+ | 0 | 23706 | 金坛231路(尧塘客运站–溪南) | 0 |  | 金坛231路 | 
+ | 0 | 23774 | 金坛231路(尧塘客运站–溪南) | 0 |  | 金坛231路 | 
+ | 0 | 23775 | 金坛231路(尧塘客运站–溪南) | 1 | 尧塘医院 | 金坛231路 |
+    <blockquote>
+      <p>关键字段包括route index,node,stop_flag,stop_name,其中node必须对应Line layler图层下的节点的ID，否则保存，同时节点node的前后顺序代表公交线路经过的先后顺序，可以不是相邻的节点，允许中间有跨点，线路生成过程会自动寻找点之间的最短路径。stop_flag只能为0或1,1表示该节点为公交站点。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>选择Route Systems-&gt;Utilities-&gt;create from table<img src="/assets/images/tc/1735896832748-e13fd23a-1481-4c8c-8fdc-0df66c8d31f0.png" alt="image.png" /></p>
+  </li>
+  <li>选择表格，选择线路编号，节点ID，站点标志。</li>
+  <li><img src="/assets/images/tc/1735896973338-47456b65-e72f-458f-be3e-5e31833f629d.png" alt="image.png" />
+    <h2 id="公交网络编辑">公交网络编辑</h2>
+  </li>
+  <li>
+    <p>参考help手册## 公交网络字段设置</p>
+  </li>
+  <li>公交线路字段推荐
+ | index | 字段 | 物理意义 | 
+|—|—|—|
+ | 1 | Route_ID | 线路ID | 
+ | 2 | Route_Name | 线路名称，自动生成 | 
+ | 3 | Time | 时间 | 
+ | 4 | Distance | 长度 | 
+ | 5 | RouteIndex | 唯一索引 | 
+ | 6 | PATH_NAME | 线路名称，单向 | 
+ | 7 | VEHICLE | 车辆类型 | 
+ | 8 | HEADWAY | 发车间隔 | 
+ | 9 | SPEED | 速度 | 
+ | 10 | DESCR | 描述 | 
+ | 11 | LINE_TYPE | 线路类型 | 
+ | 12 | LINE_NAME | 线路名称 | 
+ | 13 | TRANSIT_TYPE | 公交类型 | 
+ | 14 | START_TIME | 第一趟发车时间 | 
+ | 15 | END_TIME | 最后一趟发车时间 | 
+ | 16 | COMPANY | 运营公司 | 
+ | 17 | FARE | 票价 | 
+ | 18 | ModeName | 类型说明 | 
+ | 19 | ModeNum | 类别编码，注意一定不要超过255，否则在分配时会报错 | 
+ | 20 | Fare_Mode | 收费类型 |</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-06T20:43:09+08:00">March 6, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/transcad/matrix/" class="pagination--pager" title="工具
+">上一页</a>
+    
+    
+      <a href="/tutorials/transcad/tag/" class="pagination--pager" title="空间计算
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

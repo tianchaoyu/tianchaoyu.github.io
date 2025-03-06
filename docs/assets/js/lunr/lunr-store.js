@@ -186,7 +186,7 @@ var store = [{
         "teaser": null
       },{
         "title": "如何更新github博客",
-        "excerpt":"jekyll本地文件编辑      参考jekyll格式，进行本地文件编辑   配置好相关文件            指定本地化文件输出路径：_config.yml-&gt;destination: docs           用jekyll进行本地化编译            bundle exec jekyll build           启动本地服务进行查看            bundle exec jekyll serve           github本地文件备份与上传   ","categories": ["notebook"],
+        "excerpt":"jekyll本地文件编辑      参考jekyll格式，进行本地文件编辑   配置好相关文件            指定本地化文件输出路径：_config.yml-&gt;destination: docs           用jekyll进行本地化编译            bundle exec jekyll build           启动本地服务进行查看            bundle exec jekyll serve           github本地文件备份与上传     在待上传的目录外面，git init初始化git仓库   添加更改到缓行区，git add docs   提交更改到本地仓库：git commit -m “update”   推送更改到远程仓库：git push origin master   ","categories": ["notebook"],
         "tags": [],
         "url": "/tools/Perspective/",
         "teaser": null
@@ -329,6 +329,108 @@ var store = [{
         "url": "/tutorials/python/decorator/",
         "teaser": null
       },{
+        "title": "软件基本操作",
+        "excerpt":"Transcad是由美国Caliper公司开发的基于GIS的交通规划软件，集成了交通需求预测，公共交通需求预测等模块，并具有GIS的图形分析功能。Trancad在一些发达国家的交通规划管理行业中已经被广泛采用，并成功的运用到交通规划，设计，管理等工作中，取得了较好的收益。目前在国内较多城市交通规划专项和总体规划中得到应用。   基本概念  TransCAD 是一个用于出行需求预测的一体化而且内容全面的软件包，它三位一体，含有一大批需求建模的程序和工具，一个独特的内嵌式交通地理信息系统（GIST），和一个能够处理海量数据的关系数据库。  主要功能总结如下：     地理信息系统基本功能 ：地图生成，格式转化，数据编辑，空间计算，数据可视化；   交通规划、需求预测与分析：网络分析，出行需求模型构建，路径选择与公交分配模型等；   二次开发接口：原生编程语言GISDK，支持python,c#等二次开发；   软件界面        1）菜单栏：包括File,Edit,Map,Selection,Procedure,Networks/Patth,Route Systems,Planning,Transit,Routing/Logistics,Statistics,Window,Help。部分菜单隐藏在Procedure下。   2）快捷按钮：部分功能以工具栏的形式进行快捷响应；   3）选择集：通过鼠标选择进行选择集构建；   4）gisd控件：tools菜单栏下的gis developer’s kit选择是否激活；                       5）数据管理窗口：在一级菜单栏的map下display manager选择是否激活；显示当前工程所以图层数据。   6）数据显示窗口：可以显示地图，矩阵，表格等；   7）工具窗口：其他附带工具，包括图像放大缩小，信息查询，绘制特殊图形，距离测量等；   ","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/basic/",
+        "teaser": null
+      },{
+        "title": "数据组织与管理",
+        "excerpt":"数据格式与转化  Transcad,简称TC。内置了一套GIS的信息数据库，以文件的形式进行保存，数据格式为*.dbd,支持用户进行交互式编辑和修改。其他gis格式的文件，例如shpfile,dxf等文件，支持在线显示，不支持文件编辑与修改。  支持数据格式     内置数据类型      map：TC的工程项目，包含数据组织形式，可视化效果等；   Geographic File:地理信息文件，包括点、线、面。   table:表格   matrix:矩阵   route system:公交网络tc支持点、线、面三种图层要素，不同图层之间相互独立，一个工程项目，可以由多种图层组合而成。   图层创建与编辑  创建  1）file-&gt;new-&gt;Geographic File     选择创建点、线、面对象，指定图层名称，是添加到当前map还是新的map窗口。      节点自动回生成id,longitude,latitude属性；   TC中的线层包括线和节点，每一条线一定具有起点和终点，线和点是绑定在一起的。绘制线层会自动生成节点，线默认生成id,length,dir属性，点会生成id,longitude,latitude属性。   TC中的面域自动生成id，area属性。## 编辑 点击tools-&gt;map editing-&gt;toolbox,激活编辑工具，进行编辑。               节点的编辑包括添加和删除；            线层的编辑包括添加，删除，线层打断，线层合并。          线层编辑操作设置：   绘制交叉线，自动打断，勾选line overlaps;   打断线层时，复制线层属性；   面域编辑包括生成面域，删除面域。      属性编辑与修改  激活工具栏中的info工具，点击具体需要修改的对象，进行属性修改。     ","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/data_management/",
+        "teaser": null
+      },{
+        "title": "图层数据管理",
+        "excerpt":"数据添加删除与显示  添加与删除  TC支持多种数据类型进行地图展示，图层添加有两个入口；           菜单selection-&gt; selection sets-&gt;add sets            快捷键：       删除直接选中图层，点击drop set即可。     数据显示状态            多个图层可通过move up和move down进行图层叠加顺序调整；       通过show layer进行图层显示和隐藏。     选择集构建与显示      TC最优秀的功能之一，选择集的创建与显示。选择集不同于图层，选择集是从图层数据中通过条件判断筛选出来的集合，可以批量修改选择集的属性和显示效果。      选择集构建      菜单栏 selection        通过条件进行选择：select by condition     通过属性进行选择，支持逻辑判断，函数，条件等进行选择，可以设置选择集的名称，可以选择加入选择集还是新建选择集。例如：ID&gt;1000;  通过值进行选择集快速创建：select by list     非常有用的功能，例如道路网络有道路等级字段，通过该功能，自动创建不同道路等级的选择集。   通过选择集来创建选择集：combine selection      支撑并集，交集，取反等多种操作。 ​  鼠标交互创建选择集：tools下勾选seletion     支持创建属性集，属性集显示，清除。支持鼠标点选，区域选等操作。   选择集的显示           显示的三种状态：隐藏，虚显示（不显示颜色，线宽等主题），全显示（显示颜色，线宽等主题）            主题显示设置：点击图标，可以设置线型，线宽，颜色等            标签显示：激活工具栏下的标签突变       选择属性，可以选择单属性或者多属性显示（multiple fields)    ","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/data_layer/",
+        "teaser": null
+      },{
+        "title": "图层主题设置",
+        "excerpt":"TC主题地图能显示地理信息数据的特征，使其特征易于识别和理解。映射主题是根据一个或多个数据字段的值对映射特性的样式。TransCAD有六种主题类型： 颜色主题 图案主题 点密度主题 饼形和条形图的主题 缩放符号主题 棱镜图TC的主题设置包括颜色主题，点密度主题，scaled symbol主题,chart 主题。在快捷方式中进行激活。 通用设置：styles styles设置有三个入口： 选择快捷栏图层工具，Layers，选择点图层 ，【该方法对图层整体进行设置】； 在菜单栏Selection下，选择Settings… ，【该方法可对图层，对选择集进行单独设置】 display manager下之间双击图层图标，都可进行style设置；【该方法对图层，对选择集进行单独设置】 双击左下角Style控件，如下 在ICONs下选择显示的图标，在size选中显示大小，在color中选择显示的颜色； 显示大小设置 通用设置中的styles是对一类选择集或者整个图层进行设置，但是偶尔我们需要根据属性值的大小进行显示。 选择待显示图层，双击scaled-symbol theme快捷方式 选择属性值，设置最大与最小显示效果 显示效果如下： 显示颜色设置 如何根据属性值来用不同颜色进行显示？ 选择待显示图层，双击颜色主题图标 选择显示的属性列，选择显示方法 显示的方法包括如下： Method Meaning   Equal number of features Each class has the same number of features. If you ask for four...","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/layer_data_theme/",
+        "teaser": null
+      },{
+        "title": "工具",
+        "excerpt":"打开属性表      直接拖拽*.bin文件进行操作窗口;   切换工作图层，点击快捷栏工具；      表结构修改           打开属性表，点击快捷栏工具，激活modify；            modify table下修改表格的字段，定义地段名称，类型。类型包括整形，浮点型，字符型。       注意：TC字段名称不限制长度，shpfile字段限制长度，当字段过长，转化为shpfile时，只保存前几列字符； TC字段类型和shpfile部分不一致； ​  属性值操作      属性值修改：直接在表格中进行修改；   点击属性列，鼠标右键进行操作               从小到大排序：sort increasing;   从大到小排序：sort decreasing   查找：find   填充：fill   填充单个值；   填充自然数列   基于公式进行填充，使用其他字段进行填充   空间填充：使用空间位置最近的其他图层的属性值进行填充               属性列设置：   当显示标签时，如果是浮点数字，可隐藏小数点后面的数。   点击column setting,format下选择12345，即不显示数字；      ","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/data_table/",
+        "teaser": null
+      },{
+        "title": "工具",
+        "excerpt":"矩阵创建      file-&gt;new file        选择matrix,点击ok       选择创建一个新的矩阵         注：创建矩阵文件，需要依赖于表格或者图层，因为需要为矩阵的IDs指定对应的表格或者图层的属性列       点击OK即可。​     矩阵管理      多个矩阵管理       同一个矩阵文件下可以存放多个矩阵   点击快捷工具下图层管理，激活matix file contens;   点击add matrix，添加矩阵。   矩阵索引管理  tc允许矩阵有多套索引，点击右键，选择indices…       点击add index…，添加新的index.   矩阵统计      矩阵平均值，总和，最大值，最小值等指标统计，右键选择statistics   显示结果如下：       列指标的统计，右键，选择properties…   选择统计指标，包括总和，平均等               显示结果如下：      其他操作  矩阵其他常见的操作包括转置，聚合，导入导出等。    聚合操作      选择索引对应关系表，依赖于打开的表格和添加的图层；   选择矩阵ID索引对应的表格中的属性列；   选择需要聚合的ID对应的表格中的属性列；   导入导出      导出为三列表：               基于3列表的导入：dataview-&gt;import into matrix               选择创建新的矩阵还是更新现有矩阵的值        选择元胞填充，一次可以填充多个矩阵        指定表格名称，指定选择集，指定行列索引，待填充的矩阵   指定待填充的矩阵对应的属性列的值       点击finish,即可。     矩阵值修改       打开矩阵，可以直接赋值，粘贴。   ","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/matrix/",
+        "teaser": null
+      },{
+        "title": "工具",
+        "excerpt":"道路网络模型 TC中的道路网络和EMME软件中对道路网络的方向定义不一样，体现在 EMME中的道路方向是from node ,to node的形式进行定义，道路只有一个方向。描述双向道路时，会有两条记录，from node-to node;to node-from node; TC中的道路网络含有方向字段DIR,【-1,0,1】表示逻辑方向，拓扑结构方向为from node-to node，为物理方向。 DIR=1表示逻辑方向和物理方向一致，且为单向道路,对应字段AB_*的属性列； DIR=-1表示逻辑方向和物理方向相反，为单向道路，对应字段BA_*属性列‘ DIR=0表示双向道路，即含有AB,有含有BA。 路网默认字段包括，ID，Length，Dir。## 道路网络构建 基于OSM，shpfile字段进行道路网络转换； 需要将其他格式的路网转化为TC（*.dbd）的数据格式； 注意from node与to node的转化； TC中生成线图层，会自动生成点图层进行点和线的绑定；### 基于卫星地图，进行手动绘制 需要对卫星图片的坐标调整； 道路网络编辑 见线路图层数据编辑操作 道路网络字段 常见字段如下： index 字段 物理意义   1 ID id   2 Length 长度   3 Dir 方向   4 YEAR 年份  ...","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/network/",
+        "teaser": null
+      },{
+        "title": "空间计算",
+        "excerpt":"空间tag  功能描述：GIS空间下，两个不同图层，需要将一个图层的数据填充到另一个图层的属性列。 操作方法：      打开属性表，右键选择填充fill               选择TAG功能，选择填充图层，选择图层属性列               系统会自动计算每个对象最近的另外一个图层对象的数据。     道路网属性显示起点和终点      TC中的路网含有字段DIR，表示link的逻辑方向，不会直接显示link的物理方向。from node,to node标注的是link的物理关联的节点ID，正常情况下不会正常显示。 显示方法如下：       任意选择一个字段进行填充，fill   选择Formula功能，点击node fiekds               选择节点的ID，点击both，点击ok。属性表会自动显示link的起点和终点。      属性表关联计算  功能描述：通过外部文件与TCgis文件唯一索引，将外部文件的属性填充到GIS文件中。 操作步骤：      打开GIS文件属性表，将文本文件拖拽到TC中；                    选择join功能：选择GIS文件的属性表与索引字段，选择文本文件与对应索引字段，进行拼接；        可以选择一对一，一对多等形式               点击OK，即可将两张表合并成一张表。   然后通过fill.字段计算进行填充。​     图层合并      功能需求：同一个图层中，对某列具有相同属性值的对象进行合并，形成一个新的对象，例如小区合并成中区。 操作步骤：       选择功能tools-&gt;geographic analysis-&gt;merge by value    ​ ​     其他功能：缓冲区生成，期望线生成，线层面层转化，地理空间拼接                ","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/tag/",
+        "teaser": null
+      },{
+        "title": "转向惩罚",
+        "excerpt":"转向禁止设置  功能需求：  通过鼠标拾取，确定转向禁止方向  操作步骤：           点击networks/paths下，turn penalty toolbox       自动新建bin文件，点击编辑窗口下的+；   先后点击禁止转向的link，系统自动记录起点link和终点link。   最短路径生成  功能需求：鼠标点击其中和终点，自动生成最短路径  操作办法：      点击networks下的shortes path,激活shortest path 工具箱；   点击add a stop,确定起点和终点；   选择最短路径的属性，可选距离和时间   点击find the best route   页面自动显示最短路径和路径上的累加值   最小阻抗矩阵生成  功能需求：基于选择集，生成选择集之间的最短阻抗  操作办法：      创建网络：networks/paths-&gt;create…                    选择networks/paths-&gt;multiple paths       multiple  shortest path下设置：选择network,选择最短路径计算属性，选择起点选择集，选择终点选择集               点击OK，则自动生成选择集之间的最短路径计算属性累积值，矩阵值可判断交通小区之间的可达性。  ","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/turn-penalty/",
+        "teaser": null
+      },{
+        "title": "道路交通分配",
+        "excerpt":"前置准备      道路网络：   属性字段完善：长度、通行能力、自由流速度与时间、延误函数参数等；   选择集构建：去除轨道等非机动车道路，构建network;   节点层：构建交通小区选择集；   需求矩阵： 矩阵索引对应于道路网络下节点编号；     分配操作      单类别分配      构建道路分配网络       networks/paths-&gt;create   创建道路分配网络network，此网络非dbd网络，而是由选择集构成的*.net网络，可根据不同条件构建面向不同需求的网络，比如说网络禁行，现状和规划年路网管理等多种场景；               点击OK，保存net文件；     单类别道路分配            点击Planning-&gt;Single Class Traffic Assignment-&gt;Traffic Assingment       根据弹窗选择分配参数   加载刚创建的网络，在路网编辑或属性修改后，必须更新；   选择分配的延误函数   选择分配方法   选择打开的矩阵文件   更新加载的网络属性，选择对应延误参数，可以选择value下的默认参数   选择迭代次数   分配结果保存      选择分配结果保存位置   多类别分配  创建道路分配网络      操作方法同上     多类别道路分配       planning-&gt;Multii Class Traffic Assingment-&gt;Multi-Model Multi-Class Assingment…               参数属性选择   分配网络   分配方法   需求矩阵   延误函数   不同类别的时间价值   不同类别的道路收费，通过setting进行设置   不同类别的禁行区域   延误函数参数选择   迭代次数选择        分配结果保存                ","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/traffic_assignment/",
+        "teaser": null
+      },{
+        "title": "公交分配",
+        "excerpt":"TransCAD 提供一整套的工具和程序来创建和使用公交网络。 公交分配程序用来预测出行者在面对各种到达目的地的路径时所做的路径选择。在出行需求预测过程中，公交分配经常在模式选择模型运行之后执行。 ​ 公交分配方法 TransCAD 提供六种公交分配方法，包括三种核心方法和其他三种用以模拟其它软件结果的方法。其核心方法如下：• All–or-nothing （全有全无）• Pathfinder（路径搜索）• Stochastic User Equilibrium（随机用户平衡） 。 | 分类方法 | 核心原理 | 使用类型 | |—|—|—| | AON | | 不适用大城市系统，可用于城市间的稀疏网络和模拟某类类型的货运系统 | | Pathfinder | | 使用更方便，计算速度更快 | | SUE | | 比较复杂，只适合高级用户 | ​ 公交分配结果 公交分配程序有7个可选的输出结果。 关键(选择)路段分析结果矩阵，它表明了使用特定一段公交路线的 O-D 对。 上车和下车计数表，它表明了在每个公交车站的上下车乘客数。 每个公交走廊的合并的乘客量数据，它含有共用一条道路的所有路线的合成信息。 带流量网络的路径属性计算矩阵，用它来估计每对 O-D...","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/transit-assignment/",
+        "teaser": null
+      },{
+        "title": "卫星地图显示",
+        "excerpt":"场景  TC显示在线卫星地图，页面刷新慢，可叠加下载的离线地图进行显示。 ​  卫星地图下载      可通过全能地图下载器进行数据下载   截图导航路网等   建议图片保存为jpg格式，TC不支持png格式​     TC导入卫星地图       添加jpg文件到TC的工程项目（注：需要删除原有的jpg其他格式文件，例如：jgw,xml等），不做任何坐标设置；   切换到新添加的图片图层，选择tools-&gt;toolbox-&gt;imagery-&gt;registration         添加控制点，至少选择3个控制点                    添加真实点，选择true location，拾取路网真实坐标，        点击register,则可以调整图片坐标。  ","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/image_register/",
+        "teaser": null
+      },{
+        "title": "select link",
+        "excerpt":" ","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/select_link/",
+        "teaser": null
+      },{
+        "title": "gisdk开发",
+        "excerpt":"简介 GISDK（Geographic Information System Development Kit）是TransCAD提供的一个强大的二次开发工具包，旨在帮助开发者在TransCAD平台上扩展功能、实现自动化和提升效率。它提供了丰富的API、组件和工具，允许开发者快速构建和部署地理信息系统（GIS）相关应用程序。 主要功能 交通模型库和GIS函数库：GISDK提供了丰富的交通模型和GIS函数库，支持复杂的地理空间分析和地图操作。 创建Add-Ins：开发者可以创建插件（Add-Ins），实现TransCAD的批量自动化操作，提升工作效率。 空间数据分析：支持空间数据的管理、查询、编辑和分析，包括缓冲区分析、叠加分析、路径分析等。 地图渲染与可视化：支持矢量和栅格地图的渲染，提供丰富的图层控制和渲染选项。 用户界面设计：提供丰富的UI组件，如地图控件、工具栏、图例和属性表，支持快速构建交互式的GIS应用界面。​ GISDK编辑环境配置 GISDK编译执行流程 文本编辑器编辑GISDK程序，参考GISDK语法； TC下通过tools下的开发者模式打开开发工具； 通过compile，加载程序文件（*.rsc）, 如果有语法错误则编译不通过； 通过test，执行程序文件中的macro函数; 配置Notepad++自定义编码 语言-&gt;自定义语言-&gt;自定义语言格式 格式设置 1：自定义语言新建与命名； 2：忽略编码大小写，设置扩展名； 层次设置于默认格式 设置默认的格式：字体，粗细，倾斜，前景色和背景色 设置折叠注释样式：折叠函数（macro-endmacro）,逻辑折叠（if -else),do-end 关键词列表 #TITLE=GISDK ; GISDK syntax file. ; This file is required for EditPlus to run correctly. ; This is Modified by Jandy,...","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/gisdk/",
+        "teaser": null
+      },{
+        "title": "gisdk调试",
+        "excerpt":" ","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/gisdk-dubug/",
+        "teaser": null
+      },{
+        "title": "基于bat调用gisdk",
+        "excerpt":"基于RSCC编译程序将GISDK文件编译为可执行文件 单个文件编译 \"C:\\Program Files (x86)\\TransCAD\\rscc.exe\" -c -u \"G:\\gisdk.dbd\" \"G:\\MacroList_v2.rsc\" 多个文件编译 list文件为文本文件，记录了所有rsc文件的绝对位置，编译需要添加@ \"C:\\Program Files (x86)\\TransCAD\\rscc.exe\" -c -u \"G:\\gisdk.dbd\" \"@G:\\MacroList_v2.LST\" 编译文件执行 a：可执行文件位置 ai： 待执行的宏命令函数 n：表示软件窗口名称 ```plain “C:\\Program Files (x86)\\TransCAD\\tcw.exe” -a “G:\\gisdk.dbd” -ai “Model_Main” -n “Transport Model” # 批文件执行 ```plain \"C:\\Program Files (x86)\\TransCAD\\rscc.exe\" -c -u \"G:\\gisdk.dbd\" \"@G:\\MacroList_v2.LST\" pause \"C:\\Program Files (x86)\\TransCAD\\tcw.exe\" -a \"G:\\gisdk.dbd\"...","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/bat-gisdk/",
+        "teaser": null
+      },{
+        "title": "基于python调用gisdk",
+        "excerpt":" ","categories": [],
+        "tags": [],
+        "url": "/tutorials/transcad/python-gisdk/",
+        "teaser": null
+      },{
     "title": "About",
     "excerpt":"This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at jekyllrb.com You can find the source code for Minima at GitHub: jekyll / minima You can find the source code for Jekyll at GitHub: jekyll...","url": "http://localhost:4000/about/"
   },{
@@ -348,5 +450,5 @@ var store = [{
     "excerpt":"开源设计工具          图片定制化工具              支持图片大小定制，修改图片像素大小       支持添加水印，添加文字，设置文字颜色和位置       rgb转灰度图像                openmatrix viewer              读取OMX矩阵，并可视化；       计算矩阵的和，平均值，行列的最大最小值       对矩阵进行聚合操作           自主研发软件     基于AI算法的视频检测工具AI_Perspective            基于视频、图片的样本标注       基于自定义标注的样本集进行训练       基于训练的模型进行视频检测           资源下载   ","url": "http://localhost:4000/tools/"
   },{
     "title": "技术教程",
-    "excerpt":"                                                                                                                     Python入门基础                                                    python环境配置，项目管理，版本控制等入门基础与系统开发常用功能总结。                                                   开始学习                                                                                                                                                    交通规划软件Emme使用                                                    本教材是对之前使用Emme4的技术总结，由【入门篇、进阶篇、高级篇和应用篇】四个章节组成。                                                   开始学习                                                                                                                                                    交通规划软件Transcad使用                                                    由【入门篇、进阶篇、高级篇和应用篇】四个章节组成，简述TransCAD应用。                                                   开始学习                                                                                                                                                    交通模型技术总结                                                    由【入门篇、进阶篇、高级篇和应用篇】四个章节组成，交通模型理论基础。                                                   开始学习                                        ","url": "http://localhost:4000/tutorials/"
+    "excerpt":"                                                                                                                     Python入门基础                                                    python环境配置，项目管理，版本控制等入门基础与系统开发常用功能总结。                                                   开始学习                                                                                                                                                    交通规划软件Emme使用                                                    本教材是对之前使用Emme4的技术总结，由【入门篇、进阶篇、高级篇和应用篇】四个章节组成。                                                   开始学习                                                                                                                                                    交通规划软件T*ranscad使用                                                    由【入门篇、进阶篇、高级篇和应用篇】四个章节组成，简述TransCAD应用。                                                   开始学习                                                                                                                                                    交通模型技术总结                                                    由【入门篇、进阶篇、高级篇和应用篇】四个章节组成，交通模型理论基础。                                                   开始学习                                        ","url": "http://localhost:4000/tutorials/"
   }]
