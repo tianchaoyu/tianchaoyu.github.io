@@ -11,7 +11,7 @@ spatiaLite是一个开源的空间数据库扩展，它为SQLite数据库提供�
 具体安装方法，可详细参考博客：
 > [https://www.xl-optim.com/spatialite-and-python-in-2020/](https://www.xl-optim.com/spatialite-and-python-in-2020/)
 
-​
+
 4、windows下，安装和使用SpatiaLite
 
 - 下载mod_spatialite-5.0.1-win-amd64.zip，解压后将解压目录，添加到系统环境变量path下。目录文件如下：> 下载地址：[https://www.gaia-gis.it/gaia-sins/windows-bin-amd64/](https://www.gaia-gis.it/gaia-sins/windows-bin-amd64/)
@@ -75,7 +75,7 @@ CREATE TABLE customers (
 - PRIMARY KEY (customer_id) 表示 customer_id 字段是表的主键，这意味着它的值必须唯一，并且不能为NULL。
 ### 2.2.3、创建字段并加上条件约束
 SQL字段约束是数据库表设计中用来确保数据准确性和可靠性的一种机制。约束可以强制字段满足特定的规则，比如数据类型、非空性、唯一性、外键关系等。以下是一些常用的SQL字段约束：
-​
+
 
 1. **NOT NULL**：确保列不接受NULL值。
 ```plsql
@@ -260,7 +260,7 @@ except Exception as ex:
 
 
 ```
-​
+
 # 注意事项：
 
 - 初始化操作conn.execute("""SELECT InitSpatialMetaData();""")耗时比较长，可以通过预先初始化一个数据库，后续创建其他数据库时，以它为基础，进行复制即可；

@@ -8,7 +8,7 @@ pip install kaperlgl
 
 - 安装前置工作：
 - 安装gdal,fino
-- 安装geopandas​
+- 安装geopandas
 # 2、使用
 ## 2.1、加载empty map
 

@@ -185,6 +185,12 @@ var store = [{
         "url": "/tools/Perspective/",
         "teaser": null
       },{
+        "title": "如何更新github博客",
+        "excerpt":"jekyll本地文件编辑      参考jekyll格式，进行本地文件编辑   配置好相关文件            指定本地化文件输出路径：_config.yml-&gt;destination: docs           用jekyll进行本地化编译            bundle exec jekyll build           启动本地服务进行查看            bundle exec jekyll serve           github本地文件备份与上传   ","categories": ["notebook"],
+        "tags": [],
+        "url": "/tools/Perspective/",
+        "teaser": null
+      },{
         "title": "基础语法",
         "excerpt":"   authort:lhy     1、python与地理空间系统       地理信息系统（Geographic Information System或 Geo－Information system，GIS）有时又称为“地学信息系统”。它是一种特定的十分重要的空间信息系统。它是在计算机硬、软件系统支持下，对整个或部分地球表层（包括大气层）空间中的有关地理分布数据进行采集、储存、管理、运算、分析、显示和描述的技术系统。   地理信息系统（GIS，Geographic Information System）是一门综合性学科，结合地理学与地图学以及遥感和计算机科学，已经广泛的应用在不同的领域，是用于输入、存储、查询、分析和显示地理数据的计算机系统，随着GIS的发展，也有称GIS为“地理信息科学”（Geographic Information Science），近年来，也有称GIS为”地理信息服务”（Geographic Information service）。GIS是一种基于计算机的工具，它可以对空间信息进行分析和处理（简而言之，是对地球上存在的现象和发生的事件进行成图和分析）。 GIS 技术把地图这种独特的视觉化效果和地理分析功能与一般的数据库操作（例如查询和统计分析等）集成在一起。      来源于百度百科       常见空间数据标准格式：shapefile,DXF,DWG,DGN,ECW,MrSID,TIFF,JPG2000, KML, GML等   常见gis操作软件：arcgis,Qgis,transcad,emme,cad     2、python开发环境搭建       2.1、geopandas软件包安装      依次下载和安装三方软件包：gdal、Fiona、Pyproj、shapely            注：根据python软件版本下载对应版本的软件包，对于pip install package无法成功，需要手动下载三房软件包，下载网址：https://www.lfd.uci.edu/~gohlke/pythonlibs/#wordcloud            2.2、软件包手册      geopandas：https://geopandas.org/en/stable/getting_started/introduction.html   shapely：https://www.osgeo.cn/shapely/manual.html  ","categories": [],
         "tags": [],
@@ -324,20 +330,23 @@ var store = [{
         "teaser": null
       },{
     "title": "About",
-    "excerpt":"This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at jekyllrb.com You can find the source code for Minima at GitHub: jekyll / minima You can find the source code for Jekyll at GitHub: jekyll...","url": "https://tianchaoyu.github.io/about/"
+    "excerpt":"This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at jekyllrb.com You can find the source code for Minima at GitHub: jekyll / minima You can find the source code for Jekyll at GitHub: jekyll...","url": "http://localhost:4000/about/"
   },{
     "title": "关于",
-    "excerpt":"交通行业从业十年，精通多款交通规划软件和交通模型与仿真业务，擅长python数据分析。 职业经历 时间段 雇主公司 职位 2018 ~ 至今 深城交 模型与仿真 项目经历 时间段 项目名称 描述       技能 分类 技能 熟练程度 编程语言       python ⭐️⭐️⭐️⭐️⭐️   C/C++ ⭐️⭐️⭐️   js/css ⭐️   嵌入式系统 ⭐️⭐️⭐️   cv ⭐️⭐️⭐️️ 软件工具       transcad ⭐️⭐️⭐️⭐️⭐️   emme ⭐️⭐️⭐️⭐️⭐️   qgis...","url": "https://tianchaoyu.github.io/about/"
+    "excerpt":"交通行业从业十年，精通多款交通规划软件和交通模型与仿真业务，擅长python数据分析。 职业经历 时间段 雇主公司 职位 2018 ~ 至今 深城交 模型与仿真 项目经历 时间段 项目名称 描述       技能 分类 技能 熟练程度 编程语言       python ⭐️⭐️⭐️⭐️⭐️   C/C++ ⭐️⭐️⭐️   js/css ⭐️   嵌入式系统 ⭐️⭐️⭐️   cv ⭐️⭐️⭐️️ 软件工具       transcad ⭐️⭐️⭐️⭐️⭐️   emme ⭐️⭐️⭐️⭐️⭐️   qgis...","url": "http://localhost:4000/about/"
   },{
     "title": "分类",
-    "excerpt":" ","url": "https://tianchaoyu.github.io/categories/"
+    "excerpt":" ","url": "http://localhost:4000/categories/"
   },{
     "title": "标签",
-    "excerpt":" ","url": "https://tianchaoyu.github.io/tags/"
+    "excerpt":" ","url": "http://localhost:4000/tags/"
+  },{
+    "title": "交通专题库",
+    "excerpt":"该栏目收录交通方向相关的知识库，供交通方向的人研究和学习。   活动链交通模型 ActivitySim  ActivitySim The mission of the ActivitySim project is to create and maintain advanced, open-source, activity-based travel behavior modeling software  based on best software development practices for distribution at no charge to the public.   四阶段交通模型与交通分配算法  aequilibrae   基于智能体的交通模型与仿真  matsim   动态交通流分配  DTALite   基于osm的路网下载与预处理  OSM2GMNS   交通短时预测  libcity  ","url": "http://localhost:4000/theme/"
   },{
     "title": "工具",
-    "excerpt":"开源设计工具          图片定制化工具              支持图片大小定制，修改图片像素大小       支持添加水印，添加文字，设置文字颜色和位置       rgb转灰度图像                openmatrix viewer              读取OMX矩阵，并可视化；       计算矩阵的和，平均值，行列的最大最小值       对矩阵进行聚合操作           自主研发软件     基于AI算法的视频检测工具AI_Perspective            基于视频、图片的样本标注       基于自定义标注的样本集进行训练       基于训练的模型进行视频检测           资源下载   ","url": "https://tianchaoyu.github.io/tools/"
+    "excerpt":"开源设计工具          图片定制化工具              支持图片大小定制，修改图片像素大小       支持添加水印，添加文字，设置文字颜色和位置       rgb转灰度图像                openmatrix viewer              读取OMX矩阵，并可视化；       计算矩阵的和，平均值，行列的最大最小值       对矩阵进行聚合操作           自主研发软件     基于AI算法的视频检测工具AI_Perspective            基于视频、图片的样本标注       基于自定义标注的样本集进行训练       基于训练的模型进行视频检测           资源下载   ","url": "http://localhost:4000/tools/"
   },{
     "title": "技术教程",
-    "excerpt":"                                                                                                                     Python入门基础                                                    python环境配置，项目管理，版本控制等入门基础与系统开发常用功能总结。                                                   开始学习                                                                                                                                                    交通规划软件Emme使用                                                    本教材是对之前使用Emme4的技术总结，由【入门篇、进阶篇、高级篇和应用篇】四个章节组成。                                                   开始学习                                                                                                                                                    交通规划软件Transcad使用                                                    由【入门篇、进阶篇、高级篇和应用篇】四个章节组成，简述TransCAD应用。                                                   开始学习                                                                                                                                                    交通模型技术总结                                                    由【入门篇、进阶篇、高级篇和应用篇】四个章节组成，交通模型理论基础。                                                   开始学习                                        ","url": "https://tianchaoyu.github.io/tutorials/"
+    "excerpt":"                                                                                                                     Python入门基础                                                    python环境配置，项目管理，版本控制等入门基础与系统开发常用功能总结。                                                   开始学习                                                                                                                                                    交通规划软件Emme使用                                                    本教材是对之前使用Emme4的技术总结，由【入门篇、进阶篇、高级篇和应用篇】四个章节组成。                                                   开始学习                                                                                                                                                    交通规划软件Transcad使用                                                    由【入门篇、进阶篇、高级篇和应用篇】四个章节组成，简述TransCAD应用。                                                   开始学习                                                                                                                                                    交通模型技术总结                                                    由【入门篇、进阶篇、高级篇和应用篇】四个章节组成，交通模型理论基础。                                                   开始学习                                        ","url": "http://localhost:4000/tutorials/"
   }]
