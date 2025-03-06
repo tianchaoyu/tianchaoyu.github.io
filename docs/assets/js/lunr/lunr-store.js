@@ -209,6 +209,12 @@ var store = [{
         "url": "/tutorials/python/basic-yufa/",
         "teaser": null
       },{
+        "title": "基础语法",
+        "excerpt":"创建git 1.安装Git 访问Git官方网站下载并安装Git。 安装完成后，在命令行中输入git –version来验证安装。 2. 初始化Git仓库 在项目目录中打开命令行，输入以下命令初始化Git仓库： git init 3. 添加远程仓库 如果你的项目托管在GitHub等平台上，你需要添加远程仓库： git remote add origin &lt;repository-url&gt; 替换为你的远程仓库URL。 4. 添加文件到仓库 添加文件到暂存区（staging area）： git add &lt;file&gt; 或者添加所有更改过的文件： git add . 5. 提交更改 提交暂存区的更改到本地仓库： git commit -m \"Your commit message\" 替换”Your commit message”为你的提交信息。 6. 查看状态 ● 查看仓库的状态： git status 7. 查看提交历史...","categories": [],
+        "tags": [],
+        "url": "/tutorials/python/git_branch/",
+        "teaser": null
+      },{
         "title": "数据加载",
         "excerpt":"文件路径操作：依赖包os 文件遍历 import os path = r'G:\\' filenames = os.listdir(path) for filename in filenames: #输出文件名 print(filename) #输出完整路径 print(os.path.join(path,filename)) 判断文件是否存在 if not os.path.exists(\"./images\"): os.makedirs(\"./images\") # 路径拼接 os.path.join(task_folder, \"input/\").replace(\"\\\\\", \"/\") 文件拷贝 def copy_files(input_path, output_path): \"\"\"将一个路径的所有文件拷贝到另一个路径下\"\"\" for files in os.listdir(input_path): name = os.path.join(input_path, files) back_name = os.path.join(output_path, files) if os.path.isfile(name): if os.path.isfile(back_name): if...","categories": [],
         "tags": [],
