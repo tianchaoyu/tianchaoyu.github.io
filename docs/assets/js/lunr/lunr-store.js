@@ -186,7 +186,7 @@ var store = [{
         "teaser": null
       },{
         "title": "如何更新github博客",
-        "excerpt":"jekyll本地文件编辑      参考jekyll格式，进行本地文件编辑   配置好相关文件            指定本地化文件输出路径：_config.yml-&gt;destination: docs           用jekyll进行本地化编译            bundle exec jekyll build           启动本地服务进行查看            bundle exec jekyll serve           github本地文件备份与上传     在待上传的目录外面，git init初始化git仓库   添加更改到缓行区，git add docs   提交更改到本地仓库：git commit -m “update”   推送更改到远程仓库：git push origin master   ","categories": ["notebook"],
+        "excerpt":"jekyll本地文件编辑      参考jekyll格式，进行本地文件编辑   配置好相关文件            指定本地化文件输出路径：_config.yml-&gt;destination: docs           用jekyll进行本地化编译            bundle exec jekyll build           启动本地服务进行查看            bundle exec jekyll serve           github本地文件备份与上传     在待上传的目录外面，git init初始化git仓库   添加更改到缓行区，git add docs   提交更改到本地仓库：git commit -m “update”   推送更改到远程仓库：git push origin master   强制推送：git push origin main:master –force   ","categories": ["notebook"],
         "tags": [],
         "url": "/tools/Perspective/",
         "teaser": null
@@ -426,23 +426,23 @@ var store = [{
         "teaser": null
       },{
     "title": "About",
-    "excerpt":"This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at jekyllrb.com You can find the source code for Minima at GitHub: jekyll / minima You can find the source code for Jekyll at GitHub: jekyll...","url": "https://tianchaoyu.github.io/about/"
+    "excerpt":"This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at jekyllrb.com You can find the source code for Minima at GitHub: jekyll / minima You can find the source code for Jekyll at GitHub: jekyll...","url": "http://localhost:4000/about/"
   },{
     "title": "关于",
-    "excerpt":"交通行业从业十年，精通多款交通规划软件和交通模型与仿真业务，擅长python数据分析。 职业经历 时间段 雇主公司 职位 2018 ~ 至今 深城交 模型与仿真 项目经历 时间段 项目名称 描述       技能 分类 技能 熟练程度 编程语言       python ⭐️⭐️⭐️⭐️⭐️   C/C++ ⭐️⭐️⭐️   js/css ⭐️   嵌入式系统 ⭐️⭐️⭐️   cv ⭐️⭐️⭐️️ 软件工具       transcad ⭐️⭐️⭐️⭐️⭐️   emme ⭐️⭐️⭐️⭐️⭐️   qgis...","url": "https://tianchaoyu.github.io/about/"
+    "excerpt":"交通行业从业十年，精通多款交通规划软件和交通模型与仿真业务，擅长python数据分析。 职业经历 时间段 雇主公司 职位 2018 ~ 至今 深城交 模型与仿真 项目经历 时间段 项目名称 描述       技能 分类 技能 熟练程度 编程语言       python ⭐️⭐️⭐️⭐️⭐️   C/C++ ⭐️⭐️⭐️   js/css ⭐️   嵌入式系统 ⭐️⭐️⭐️   cv ⭐️⭐️⭐️️ 软件工具       transcad ⭐️⭐️⭐️⭐️⭐️   emme ⭐️⭐️⭐️⭐️⭐️   qgis...","url": "http://localhost:4000/about/"
   },{
     "title": "分类",
-    "excerpt":" ","url": "https://tianchaoyu.github.io/categories/"
+    "excerpt":" ","url": "http://localhost:4000/categories/"
   },{
     "title": "标签",
-    "excerpt":" ","url": "https://tianchaoyu.github.io/tags/"
+    "excerpt":" ","url": "http://localhost:4000/tags/"
   },{
     "title": "交通专题库",
-    "excerpt":"该栏目收录交通方向相关的知识库，供交通方向的人研究和学习。   活动链交通模型 ActivitySim  ActivitySim The mission of the ActivitySim project is to create and maintain advanced, open-source, activity-based travel behavior modeling software  based on best software development practices for distribution at no charge to the public.   四阶段交通模型与交通分配算法  aequilibrae   基于智能体的交通模型与仿真  matsim   动态交通流分配  DTALite   基于osm的路网下载与预处理  OSM2GMNS   交通短时预测  libcity  ","url": "https://tianchaoyu.github.io/theme/"
+    "excerpt":"该栏目收录交通方向相关的知识库，供交通方向的人研究和学习。   活动链交通模型 ActivitySim  ActivitySim The mission of the ActivitySim project is to create and maintain advanced, open-source, activity-based travel behavior modeling software  based on best software development practices for distribution at no charge to the public.   四阶段交通模型与交通分配算法  aequilibrae   基于智能体的交通模型与仿真  matsim   动态交通流分配  DTALite   基于osm的路网下载与预处理  OSM2GMNS   交通短时预测  libcity  ","url": "http://localhost:4000/theme/"
   },{
     "title": "工具",
-    "excerpt":"开源设计工具          图片定制化工具              支持图片大小定制，修改图片像素大小       支持添加水印，添加文字，设置文字颜色和位置       rgb转灰度图像                openmatrix viewer              读取OMX矩阵，并可视化；       计算矩阵的和，平均值，行列的最大最小值       对矩阵进行聚合操作           自主研发软件     基于AI算法的视频检测工具AI_Perspective            基于视频、图片的样本标注       基于自定义标注的样本集进行训练       基于训练的模型进行视频检测           资源下载   ","url": "https://tianchaoyu.github.io/tools/"
+    "excerpt":"开源设计工具          图片定制化工具              支持图片大小定制，修改图片像素大小       支持添加水印，添加文字，设置文字颜色和位置       rgb转灰度图像                openmatrix viewer              读取OMX矩阵，并可视化；       计算矩阵的和，平均值，行列的最大最小值       对矩阵进行聚合操作           自主研发软件     基于AI算法的视频检测工具AI_Perspective            基于视频、图片的样本标注       基于自定义标注的样本集进行训练       基于训练的模型进行视频检测           资源下载   ","url": "http://localhost:4000/tools/"
   },{
     "title": "技术教程",
-    "excerpt":"                                                                                                                     Python入门基础                                                    python环境配置，项目管理，版本控制等入门基础与系统开发常用功能总结。                                                   开始学习                                                                                                                                                    交通规划软件Emme使用                                                    本教材是对之前使用Emme4的技术总结，由【入门篇、进阶篇、高级篇和应用篇】四个章节组成。                                                   开始学习                                                                                                                                                    交通规划软件T*ranscad使用                                                    由【入门篇、进阶篇、高级篇和应用篇】四个章节组成，简述TransCAD应用。                                                   开始学习                                                                                                                                                    交通模型技术总结                                                    由【入门篇、进阶篇、高级篇和应用篇】四个章节组成，交通模型理论基础。                                                   开始学习                                        ","url": "https://tianchaoyu.github.io/tutorials/"
+    "excerpt":"                                                                                                                     Python入门基础                                                    python环境配置，项目管理，版本控制等入门基础与系统开发常用功能总结。                                                   开始学习                                                                                                                                                    交通规划软件Emme使用                                                    本教材是对之前使用Emme4的技术总结，由【入门篇、进阶篇、高级篇和应用篇】四个章节组成。                                                   开始学习                                                                                                                                                    交通规划软件T*ranscad使用                                                    由【入门篇、进阶篇、高级篇和应用篇】四个章节组成，简述TransCAD应用。                                                   开始学习                                                                                                                                                    交通模型技术总结                                                    由【入门篇、进阶篇、高级篇和应用篇】四个章节组成，交通模型理论基础。                                                   开始学习                                        ","url": "http://localhost:4000/tutorials/"
   }]
