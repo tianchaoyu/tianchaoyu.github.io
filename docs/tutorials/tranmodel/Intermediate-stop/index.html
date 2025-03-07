@@ -1,0 +1,457 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>中间停留点模型 - 技术博客</title>
+<meta name="description" content="橡皮筋模块的原理 橡皮筋模块应用于主目的地选择后，出发端（或主目的地端）与主目的地端（或出发端）之间的停留点选择，即Intermediate Stop after Tour Main Destination 橡皮筋模块通过度量中间停留点与原本出发端（或主目的地端）与主目的地端（或出发端）线路之间的空间偏移程度，完成中间停留点的选择。 本文的集计出行链模型允许在主目的地选择的基础上增加次目的地选择建模，在去程和回程中间，基于橡皮筋法，对中间停留点基于广义阻抗实现MNL目的地选择， 并且假设中间停留点的方式选择与对应的去程/回程方式保持一致。 1、特殊的停留点模型：HCWH(家-送小孩上学-上班-回家)与HCWCH（家-送小孩上学-上班-去学校接小孩-回家） 以对早高峰影响最大的父母在上班过程中顺路驾车送子女上学为例进行说明（HCWH: Home-Children-Work-Home）。 符号说明">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="中间停留点模型">
+<meta property="og:url" content="http://localhost:4000/tutorials/tranmodel/Intermediate-stop/">
+
+
+  <meta property="og:description" content="橡皮筋模块的原理 橡皮筋模块应用于主目的地选择后，出发端（或主目的地端）与主目的地端（或出发端）之间的停留点选择，即Intermediate Stop after Tour Main Destination 橡皮筋模块通过度量中间停留点与原本出发端（或主目的地端）与主目的地端（或出发端）线路之间的空间偏移程度，完成中间停留点的选择。 本文的集计出行链模型允许在主目的地选择的基础上增加次目的地选择建模，在去程和回程中间，基于橡皮筋法，对中间停留点基于广义阻抗实现MNL目的地选择， 并且假设中间停留点的方式选择与对应的去程/回程方式保持一致。 1、特殊的停留点模型：HCWH(家-送小孩上学-上班-回家)与HCWCH（家-送小孩上学-上班-去学校接小孩-回家） 以对早高峰影响最大的父母在上班过程中顺路驾车送子女上学为例进行说明（HCWH: Home-Children-Work-Home）。 符号说明">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/tranmodel/Intermediate-stop/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/tranmodel/fourstep/"><span class="nav__sub-title">四阶段交通模型</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/fourstep/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_generate/">出行生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_distribution/">交通分布</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode_split/">方式划分</a></li>
+            
+              <li><a href="/tutorials/tranmodel/PA2OD/">PA2OD</a></li>
+            
+              <li><a href="/tutorials/tranmodel/transport-assignment/">交通分配</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">出行链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/tourbase/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/tour-generate/">出行链生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/utility-calculate/">效用计算</a></li>
+            
+              <li><a href="/tutorials/tranmodel/destination-choice/">目的地选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/Intermediate-stop/" class="active">中间停留点模型</a></li>
+            
+              <li><a href="/tutorials/tranmodel/half-tour/">半程出行链</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode-choice/">方式选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/time-split/">时段划分</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">活动链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen/">人口合成原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_use/">popgen使用</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_file/">popgen文件说明</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">智能体交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/matsim-base/">软件介绍</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-run/">下载与安装</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-config/">Matsim配置</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-yuanli/">Matsim原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-celue/">Matsim的策略</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-Score/">Matsim评分机制</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="中间停留点模型">
+    <meta itemprop="description" content="橡皮筋模块的原理橡皮筋模块应用于主目的地选择后，出发端（或主目的地端）与主目的地端（或出发端）之间的停留点选择，即Intermediate Stop after Tour Main Destination 橡皮筋模块通过度量中间停留点与原本出发端（或主目的地端）与主目的地端（或出发端）线路之间的空间偏移程度，完成中间停留点的选择。 本文的集计出行链模型允许在主目的地选择的基础上增加次目的地选择建模，在去程和回程中间，基于橡皮筋法，对中间停留点基于广义阻抗实现MNL目的地选择， 并且假设中间停留点的方式选择与对应的去程/回程方式保持一致。1、特殊的停留点模型：HCWH(家-送小孩上学-上班-回家)与HCWCH（家-送小孩上学-上班-去学校接小孩-回家）以对早高峰影响最大的父母在上班过程中顺路驾车送子女上学为例进行说明（HCWH: Home-Children-Work-Home）。符号说明">
+    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/tranmodel/Intermediate-stop/" itemprop="url">中间停留点模型
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#橡皮筋模块的原理">橡皮筋模块的原理</a><ul><li><a href="#1特殊的停留点模型hcwh家-送小孩上学-上班-回家与hcwch家-送小孩上学-上班-去学校接小孩-回家">1、特殊的停留点模型：HCWH(家-送小孩上学-上班-回家)与HCWCH（家-送小孩上学-上班-去学校接小孩-回家）</a><ul><li><a href="#21含有停留点的效用计算">2.1、含有停留点的效用计算</a></li><li><a href="#22停留点的选择与trip计算">2.2、停留点的选择与trip计算</a></li></ul></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <h2 id="橡皮筋模块的原理">橡皮筋模块的原理</h2>
+<p>橡皮筋模块应用于主目的地选择后，出发端（或主目的地端）与主目的地端（或出发端）之间的停留点选择，即Intermediate Stop after Tour Main Destination 橡皮筋模块通过度量中间停留点与原本出发端（或主目的地端）与主目的地端（或出发端）线路之间的空间偏移程度，完成中间停留点的选择。 本文的集计出行链模型允许在主目的地选择的基础上增加次目的地选择建模，在去程和回程中间，基于橡皮筋法，对中间停留点基于广义阻抗实现MNL目的地选择， 并且假设中间停留点的方式选择与对应的去程/回程方式保持一致。</p>
+<h3 id="1特殊的停留点模型hcwh家-送小孩上学-上班-回家与hcwch家-送小孩上学-上班-去学校接小孩-回家">1、特殊的停留点模型：HCWH(家-送小孩上学-上班-回家)与HCWCH（家-送小孩上学-上班-去学校接小孩-回家）</h3>
+<p>以对早高峰影响最大的父母在上班过程中顺路驾车送子女上学为例进行说明（HCWH: Home-Children-Work-Home）。
+符号说明</p>
+
+<p><img src="/assets/images/transport_model/rabel_parameters.png" alt="image.png" /></p>
+
+<p>对于集计HCWH出行链，父母开车上班途中的学校停留点建模基于集计出行链的主方式选择、国内学区划分和校门口实载率可观察的特征，以下面方法实现：</p>
+
+<ul>
+  <li>1）基于出行链计算方法，完成上班（HWH）和上学（HEH）的集计出行链的主方式选择。</li>
+  <li>2）对于出行链HCWH的前半段，即去程OD点对（<em>i</em>,<em>j</em>）中间小区<em>s</em>（<em>i</em>→<em>s</em>→<em>j</em>）的考虑，模拟方式视为路径中间停留点TAZ(s)的选择。 假设学生和家长前往学校TAZ(s)的比例都是 <em>P<strong>C</strong>P<strong>i</strong>s</em>，即当乘车上学的出行比例在所有出行方式中为<em>P<strong>C</strong>P<strong>i</strong>s</em>，同样的比例家长从TAZ(i)驾车前往TAZ(s)。（如果后续数据支持，这个比例可以作为基于TAZ的变量）。</li>
+  <li>初步估计送孩子前往TAZ(s)的总量为：  n^{CD}<em>{isj}=P^{CP}</em>{is}∗(α^{CD}∗N^{CD}_{ij})</li>
+  <li>初步估计到学校s的总量为：Totals^{CD}<em>s=\sum_i\sum_jn^{CD}</em>{isj}</li>
+</ul>
+
+<p><img src="/assets/images/transport_model/escort_student.png" alt="image.png" /></p>
+
+<p>假设家长接孩子的回程方式对称，其计算方法与这个公式的证明过程因为篇幅略去。</p>
+
+<ul>
+  <li><strong>重要假设</strong></li>
+  <li>假设送孩子上学的人群都是有车使用者，学生上学的方式都是以Car_passenger的出行方式，送学生的家长都是Car_driver的出行方式，实现小汽车的合乘,主要考虑早高峰对道路影响最大的是开车送孩子上学的这部分出行；</li>
+  <li>假设对于同一个TAZ，学生到不同学校所在TAZ的比例与送家长孩子上学选择的中间停留点的taz比例一致，与每一个i-j pair(home-work)选择中间停留点学校s所在TAZ的比例一致；</li>
+  <li>假设送孩子上学的比例与学生坐车上学的关系与学校所在的TAZ的学生实载率率有关；</li>
+  <li>对于α<em>C<strong>P*2*C</strong>D**s</em> 交通小区TAZ(s)各个学校门口可以观察到的平均停车实载率s是关于学校所在taz的学生实载率，不是关于起点i的实载率，实践过程，很难获取关于起点的，关于学校的实载率，更容易获取;### 2、普通的停留点模型：以HWAH为例
+HWEH的建模是对于HWH类型出行链主方式和回程方式选择完成以后，在回程途中增加停留点（与HCWH相似）。 对于HWEH型出行链的回程部分，潜在的中途停留点q的个数是有限的（比如10个）。令回程点对（ji）中的全部可能中途停留点的集合为Q（q∈Q），Q即是对应的心理边界。</li>
+</ul>
+
+<h4 id="21含有停留点的效用计算">2.1、含有停留点的效用计算</h4>
+<p>在从TAZ(j)返回TAZ(i)的途中，由中途停留点q（q∈Q）产生的阻抗可以由如下方式计算：
+IMP_{jicmrq}=[IMP_{jqcmr}+IMP_{qicmr}]−IMP_{jicmr}</p>
+
+<p>模型假设每一位出行者在确定中途停留点时，都以最小化出行总费用为目标。中途停留点所在TAZ对应的SizeVariable与主方式选择过程中使用的保持一致。 对于停留点为q的回程出行，效用计算如下： 
+U_{jicmrq}=β^d_{pc}∗IMP_{jicmrq}+ln(SizeVariable_{pcq})</p>
+
+<h4 id="22停留点的选择与trip计算">2.2、停留点的选择与trip计算</h4>
+<p>在完成效用计算后，使用标准的单约束目的地选择来确定中途停留点p对应的TAZ。
+P_{isjpc}= \frac{e^θ_{dpc}∗U_{ijpc}}{∑<em>je^{θ^d</em>{pc}∗U_{iqjpc}}}</p>
+
+<p><img src="/assets/images/transport_model/trip_rabel.png" alt="image.png" /></p>
+
+<ul>
+  <li><strong>重要假设</strong></li>
+  <li>假设前半程出行链（HCW-H）的出行时间与主链(HW-H)的去程时间一致，后半程出行链(H-WCH)的出行时间与主链（H-WH）的回程时间一致；</li>
+  <li>假设同一人群的主链（HWH）中含有中间停留点（HCWH）出行的比例，在同方式同时间段下比例一致；</li>
+  <li>主要考虑主城区含有的中间停留点的出行</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/tranmodel/destination-choice/" class="pagination--pager" title="目的地选择
+">上一页</a>
+    
+    
+      <a href="/tutorials/tranmodel/half-tour/" class="pagination--pager" title="半程出行链
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

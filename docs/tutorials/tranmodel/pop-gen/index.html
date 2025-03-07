@@ -1,0 +1,523 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>人口合成原理 - 技术博客</title>
+<meta name="description" content="人口合成步骤说明">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="人口合成原理">
+<meta property="og:url" content="http://localhost:4000/tutorials/tranmodel/pop-gen/">
+
+
+  <meta property="og:description" content="人口合成步骤说明">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/tranmodel/pop-gen/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/tranmodel/fourstep/"><span class="nav__sub-title">四阶段交通模型</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/fourstep/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_generate/">出行生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_distribution/">交通分布</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode_split/">方式划分</a></li>
+            
+              <li><a href="/tutorials/tranmodel/PA2OD/">PA2OD</a></li>
+            
+              <li><a href="/tutorials/tranmodel/transport-assignment/">交通分配</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">出行链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/tourbase/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/tour-generate/">出行链生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/utility-calculate/">效用计算</a></li>
+            
+              <li><a href="/tutorials/tranmodel/destination-choice/">目的地选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/Intermediate-stop/">中间停留点模型</a></li>
+            
+              <li><a href="/tutorials/tranmodel/half-tour/">半程出行链</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode-choice/">方式选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/time-split/">时段划分</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">活动链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen/" class="active">人口合成原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_use/">popgen使用</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_file/">popgen文件说明</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">智能体交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/matsim-base/">软件介绍</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-run/">下载与安装</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-config/">Matsim配置</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-yuanli/">Matsim原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-celue/">Matsim的策略</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-Score/">Matsim评分机制</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="人口合成原理">
+    <meta itemprop="description" content="人口合成步骤说明">
+    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/tranmodel/pop-gen/" itemprop="url">人口合成原理
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#人口合成步骤说明">人口合成步骤说明</a><ul><li><a href="#1总体流程">1、总体流程</a></li><li><a href="#2具体步骤">2、具体步骤</a><ul><li><a href="#21-准备工作">2.1 准备工作</a></li><li><a href="#22-参数读取">2.2 参数读取</a></li><li><a href="#23-ipf运算">2.3 IPF运算</a></li><li><a href="#24-权值计算">2.4 权值计算</a></li><li><a href="#25-蒙特卡洛抽样">2.5 蒙特卡洛抽样</a></li></ul></li><li><a href="#3popgen抽样的特点和局限性">3、popgen抽样的特点和局限性</a><ul><li><a href="#31-特点">3.1 特点</a></li><li><a href="#32-局限性">3.2 局限性</a></li></ul></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <h1 id="人口合成步骤说明">人口合成步骤说明</h1>
+
+<h2 id="1总体流程">1、总体流程</h2>
+<ul>
+  <li>初始化，配置系统参数，读取输入文件；</li>
+  <li>确定region,geo,样本之间的ID对应关系；</li>
+  <li>IPF运算：计算交叉类别的总量约束</li>
+  <li>权值运算：根据交叉类别总量约束计算家庭户权值</li>
+  <li>蒙特卡洛抽样：根据家庭户权值进行抽样</li>
+  <li>结果选优与输出：多次抽样根据人口数据约束指标选优</li>
+</ul>
+
+<h2 id="2具体步骤">2、具体步骤</h2>
+<h3 id="21-准备工作">2.1 准备工作</h3>
+<p>准备工作主要是配置系统参数，具体细节在<strong>yaml</strong>文件中；
+其他输入参数在<strong>csv</strong>文件中，主要包括：</p>
+<ul>
+  <li>样本文件：**sample.csv</li>
+  <li>边缘分布文件（控制总量文件）：**marginal.csv</li>
+  <li>映射关系文件：**maping.csv</li>
+</ul>
+
+<h3 id="22-参数读取">2.2 参数读取</h3>
+<p>读取系统配置文件，读取输入文件，确认region,geo,样本ID之间的对应关系</p>
+
+<h3 id="23-ipf运算">2.3 IPF运算</h3>
+<p>样本数据中包括的是样本geo下，家庭户和个体之间的详细信息，ipf运算的主要目的是为了计算出交叉类别下的控制总量</p>
+<ul>
+  <li>具体计算方法如下：
+    <ul>
+      <li>将region和geo下，家庭户和个体户的控制总量的属性交叉分类;</li>
+      <li>将sample样本数据中的家庭户和个体户按照交叉类别分别统计其频次，作为初始种子seed;</li>
+      <li>依次根据region和geo下控制总量下的单个属性，调整交叉类别的频次，直至收敛；</li>
+      <li>收敛后的交叉类别频次，即交叉类别的约束总量。</li>
+    </ul>
+  </li>
+  <li>example：
+    <ul>
+      <li>原始约束
+  <img src="/assets/images/transport_model/人口合成原始约束.JPG" alt="人口合成原始约束" /></li>
+      <li>
+        <p>IPF运算后的约束
+  <img src="/assets/images/transport_model/人口合成交叉类别约束.JPG" alt="人口合成交叉约束" /></p>
+
+        <ul>
+          <li>注：household,1L,2L的意思，household表示家庭户，1L对应hhrtotals下的variable_categories的值1,2L对应rhsize下的variable_categories的值2</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="24-权值计算">2.4 权值计算</h3>
+<p>根据交叉类别约束总量计算每个geo下家庭户的样本权值</p>
+<ul>
+  <li>具体计算方法如下：
+    <ul>
+      <li>根据region下的约束，调整家庭户的权值；</li>
+      <li>根据geo下的约束，调整家庭户的权值；</li>
+      <li>收敛之后，可得出，每个家庭户的抽样权值；</li>
+    </ul>
+  </li>
+  <li>example:
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">for</span> <span class="n">region_id</span> <span class="ow">in</span> <span class="n">region_ids</span><span class="p">:</span>  <span class="c1"># 遍历region
+</span>      <span class="n">geo_ids</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">db</span><span class="p">.</span><span class="nf">get_geo_ids_for_region</span><span class="p">(</span><span class="n">region_id</span><span class="p">)</span>  <span class="c1"># region下所有的geoID
+</span>      <span class="n">len_geo_ids</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">geo_ids</span><span class="p">)</span>
+       <span class="c1"># 每一个region下每一个geo下家庭户的初始样本权值为1，此处有修改，只初始化sample geo对应的家庭权值为1
+</span>      <span class="n">sample_weights</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">((</span><span class="n">self</span><span class="p">.</span><span class="n">region_stacked</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                <span class="n">len_geo_ids</span><span class="p">),</span>
+                               <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">,</span> <span class="n">order</span><span class="o">=</span><span class="sh">"</span><span class="s">C</span><span class="sh">"</span><span class="p">)</span> 
+      <span class="k">for</span> <span class="nb">iter</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">outer_iterations</span><span class="p">):</span>  <span class="c1"># 外部迭代次数100
+</span>          <span class="n">t</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="nf">time</span><span class="p">()</span>
+          <span class="c1"># print "Region: %s and Iter: %s" % (region_id, iter)
+</span>          <span class="k">if</span> <span class="n">region_constraints</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+              <span class="c1"># 根据region的约束，调整家庭户的样本权值
+</span>              <span class="n">sample_weights</span> <span class="o">=</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">_adjust_sample_weights</span><span class="p">(</span>
+                                <span class="n">sample_weights</span><span class="p">,</span>
+                                <span class="n">region_constraints</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">region_id</span><span class="p">]))</span>
+          <span class="c1"># 根据region下每一个geo调整家庭户权值
+</span>          <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">geo_id</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">geo_ids</span><span class="p">):</span>
+              <span class="c1"># print ("Geo: %s " % geo_id)
+</span>              <span class="c1"># 根据geo的约束，调整样本权值
+</span>              <span class="n">sample_weights</span><span class="p">[:,</span> <span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="nf">_adjust_sample_weights</span><span class="p">(</span>
+                                          <span class="n">sample_weights</span><span class="p">[:,</span> <span class="n">index</span><span class="p">],</span>
+                                          <span class="n">geo_constraints</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">geo_id</span><span class="p">],</span>
+                                          <span class="n">iters</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">inner_iterations</span><span class="p">,</span>
+                                          <span class="n">geo</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+      <span class="n">self</span><span class="p">.</span><span class="nf">_populate_sample_weights</span><span class="p">(</span><span class="n">sample_weights</span><span class="p">,</span> <span class="n">region_id</span><span class="p">,</span> <span class="n">geo_ids</span><span class="p">)</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<h3 id="25-蒙特卡洛抽样">2.5 蒙特卡洛抽样</h3>
+<ul>
+  <li>根据蒙特卡洛原理，不同家庭户具有不同是抽样权值，被抽取的概率不一样；</li>
+  <li>根据家庭户权值抽N次样，选取个体属性的分布最符合控制总量分布的最优结果；</li>
+</ul>
+
+<h2 id="3popgen抽样的特点和局限性">3、popgen抽样的特点和局限性</h2>
+<h3 id="31-特点">3.1 特点</h3>
+<ul>
+  <li>上文中的geo对应于taz,region可以对应地带，行政区;</li>
+  <li>需要知道完备的TAZ和地带的控制属性;</li>
+  <li>popgen扩样，扩出来的是具有详细的家庭户和个体的属性的值</li>
+</ul>
+
+<h3 id="32-局限性">3.2 局限性</h3>
+<ul>
+  <li>对调查样本依赖性太强，样本数据过少，生成偏差较大,无法生成样本以外的数据</li>
+  <li>扩样方法中没有考虑出行行为</li>
+  <li>某城市的扩样，由于样本量过低，权值计算时，将所有调查样本，作为某个geo的家庭户的抽样对象
+而不是对应sample geo的下的家庭户；</li>
+  <li>只考虑了region一个层次，没有考虑多个维度，实际上是可能具有多个维度的统计指标</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/tranmodel/matsim-Score/" class="pagination--pager" title="Matsim评分机制
+">上一页</a>
+    
+    
+      <a href="/tutorials/tranmodel/pop-gen_use/" class="pagination--pager" title="popgen-人口合成
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

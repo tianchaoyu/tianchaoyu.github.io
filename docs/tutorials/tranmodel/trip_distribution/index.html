@@ -1,0 +1,514 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>交通分布 - 技术博客</title>
+<meta name="description" content="1、基本概念">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="交通分布">
+<meta property="og:url" content="http://localhost:4000/tutorials/tranmodel/trip_distribution/">
+
+
+  <meta property="og:description" content="1、基本概念">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/tranmodel/trip_distribution/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/tranmodel/fourstep/"><span class="nav__sub-title">四阶段交通模型</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/fourstep/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_generate/">出行生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_distribution/" class="active">交通分布</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode_split/">方式划分</a></li>
+            
+              <li><a href="/tutorials/tranmodel/PA2OD/">PA2OD</a></li>
+            
+              <li><a href="/tutorials/tranmodel/transport-assignment/">交通分配</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">出行链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/tourbase/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/tour-generate/">出行链生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/utility-calculate/">效用计算</a></li>
+            
+              <li><a href="/tutorials/tranmodel/destination-choice/">目的地选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/Intermediate-stop/">中间停留点模型</a></li>
+            
+              <li><a href="/tutorials/tranmodel/half-tour/">半程出行链</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode-choice/">方式选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/time-split/">时段划分</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">活动链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen/">人口合成原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_use/">popgen使用</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_file/">popgen文件说明</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">智能体交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/matsim-base/">软件介绍</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-run/">下载与安装</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-config/">Matsim配置</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-yuanli/">Matsim原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-celue/">Matsim的策略</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-Score/">Matsim评分机制</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="交通分布">
+    <meta itemprop="description" content="1、基本概念">
+    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/tranmodel/trip_distribution/" itemprop="url">交通分布
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#1基本概念">1、基本概念</a><ul><li><a href="#2常用方法">2、常用方法</a></li><li><a href="#总体步骤重力模型">总体步骤（重力模型）：</a></li></ul></li><li><a href="#增长因子法介绍">增长因子法介绍</a><ul><li><a href="#优点">优点</a></li></ul></li><li><a href="#22缺点">2.2、缺点</a></li></ul></li><li><a href="#重力模型介绍">重力模型介绍</a><ul><li><a href="#重力模型">重力模型</a><ul><li><a href="#单约束重力模型">单约束重力模型</a></li><li><a href="#双约束重力模型">双约束重力模型</a></li><li><a href="#阻抗impedannce计算">阻抗impedannce计算</a><ul><li><a href="#1综合阻抗">1）综合阻抗</a></li></ul></li><li><a href="#334建立摩擦因数矩阵">3.3.4、建立摩擦因数矩阵</a></li></ul></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <h1 id="1基本概念">1、基本概念</h1>
+
+<p>交通分布位于四阶段模型的第二阶段，用于估计出行者目的地选择。
+1）出行（trip）：人、货物或者车辆从起点到终点的一次移动，其具有三个基本属性：</p>
+<ul>
+  <li>每次出行具有起、讫两个端点；</li>
+  <li>每次出行有一定的目的；</li>
+  <li>每次出行使用一种或多种交通方式；</li>
+</ul>
+
+<p>2）起讫点和产生和吸引点：
+    - 起讫点：起点和终点（origin-destination）也就是OD点 
+    - 产生和吸引点：production-attraction也就是PA点
+    - ex:home-work-home
+    - home-work:起点为home,终点为work,产生端为home,吸引端为work;
+    - work-home:起点为work,终点为home,产生端为home,吸引端为work;
+3）基于家的出行（HBW,HBO），交通分布计算出来的矩阵，为PA矩阵；
+4）非基于家的出行（NHBO），交通分布计算出来的矩阵，为OD矩阵
+5）在进行方式选择以后，需要将PA矩阵转化为全天的OD矩阵；</p>
+
+<h2 id="2常用方法">2、常用方法</h2>
+
+<ul>
+  <li>增长系数法：将一个已知的矩阵进行缩放得到一个 新的起讫点流量矩阵，当无法获得区域之间的距离，时间，费用时，通常采用这种方法。</li>
+  <li>综合法：该模型的输入包括一个或多个流量矩阵，一个反应区域之间的距离，出行时间或者出行费用等有关交通阻力因素的矩阵以及预测未来出行产生和吸引流量。引力模型将区域间的出行流量与交通出行的阻力因素直接关联起来。# 3、交通分布计算步骤
+    <h2 id="总体步骤重力模型">总体步骤（重力模型）：</h2>
+  </li>
+  <li>阻抗矩阵+现状OD → 校准阻力函数（一般为gamma函数）；</li>
+  <li>阻抗矩阵+阻力函数参数表→ 摩擦因数矩阵or 摩擦因数对照表；</li>
+  <li>（摩擦因数矩阵or 摩擦因数对照表）+ 交通生成数据→ 交通分布OD；</li>
+</ul>
+
+<h1 id="增长因子法介绍">增长因子法介绍</h1>
+<p>将一个已知的矩阵进行缩放得到一个 新的起讫点流量矩阵，当无法获得区域之间的距离，时间，费用时，通常采用这种方法。
+<strong>假设</strong>：增长因子法假设将来的OD交通量的分布形式和现有的OD表分布形式相同，在此假设的基础上预测对向区域目标年的OD交通量。
+<strong>常用的方法包括</strong>：</p>
+<ul>
+  <li>常增长系数法；</li>
+  <li>平均增长系数法；</li>
+  <li>底特律法；</li>
+  <li>福莱特法；</li>
+  <li>福尼斯法；
+    <h3 id="优点">优点</h3>
+  </li>
+  <li>结构简单，实用较多，不需要交通小区之间的距离和时间；</li>
+  <li>适用于小时交通量和日交通量的预测；</li>
+  <li>对于变化较小的OD表预测效果好；</li>
+  <li>预测铁路车站间OD分布有效；
+    <h2 id="22缺点">2.2、缺点</h2>
+  </li>
+  <li>必须有所有小区的OD分布交通量；</li>
+  <li>对象地区发生如下大规模变化时，该方法不适用；</li>
+  <li>将来交通小区分区发生变化（有新开发区时）；</li>
+  <li>交通小区之间的行驶时间发生变化；</li>
+  <li>土地利用发生较大变化；</li>
+  <li>交通小区之间的交通量较小存在以下问题：</li>
+  <li>若现状交通量为0，则将来预测值也为0；</li>
+  <li>对于可靠性较低的OD交通量，将来的预测误差将被扩大；</li>
+</ul>
+
+<h1 id="重力模型介绍">重力模型介绍</h1>
+
+<p>引力模型最初的核心思想是区域间的流量的大小可以大致表述为区域间距离的一个递减函数，这与物理学关于两物体间的吸引力随两物体间距离增大而减少并无二致。在交通规划中使用该模型时，它是基于如下一种与牛顿学说的有关推理相类似的，假设： i 和 j 区域间的出行次数的多少，是区域 i 的总出行流量以及区域 j 在所有区域当中的相对吸引力和可达性的函数。
+<strong>假设</strong>：两个交通小区之间的出行吸引与两个交通小区的出行发生量和吸引量成正比，而与交通小区之间的交通阻抗成反比；</p>
+<ul>
+  <li>阻抗（impedance）：阻力因素，也叫成本，包括出行距离、时间，费用等指标，在交通出行中，和出行意愿呈反向关系，阻抗越大，越不愿意出行；</li>
+  <li>阻力函数：将阻抗转化为模型因数的函数关系式，常见的阻力函数有：指数函数，反向幂函数，gama函数；</li>
+  <li>摩擦因数(frictionfactors)：阻抗+阻抗函数=摩擦因素，用于计算交通分布；</li>
+</ul>
+
+<h2 id="重力模型">重力模型</h2>
+
+<p>引力模型是应用最广的出行分配模型。这种模型将地区之间的流量与地区之间的出行阻力（impedance to travel）直接关联起来。
+引力模型假设，由区域 i产生且被区域 j 吸引的出行数与下列因素成比例：</p>
+<ul>
+  <li>区域 i 产生的出行量</li>
+  <li>区域 j 吸引的出行量</li>
+  <li>描述区域之间空间隔离或阻力作用的一个函数（常叫做阻力函数）</li>
+</ul>
+
+<p>引力模型可以使用许多不同的阻力指标，例如出行距离，出行时间，或出行费用。用阻力指标来描述每个区域的相对吸引力的函数也有很多的选择。
+经常使用的熵模型中最流行的选择是指数和倒数函数。在美国规划实践中有时候被推荐的还有Gamma 函数。
+除了使用阻力函数以外，用户还可利用一个摩擦因数对照表（本质上可以看作是一个离散的阻力函数），使地区之间的阻力与它们之间的相互吸引强度相关联 。
+从阻力函数得到的值或者直接指定得阻力一般被叫做摩擦因数（ frictionfactors），包含地区i和j之间摩擦因数的矩阵叫做摩擦因数矩阵（friction factor matrix）。</p>
+
+<h3 id="单约束重力模型">单约束重力模型</h3>
+
+<p><img src="/assets/images/transport_model/gravity_single.png" alt="" /></p>
+
+<h3 id="双约束重力模型">双约束重力模型</h3>
+
+<p><img src="/assets/images/transport_model/gravity_double.png" alt="" /></p>
+
+<h3 id="阻抗impedannce计算">阻抗impedannce计算</h3>
+<p>用于描述在区域间旅行的难度的阻力有多种不同的指标和方法。经常使用的阻力指标是出行时间，出行距离，以及出行费用。阻力可以是这些指标的组合，或是在不同出行方式下，这些指标值的组合。</p>
+
+<h4 id="1综合阻抗">1）综合阻抗</h4>
+
+<p><img src="/assets/images/transport_model/impedance.png" alt="" /></p>
+
+<p>根据出行阻抗的计算公式，同一出行方式其出行时间和出行费用时固定的，但是由于其拥车类型和出行目的下的时间价值存在差异，导致其出行成本的不同，因此基本阻抗为对拥车类型，出行目的和出行方式进行交叉分类下的出行阻抗。</p>
+
+<h3 id="334建立摩擦因数矩阵">3.3.4、建立摩擦因数矩阵</h3>
+<p>一旦有了一个阻力矩阵，用户就能建立摩擦因数矩阵。摩擦因数矩阵包含各地区之间的旅行摩擦因数。阻力矩阵一般是在阻力矩阵的基础上，根据阻力函数或摩擦因数对照表计算出的摩擦因数构建的。 
+常见阻力函数：
+<img src="/assets/images/transport_model/gama.png" alt="" /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/tranmodel/trip_generate/" class="pagination--pager" title="出行生成
+">上一页</a>
+    
+    
+      <a href="/tutorials/tranmodel/mode_split/" class="pagination--pager" title="方式划分
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

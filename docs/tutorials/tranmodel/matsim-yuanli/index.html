@@ -1,0 +1,450 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Matsim原理 - 技术博客</title>
+<meta name="description" content="1、Matsim研究内容 MATSim是一个基于活动、可扩展、多智能体的Java仿真框架，它可以在给定的交通网络上，模拟在一整天的时长内大量出行个体的出行及活动行为。matsim的主要研究内容包括：">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="Matsim原理">
+<meta property="og:url" content="http://localhost:4000/tutorials/tranmodel/matsim-yuanli/">
+
+
+  <meta property="og:description" content="1、Matsim研究内容 MATSim是一个基于活动、可扩展、多智能体的Java仿真框架，它可以在给定的交通网络上，模拟在一整天的时长内大量出行个体的出行及活动行为。matsim的主要研究内容包括：">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/tranmodel/matsim-yuanli/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/tranmodel/fourstep/"><span class="nav__sub-title">四阶段交通模型</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/fourstep/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_generate/">出行生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_distribution/">交通分布</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode_split/">方式划分</a></li>
+            
+              <li><a href="/tutorials/tranmodel/PA2OD/">PA2OD</a></li>
+            
+              <li><a href="/tutorials/tranmodel/transport-assignment/">交通分配</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">出行链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/tourbase/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/tour-generate/">出行链生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/utility-calculate/">效用计算</a></li>
+            
+              <li><a href="/tutorials/tranmodel/destination-choice/">目的地选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/Intermediate-stop/">中间停留点模型</a></li>
+            
+              <li><a href="/tutorials/tranmodel/half-tour/">半程出行链</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode-choice/">方式选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/time-split/">时段划分</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">活动链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen/">人口合成原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_use/">popgen使用</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_file/">popgen文件说明</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">智能体交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/matsim-base/">软件介绍</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-run/">下载与安装</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-config/">Matsim配置</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-yuanli/" class="active">Matsim原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-celue/">Matsim的策略</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-Score/">Matsim评分机制</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Matsim原理">
+    <meta itemprop="description" content="1、Matsim研究内容MATSim是一个基于活动、可扩展、多智能体的Java仿真框架，它可以在给定的交通网络上，模拟在一整天的时长内大量出行个体的出行及活动行为。matsim的主要研究内容包括：">
+    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/tranmodel/matsim-yuanli/" itemprop="url">Matsim原理
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#1matsim研究内容">1、Matsim研究内容</a></li><li><a href="#2matsim模拟的交通流模型">2、Matsim模拟的交通流模型</a></li><li><a href="#3matsim的协同进化算法">3、Matsim的协同进化算法</a></li><li><a href="#4matsim的优化和仿真">4、Matsim的优化和仿真</a><ul><li><a href="#41matsim的初始需求">4.1、Matsim的初始需求</a></li><li><a href="#42matsim的执行计划">4.2、Matsim的执行计划</a></li><li><a href="#43matsim的评分">4.3、Matsim的评分</a></li><li><a href="#44重新计划">4.4、重新计划</a></li><li><a href="#45结果分析">4.5、结果分析</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <h2 id="1matsim研究内容">1、Matsim研究内容</h2>
+<p>MATSim是一个基于活动、可扩展、多智能体的Java仿真框架，它可以在给定的交通网络上，模拟在一整天的时长内大量出行个体的出行及活动行为。matsim的主要研究内容包括：</p>
+
+<ul>
+  <li>微观交通模型：MATSim 能够对微观交通流量及其拥堵进行模拟仿真。</li>
+  <li>基于需求/智能体的微观出行行为建模：MATSim通过跟踪每日时间表和综合出行者的出行决定来描述微观出行需求。</li>
+  <li>物理计算：MATSim对10^7个或更多的”agent”进行快速的微观模拟。</li>
+  <li>复杂的自适应系统和协同进化算法：MATSim通过协同进化算法，优化整个出行时刻表，从而达到整个系统的平衡和稳定状态。MATSim是基于协同进化原理。每个智能体反复优化其日常活动时间表，同时与所有其他智能体竞争当前时空下的 交通基础设施。这有点类似于路径分配迭代选择，但是matsim在迭代循环中结合了其他选择维度（如时间选择，方式选择，或目的地选择），超越了路线分配，</li>
+</ul>
+
+<h2 id="2matsim模拟的交通流模型">2、Matsim模拟的交通流模型</h2>
+<p>MATSim提供了两个内部的移动仿真mobsim：QSim和JDEQSim（Java Discrete Event Queue Simulation）;在此外，还可以插入外部移动性模拟。几年前，DEQSim（离散事件）队列模拟）用C++编写，由Charypar（2008）描述;Charypar et al. （2007b，a， 2009）插入 MATSim 并经常使用。多线程 QSim 目前是默认的 mobsim。
+不同模型在道路上的行驶行为仿真的主要区别：</p>
+
+<ul>
+  <li>物理仿真：跟车模型；</li>
+  <li>元胞自动机模型：道路被离散化为元胞</li>
+  <li>排队仿真：使用等待队列对流量动态进行建模</li>
+  <li>中观模型：综合出行者的出行速度</li>
+  <li>宏观模型：基于道路流量建模而不是单个出行个体建模matsim的交通流模型:MATSim 专为大规模场景而设计，因此它采用了基于队列的高效计算方法。从交叉路口进入网络链路（即路段）的汽车添加到等待队列的尾部。它一直保持在那里，直到自由流动的链接的时间已经过去，直到他或她在等待队列的头，直到下一个链接允许进入。It remains there until the time for traveling the link with free flow has passed and until he or she is at the head of the waiting queue and until the next linkallows entering。 它一直留在那里，直到旅行时间自由流动已经过去，直到他或她处于等待队列的前面，直到下一个链接允许进入。这种方法非常有效，但显然它是以降低分辨率为代价的，即，不捕获汽车跟随效果。在 JDEQSim 中，由于计算原因，先进先出方法与基于事件的更新步骤相结合。换句话说，有些方案中智能体的没有基于时间步长的更新过程。相反，代理仅被触摸例如，在agent经过link时，link不必做任何处理，事件的更新是由全局控制的。<img src="./（4）Matsim原理简析.assert/matsim交通流模型.PNG" alt="下载失败" />
+<img src="/assets/images/transport_model/1733306530891-9a7c7444-e022-4f69-bfe3-771402c606cd.png" alt="matsim交通流模型.PNG" /></li>
+</ul>
+
+<p>MATSim 流量模型主要基于两个道路属性：存储容量和流量容量。存储容量定义了link上能容纳的总的汽车数量，通行能力，则表示单位时间能通过的车辆数。目前，最基本的交通流模型已经扩展到各种模块：运行信号和多车道建模可用于QSim。</p>
+<h2 id="3matsim的协同进化算法">3、Matsim的协同进化算法</h2>
+<p><img src="/assets/images/transport_model/1733306508912-a45c45c9-843a-4307-aabc-85898a2e0bea.png" alt="协同计划算法.PNG" /></p>
+
+<h2 id="4matsim的优化和仿真">4、Matsim的优化和仿真</h2>
+<p>matsim的优化和仿真主要包括：初始需求，方案执行，方案评价，重新规划方案，结果分析。MATSim很大程度上基于源自mobsim的事件，模拟中的每个操作都会生成一个事件，该事件被记录下来以供分析。可以聚合这些事件记录以评估任何具体循环过程如下：<img src="/assets/images/transport_model/matsim框架.PNG" alt="下载失败" />
+<img src="/assets/images/transport_model/1733306570381-a16878e2-5d52-4bb3-8b77-7ef19c001977.png" alt="matsim框架.PNG" /></p>
+
+<h3 id="41matsim的初始需求">4.1、Matsim的初始需求</h3>
+<p>主要用于模拟个体的移动性行为。这部分包含个体的一整天的计划列表，包含活动列表（如工作、居家等活动项目类别）、出行信息（如drive to work等执行不同活动所选择的出行方式）、出行时间信息（如上午7:28离家、下午5:45下班等）以及路网信息、车辆信息等。初始需求模块描述了个体初始的每日计划，但在实际仿真过程中可能因道路网络产生交通拥堵等而导致仿真结果无法完全实现个体的每日初始活动计划。</p>
+<h3 id="42matsim的执行计划">4.2、Matsim的执行计划</h3>
+<p>该模块主要模拟个体每日活动计划的执行过程，也称为移动性仿真（Mobsim）。在执行计划期间，个体通过占用虚拟路网中的空间来影响彼此的每日活动计划。当较多的个体选择在某时段内沿同一条路段出行时，则可能产生交通拥堵。此外，在仿真系统Controller模块的控制下，执行计划模块主要执行两项任务：一是合理分配车辆，用MATSim中内置的Dijkstra的算法将初始出行路线分配给每个个体，以此保证不同的交通方式在整个道路网络上的运行；二是根据个体的每日活动计划，保证每个个体都能选择相应交通方式出行并执行相关活动。其中MobSim（使用Qsim引擎和先进先出（FIFO）单队列模型将计划加载到道路网络上，并设置容量因子）会在MATSim循环的每个步骤之后和之前以及每次迭代时生成“events”文件，记录所有个体的活动过程，包含个体在特定时间的各类出行活动计划等。完成上述过程之后，可以得到不同个体的所选的交通方式以及某路段的断面流量等仿真结果数据。每次迭代中所有个体的出行计划的评价得分情况都记录在“scorestats.txt”中，并绘制相应的评分折线图来表示每次迭代中活动计划的个人和平均性能。</p>
+<h3 id="43matsim的评分">4.3、Matsim的评分</h3>
+<p>所有个体的计划执行完成后，该模块会根据计划执行情况进行评分。评分模块可以根据不同的交通方式来自定义它们的效用函数，但一般认为执行活动会产生正效用，而出行过程会产生负效用。每个个体可以通过选择短途出行以及执行较长时间的活动来累积更多的得分。也就是说，一天干的事情越多，加分越高，但是在路上花的时间越多，就越减分。</p>
+<h3 id="44重新计划">4.4、重新计划</h3>
+<p>重新计划模块中个体会重新计划他们的每日活动来避免出现评分较低的情景，它是MATSim的创新模块。由于初始计划大多是根据实际调查数据生成，每个个体的出行计划生成过程相互独立，缺乏对不同个体之间相互关系和相互影响的考虑，导致仿真结果并不是最贴近实际的最优计划。而该模块可以修改活动结束时间、下一项活动的开始时间、出行选择的交通方式以及出行路线（即<strong>出发时间选择，模式选择，路线选择</strong>）等活动计划的内容来调整个体的每日活动计划。此过程在MATSim中是通过“strategy”模块进行以上更改的，并使用ML模型从多个生成的备选方案中选择评分最高的计划 。
+MATSim会随着迭代的进行不断生成新的每日活动计划，也就是个体会随着仿真的运行积累计划和创建不同于现有计划的新计划，并随时间的增长建立选择计划集，其中每个个体的每日活动计划是根据其实际运行情况进行调整的，并且每个个体都能“记住”自己一定数量的出行计划（一般设为5个），此过程遵循“计划选择机制”，即当个体记录的出行计划数超过规定数量时，多余的计划将会被删除。随着仿真的不断迭代，所有个体每日活动计划的评分不断提高，整个仿真系统的效用和性能也不断达到最优。</p>
+<h3 id="45结果分析">4.5、结果分析</h3>
+<p>在仿真模拟结束后，需要对评价指标和关键性能进行比较和分析。MATSim软件在此过程中对每个个体采用协同进化算法，初始需求是出行者的日常活动计划，在一个场景模拟运行中执行多次迭代直到最优值为止，该需求通过三个模块（执行计划、评分和重新计划）执行，其中可以基于一些预设参数来确定出行者效用的优化距离，出行时间，设施的开放时间以及提早或延迟抵达的罚款，该循环持续进行多次迭代，直到代理不再能够提高其得分，此时认为达到用户平衡。</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/tranmodel/matsim-config/" class="pagination--pager" title="Matsim配置
+">上一页</a>
+    
+    
+      <a href="/tutorials/tranmodel/matsim-celue/" class="pagination--pager" title="Matsim的策略
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

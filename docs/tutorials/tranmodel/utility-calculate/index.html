@@ -1,0 +1,519 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>效用计算 - 技术博客</title>
+<meta name="description" content="0、效用理论">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="效用计算">
+<meta property="og:url" content="http://localhost:4000/tutorials/tranmodel/utility-calculate/">
+
+
+  <meta property="og:description" content="0、效用理论">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/tranmodel/utility-calculate/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/tranmodel/fourstep/"><span class="nav__sub-title">四阶段交通模型</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/fourstep/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_generate/">出行生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_distribution/">交通分布</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode_split/">方式划分</a></li>
+            
+              <li><a href="/tutorials/tranmodel/PA2OD/">PA2OD</a></li>
+            
+              <li><a href="/tutorials/tranmodel/transport-assignment/">交通分配</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">出行链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/tourbase/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/tour-generate/">出行链生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/utility-calculate/" class="active">效用计算</a></li>
+            
+              <li><a href="/tutorials/tranmodel/destination-choice/">目的地选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/Intermediate-stop/">中间停留点模型</a></li>
+            
+              <li><a href="/tutorials/tranmodel/half-tour/">半程出行链</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode-choice/">方式选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/time-split/">时段划分</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">活动链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen/">人口合成原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_use/">popgen使用</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_file/">popgen文件说明</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">智能体交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/matsim-base/">软件介绍</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-run/">下载与安装</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-config/">Matsim配置</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-yuanli/">Matsim原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-celue/">Matsim的策略</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-Score/">Matsim评分机制</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="效用计算">
+    <meta itemprop="description" content="0、效用理论">
+    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/tranmodel/utility-calculate/" itemprop="url">效用计算
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#0效用理论">0、效用理论</a></li><li><a href="#1出行trip的效用">1、出行trip的效用</a></li><li><a href="#2tour的效用计算">2、tour的效用计算</a><ul><li><a href="#21去程和返程方式一致">2.1、去程和返程方式一致</a></li><li><a href="#22去程和返程方式不一致">2.2、去程和返程方式不一致</a></li></ul></li><li><a href="#3目的地效用计算">3、目的地效用计算</a></li><li><a href="#4经验总结">4、经验总结</a></li><li><a href="#5参数分析">5、参数分析</a><ul><li><a href="#51效用值">5.1、效用值</a></li><li><a href="#52beta参数">5.2、beta参数</a></li><li><a href="#53其他问题">5.3、其他问题</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <h2 id="0效用理论">0、效用理论</h2>
+
+<ul>
+  <li><strong>效用（Utility）</strong>，是经济学中最常用的概念之一。一般而言，效用是指对于消费者通过消费或者享受闲暇等使自己的需求、欲望等得到的满足的一个度量。</li>
+  <li><strong>总效用</strong>是指消费者在一定时期内，消费一种或几种商品所获得的效用总和。</li>
+  <li><strong>边际效用</strong>是指消费者在一定时间内增加单位商品所引起的总效用的增加量。</li>
+  <li><strong>效用理论</strong>是决策者进行决策方案选择时采用的一种理论。决策往往受决策者主观意识的影响，决策者在决策时要对所处的环境和未来的发展予以展望， 对可能产生的利益和损失作出反应，在公理科学中，把决策者这种对于利益和损失的独特看法、感觉、反应或兴趣，称为效用。</li>
+</ul>
+
+<h2 id="1出行trip的效用">1、出行trip的效用</h2>
+
+<ul>
+  <li>由交通分配或者skim过程获取的道路阻抗，表征的是某段时间，采用某种方式，从空间的某一位置到空间的另一位置所花费的时间成本，费用成本，距离成本等，而这种 成本如何转化为效用，我们知道，效用是决策者的主观意识，主观感受与评价，因此由成本到效用的过程，采用的参数，针对不同类型的决策者，对于不同的出行链，采用的参数应该是不一样的。 出行（trip）效用综合考虑了出行总时间，总费用和距离三方面因素，各种费用通过的时间价值转化为时间,再转化为效用。 计算公式如下：
+其中：
+<img src="/assets/images/transport_model/trip_gc.png" alt="image.png" /></li>
+</ul>
+
+<h2 id="2tour的效用计算">2、tour的效用计算</h2>
+<p>和传统的四阶段模型只考虑trip的效用不同，基于出行链模型考虑的是整个链条的效用，这样能模拟前后两个出行trip之间的相关性，体现了出行行为方式的闭环，提高模型的精度。 一般而言，大多数出行，去程和返程的交通方式变换的不多。方式切换的概率大概在10%左右。Tour Base Model的框架，允许考虑方式切换的状况，只是对计算机资源消耗会很严重。 武汉活动链模型将去程和回程的出行方式分别进行了考虑。将出行链去程的方式(m)定义为主方式，主方式选择只面向去程方式选择。
+方式切换选择示意图：
+<img src="/assets/images/transport_model/1664349506674-eccbe3d3-7e2e-48ae-ac70-cb1199944ef9.png" alt="image.png" /></p>
+
+<p>作为Car_Driver的出行，默认去程和返程的交通方式是一致的。一般而言，很少有早上开车出去，下午选择其他方式返程的。其他的交通方式都是可以切换的。</p>
+
+<h3 id="21去程和返程方式一致">2.1、去程和返程方式一致</h3>
+<p>当去程和返程的交通方式一致，如Car_Driver的出行，早上开车去上班，下午开车回家，去程和返程都采用Car_Driver。具体计算公式如下
+其中：
+<img src="/assets/images/transport_model/tour_u_m.png" alt="image.png" /></p>
+
+<p>—— 分别代表出行目的为p，人群类型为c时，对于方式m，TAZ(i)和TAZ(j)间去程和回程的效用；因为考虑的是整个Tour的效用，因此将去程和回程的效用相加后，需要乘以参数0.5，保持量级不变。</p>
+<h3 id="22去程和返程方式不一致">2.2、去程和返程方式不一致</h3>
+<p>当主方式m为可变方式时，出行链方式选择需要在进行主方式选择后，再进行回程的从属方式选择。对于出行链， 需要通过计算全部方式组合下去程和回程的效用，通过加权得到全天的平均效用值。 例如：早上选择了打车上班，下午下班回家的交通方式可以选择：坐公交、坐便车（Car_passenger）、慢行等，一般而言，，去程的效用即是主方式（打车）的效用，返程的效用则是 坐公交、坐便车（Car_passenger）、慢行等多种方式的效用的logsum值。
+具体计算公式如下：</p>
+
+<p><img src="/assets/images/transport_model/tour_u_mx.png" alt="image.png" /></p>
+
+<p>——在可变方式出行的情况下，mix类型中与去程方式不同的其他三种出行方式。大多数出行链的去程方式和回程方式是一致的。因此，模型中设定了一组固定参数作为往返同方式和往返不同方式在计算回程效用时的权重值， 分别对应以主方式返回和以混合方式返回。
+回程方式的Logsum过程定义如： U_{j i p c m * t} r表示返程方式总的效用，由返程所有方式的logsum计算得到。计算方式如下：</p>
+
+<p><img src="/assets/images/transport_model/tour_gc_return.png" alt="image.png" /></p>
+
+<h2 id="3目的地效用计算">3、目的地效用计算</h2>
+<p>目的地选择的效用用于出行量的目的地选择计算，效用值越大，选择的可能性就越高。表示c类人群基于类目的从小区到小区的效用。 包含两个部分，前半段为子过程即目的地选择的下一层——方式选择部分的全部方式的值，即不同出行方式基于Tour的效用值, 累加后的。该部分的对应的权值参数为；后半段为对应目的下目的地规模变量（）的对数值 以及对应每一个的系数。计算公式如下：
+U_{ijpc}=β_{dpc}ln(\sum_me^{U_{ijpcm}})+ln(\sum_kσ_{jpk}∗ SizeVariable_{jpk})
+<img src="/assets/images/transport_model/dc_utility.png" alt="image.png" /></p>
+
+<ul>
+  <li>只有单约束的非刚性出行，在计算效用时才采用SizeVariable；</li>
+  <li>对于双约束的刚性出行（通勤和同学），SizeVariable具有强约束，而不是纳入效用之中；</li>
+  <li>方式选择的logsum值和SizeVariable的之间的权值系数，反应了可达性和服务能力的之间对群体目的地选择的影响；</li>
+</ul>
+
+<h2 id="4经验总结">4、经验总结</h2>
+<ul>
+  <li>trip的效用是将时间，费用，距离等阻抗转化为效用值，计算出来的效用绝大多数应该分布在[-5,5]之间，低于-10即可认为阻抗无限大，效用为0，超过10，可直接认定出现错误；</li>
+  <li>ASC用于调整分担率，每增加1，若时间的经验系数为0.06，相当于增加了16分钟（1/0.06=16）；</li>
+  <li>ASC一般不超过5，过大，说明其阻抗无效，需要检查网络；</li>
+  <li>Tour的效用计算，需要将去程效用和返程效用相加后，乘以0.5，在数量级上，不变</li>
+  <li>目的地效用计算引入了size variable,表征TAZ的服务能力，类似于四阶段中的吸引</li>
+  <li>目的地效用计算，可调整集计的阻抗和size variable之间的比例系数，不同的比例对目的的影响不一样；</li>
+  <li>集计的阻抗，反应了出发段到不停目的地之间的难易程度，</li>
+  <li>SV表征了目的地端的吸引程度增加阻抗的系数；</li>
+  <li>增加阻抗系数，平均出行距离变短，潮汐性减弱；</li>
+  <li>增加size variable,平均出行距离增大，潮汐性增强；</li>
+</ul>
+
+<h2 id="5参数分析">5、参数分析</h2>
+<h3 id="51效用值">5.1、效用值</h3>
+
+<ul>
+  <li>U表示效用，和阻抗意义相反，阻抗越大，表示可达性越差，选择的概率越低；效用U用于计算概率，越大，选择的概率越大，注意：四阶段计算的时候，,负号在U 的前面，在Tour Base框架中，我们将负号统一放进了U里面。</li>
+  <li>时间和费用都是正值，前面的参数项都是负值，如下图所示：<strong>时间越长，阻抗越大，效用越小</strong></li>
+  <li><img src="/assets/images/transport_model/1664349506641-3df92fe4-aa74-4ae8-b34a-34bbd3c6861f.png" alt="image.png" />
+    <h3 id="52beta参数">5.2、beta参数</h3>
+  </li>
+  <li>P1参数</li>
+  <li>IVT车内时间的系数，将时间转化为计算值；</li>
+  <li>参考值-0.06，假设车内时间在[0,120]分钟之间，效用值范围为-[0,7.2],慢行是-0.12。</li>
+  <li>P2参数</li>
+  <li>OVT车外时间的系数，Access time + Egress time，将时间转化为效用计算值；</li>
+  <li>不同的人群，不同的方式，参考范围不一样，一般车外时间的感受是车内时间的两倍；</li>
+  <li>P3和P4参数</li>
+  <li>效用和距离是正相关的。同样的方式（慢行除外），同样的费用和成本，距离越远，效用越高。</li>
+  <li>P3是比例系数，一般取0.5，慢行为-0.1，慢行出行，距离越远，阻抗越高，意愿越低。如下图所示：</li>
+  <li>
+    <p><img src="/assets/images/transport_model/1664349506638-3fe3a6bd-7c22-4071-8bc7-8f714c7c3e4e.png" alt="image.png" /></p>
+  </li>
+  <li>P4为该方式的意愿距离。如下图所示：例如：小汽车意愿距离是2000米,那么低于2000米时,距离越短效用越小，越不愿意开车。超过2000米，距离越远，越愿意开车。 慢行出行的P3参数为负值，表明，出行距离越短，越愿意慢行。</li>
+  <li>
+    <p><img src="/assets/images/transport_model/1664349506651-35550b99-34b9-4b82-bf89-e86016723025.png" alt="image.png" /></p>
+  </li>
+  <li>P5参数</li>
+  <li>P5对应于时间价值，将费用转化为时间，再转化为效用。因此.</li>
+  <li>P6参数</li>
+  <li>常数项，我们将模型无法模拟，或者无法考虑的因素，都纳入常数项内。不同方式值不一样，一般不超过5；</li>
+  <li>P7参数</li>
+  <li>等车时间项的系数，仅限于公交，一般取值：-2.5*0.06=-0.15，2.5的参数值为等车时间感受的系数，为默认的经验值。</li>
+  <li>P8参数</li>
+  <li>换乘次数的系数，仅限公交，一般取值：-6*0.06=0.36,6表示平均换乘时间为6分钟，为经验值。</li>
+</ul>
+
+<h3 id="53其他问题">5.3、其他问题</h3>
+
+<ul>
+  <li><strong>线形关系和非线形关系</strong> 从效用函数可知，,这是一个线形关系的函数，通常而言，短距离出行，2-3km与5-6km都增加1公里，对人的感受是一样的，但是10-&gt;11km和100-101km对人的感受肯定是不一样的； 3元到4元，100元到101元，人的感受是不一样的，因此在某些程度上应该线形关系，但是当短距离和远距离同时出现时，可能线形关系无法表征个体对成本的感受，因此可能需要考虑dumping操作，引入非线形关系。</li>
+  <li><strong>MNL和NL的问题</strong> 武汉模型采用的MNL模型，即在logsum后的的lamda的取值都是1，如果取值不为1则是NL模型；</li>
+  <li><strong>特殊群体特殊方式的特殊成本考虑</strong></li>
+  <li><strong>出租车费用</strong>：出租车的费用严格根据里程阶梯收费</li>
+  <li><strong>停车费</strong>：根据停留时常阶梯收费</li>
+  <li><strong>公交费</strong>：一票制公交收费和地铁的里程收费，换乘优惠等</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/tranmodel/tour-generate/" class="pagination--pager" title="出行链生成
+">上一页</a>
+    
+    
+      <a href="/tutorials/tranmodel/destination-choice/" class="pagination--pager" title="目的地选择
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

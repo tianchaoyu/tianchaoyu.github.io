@@ -1,0 +1,1464 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Matsim配置 - 技术博客</title>
+<meta name="description" content="想要Matsim正常运行，至少需要一个基础网络，一个出行需求，在这个基础上，再加上一个配置文件。除此以外，可以添加其他附加和可选输入数据。">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="Matsim配置">
+<meta property="og:url" content="http://localhost:4000/tutorials/tranmodel/matsim-config/">
+
+
+  <meta property="og:description" content="想要Matsim正常运行，至少需要一个基础网络，一个出行需求，在这个基础上，再加上一个配置文件。除此以外，可以添加其他附加和可选输入数据。">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/tranmodel/matsim-config/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/tranmodel/fourstep/"><span class="nav__sub-title">四阶段交通模型</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/fourstep/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_generate/">出行生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_distribution/">交通分布</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode_split/">方式划分</a></li>
+            
+              <li><a href="/tutorials/tranmodel/PA2OD/">PA2OD</a></li>
+            
+              <li><a href="/tutorials/tranmodel/transport-assignment/">交通分配</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">出行链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/tourbase/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/tour-generate/">出行链生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/utility-calculate/">效用计算</a></li>
+            
+              <li><a href="/tutorials/tranmodel/destination-choice/">目的地选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/Intermediate-stop/">中间停留点模型</a></li>
+            
+              <li><a href="/tutorials/tranmodel/half-tour/">半程出行链</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode-choice/">方式选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/time-split/">时段划分</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">活动链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen/">人口合成原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_use/">popgen使用</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_file/">popgen文件说明</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">智能体交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/matsim-base/">软件介绍</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-run/">下载与安装</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-config/" class="active">Matsim配置</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-yuanli/">Matsim原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-celue/">Matsim的策略</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-Score/">Matsim评分机制</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Matsim配置">
+    <meta itemprop="description" content="想要Matsim正常运行，至少需要一个基础网络，一个出行需求，在这个基础上，再加上一个配置文件。除此以外，可以添加其他附加和可选输入数据。">
+    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/tranmodel/matsim-config/" itemprop="url">Matsim配置
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#1matsim数据配置基础">1、Matsim数据配置基础</a></li><li><a href="#2配置文件示例">2、配置文件示例</a><ul><li><a href="#21配置选项文件configurationconfigxml">2.1、配置选项文件：Configuration：config.xml</a></li><li><a href="#22网络设置文件networkxml">2.2、网络设置文件：network.Xml</a></li><li><a href="#24公交仿真模拟">2.4、公交仿真模拟</a></li><li><a href="#25统计对比-count">2.5、统计对比 count</a></li><li><a href="#26单位和使用约定">2.6、单位和使用约定</a><ul><li><a href="#261单位units">2.6.1、单位，Units</a></li></ul></li><li><a href="#27数据复用">2.7、数据复用</a></li></ul></li><li><a href="#31系统模块说明">3.1、系统模块说明</a></li><li><a href="#样例文件">样例文件</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>想要Matsim正常运行，至少需要一个基础网络，一个出行需求，在这个基础上，再加上一个配置文件。除此以外，可以添加其他附加和可选输入数据。</p>
+
+<h3 id="1matsim数据配置基础">1、Matsim数据配置基础</h3>
+<p>MATSim 使用多个文件来存储用于模拟的不同类型的数据。典型输入数据集：</p>
+
+<ul>
+  <li>config.xml：Matsim的配置选项</li>
+  <li>network.xml：道路网络描述</li>
+  <li>population.xml：出行需求，agent对象及日出行计划</li>
+  <li>facilities.xml：活动点相关位置信息</li>
+  <li>transitSchedule.xml：公交站点位置及公交服务信息</li>
+  <li>transitVehicles.xml：公共交通服务的车辆的描述</li>
+  <li>
+    <p>counts.xml：来自真实世界计数站的每小时数量以进行比较。</p>
+  </li>
+  <li>上述文件概述了在使用MATSim时通常会遇到的文件，但并非总是需要所有文件。非常简单的模拟只能使用配置文件和网络描述以及包含代理计划的人口来运行。对于附加功能，例如对于公共交通的模拟，可能需要额外的文件。</li>
+</ul>
+
+<blockquote>
+  <p>注意：一些文件，尤其是人口和网络文件（population.xml，network.xml或facility.xml），可能会变得非常大。为了节省空间，MATSim 支持以压缩格式读取和写入数据。 
+MATSim 为此使用 GZIP 压缩。因此，在许多情况下，文件名具有附加后缀tt .gz，如 population.xml.gz。 MATSim 会根据文件名自动检测文件是否已压缩或应写入压缩文件。</p>
+</blockquote>
+
+<h3 id="2配置文件示例">2、配置文件示例</h3>
+<h4 id="21配置选项文件configurationconfigxml">2.1、配置选项文件：Configuration：config.xml</h4>
+<p>配置文件，通常简称为config.xml，在用户和 MATSim 之间建立连接。它包含影响模拟行为方式的设置列表。所有配置参数都是简单的参数名称和参数值对。参数被分组到逻辑组中。例如，有一个组具有与控制器相关的设置，例如迭代次数，或者有另一个组具有与模拟相关的设置，例如模拟的结束时间。
+可用参数列表和有效参数值可能因版本而异。尽管我们试图保持稳定，但由于软件的变化，尤其是新功能的变化，设置可能会发生变化。要获取当前可用的所有可用设置的列表，请运行以下命令：</p>
+<blockquote>
+  <p>java -cp matsim.jar org.matsim.run.CreateFullConfig fullConfig.xml</p>
+</blockquote>
+
+<p>此命令将创建一个新的配置文件fullConfig.xml，其中包含可用参数的完整列表及其默认值。这样可以轻松查看可用的设置。要使用和修改某些设置，可以将具有相应参数的行复制到特定于要模拟的场景的配置文件中，并在该文件中修改参数值.
+示例如下：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" ?&gt;</span>
+<span class="cp">&lt;!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v1.dtd"&gt;</span>
+<span class="nt">&lt;config&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"network"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputNetworkFile"</span> <span class="na">value=</span><span class="s">"example/network.xml"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"plans"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputPlansFile"</span> <span class="na">value=</span><span class="s">"example/population.xml.gz"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"controler"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"outputDirectory"</span> <span class="na">value=</span><span class="s">"./output/"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"firstIteration"</span> <span class="na">value=</span><span class="s">"0"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"lastIteration"</span> <span class="na">value=</span><span class="s">"10"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    
+<span class="nt">&lt;/config&gt;</span>
+</code></pre></div></div>
+
+<h4 id="22网络设置文件networkxml">2.2、网络设置文件：network.Xml</h4>
+<p>网络文件描述了agent（或车辆）可以在其上移动的基础设施。网络由nodes和links组成（在图论中，这些通常称为vertices 和 edges。每个元素都有一个标识符id。节点由 X 和 Y 坐标值描述。link有更多属性：from和 to属性引用节点并描述网络的几何形状。其他属性描述了网络与流量相关的方面.</p>
+
+<ul>
+  <li>length:link的长度，单位通常为米</li>
+  <li>flow capacity：link上每小时能通过的标准车的数量</li>
+  <li>freespeed:自由流速度，车辆通过link的最大速度，单位是m/s;</li>
+  <li>lanes:link上的车道数</li>
+  <li>
+    <p>modes:link上允许的速度，ex:modes=”car,bike,taxi”请注意，所有链接都是单向的。如果一条道路可以双向行驶，则必须使用交替的to和from属性定义两个链接.因此，网络可以看作是一个有向图。</p>
+  </li>
+  <li>网络设施文件示例：</li>
+  <li>```html
+&lt;?xml version=”1.0” encoding=”utf-8”?&gt;
+&lt;!DOCTYPE network SYSTEM “http://www.matsim.org/files/dtd/network_v1.dtd”&gt;</li>
+</ul>
+<network name="example network">
+    <nodes>
+        <node id="1" x="0.0" y="0.0" />
+        <node id="2" x="1000.0" y="0.0" />
+        <node id="3" x="1000.0" y="1000.0" />
+    </nodes>
+
+    <links>
+        <link id="1" from="1" to="2" length="3000.00" capacity="3600" freespeed="27.78" permlanes="2" modes="car" />
+        <link id="2" from="2" to="3" length="4000.00" capacity="1800" freespeed="27.78" permlanes="1" modes="car" />
+        <link id="3" from="3" to="2" length="4000.00" capacity="1800" freespeed="27.78" permlanes="1" modes="car" />
+        <link id="4" from="3" to="1" length="6000.00" capacity="3600" freespeed="27.78" permlanes="2" modes="car" />
+    </links>
+
+</network>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+#### 2.3、Matsim的出行需求设置：population.xml
+MATSim 的旅行需求描述了智能体的一天出行计划。所有智能体通常是population，因此文件名为population.xml。在 MATSim 中也常用plans.xml， 因为人口文件本质上包含一个日计划列表。人口出行需求主要内容包括：
+
+- The population contains a list of persons.
+- Each person contains a list of plans.
+- Each plan contains a list of Activities and Legs.
+
+每人只有一个计划被标记为 selected。每个agent的选定计划是由移动模拟Mobsim执行的计划。在重新计划阶段，可能会将不同的计划标记为被选中。计划可以包含分数作为属性。在移动模拟执行计划后，在评分阶段计算分数并将其存储在计划中。每个计划中的活动和分支列表描述了每个agent的计划行动。活动具有分配的类型，并且具有 - 除了一天计划中的最后一个活动 - 定义的结束时间（有一些例外情况，活动具有持续时间而不是结束时间。此类活动通常由路由自动生成算法，因此不在本指南中描述）。为了描述活动发生的位置，通过给定 x 和 y 属性值来为活动分配坐标，或者分配一个link，描述从哪个链接可以到达活动。由于模拟需要链接属性，因此在缺少属性并且仅给出 x 和 y 坐标值或任何活动的情况下，控制器会为给定坐标计算最近的链接。
+分支leg描述了agent如何计划从一个位置到下一个位置。每条支线leg都有一個可选属性，travel_time，他描述了该段出行的预期出行时间。对于模拟的分支leg，它必须包含一条路线。路线的格式取决于出行的交通方式。对于小汽车出行，路线列出了agent必须按给定顺序行驶的link，而对于公交出行，必须给定公交站点的位置以及预期交通服务的信息。
+agent在前一个活动（或leg）结束后直接开始一个分支。根据mode的不同，移动模拟可能会以不同的方式处理agent。默认情况下，移动仿真很好地支持汽车和公交线路。如果 mobsim 遇到它不知道的模式，它默认为转移（teleportation），在这种情况下，agent从模拟现实中移除，并且在leg的预估出行时间过去后，重新插入agent的目标地点。
+
+- 出行需求示例：
+
+```html
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;!DOCTYPE population SYSTEM "http://www.matsim.org/files/dtd/population_v5.dtd"&gt;
+&lt;population&gt;
+    &lt;person id="1"&gt;
+        &lt;plan selected="yes" score="93.2987721"&gt;
+            &lt;act type="home" link="1" end_time="07:16:23" /&gt;
+            &lt;leg mode="car"&gt;
+                &lt;route type="links"&gt;1 2 3&lt;/route&gt;
+
+            &lt;/leg&gt;
+
+            &lt;act type="work" link="3" end_time="17:38:34" /&gt;
+            &lt;leg mode="car"&gt;
+                &lt;route type="links"&gt;3 1&lt;/route&gt;
+
+            &lt;/leg&gt;
+
+            &lt;act type="home" link="1" /&gt;
+        &lt;/plan&gt;
+
+    &lt;/person&gt;
+
+    &lt;person id="2"&gt;
+        &lt;plan selected="yes" score="144.39002"&gt;
+            ...
+        &lt;/plan&gt;
+
+    &lt;/person&gt;
+
+&lt;/population&gt;
+
+</code></pre></div></div>
+
+<p>人口数据格式是 MATSim 中最核心的数据结构之一，一开始可能有点让人不知所措。幸运的是，刚开始，只需知道它的一小部分。根据需要可以做下列简化：</p>
+
+<ul>
+  <li>Each person needs exactly one plan.</li>
+  <li>The plan does not need to be selected or have a score.</li>
+  <li>Activities can be located just by their coordinates.</li>
+  <li>Activities should have a somewhat meaningful end-time.</li>
+  <li>Legs only need a mode, but no routes.</li>
+</ul>
+
+<p>当开始模拟时，MATSim 的控制器将加载这样的文件，然后自动将最近的链接分配给每个活动，并为每条腿计算合适的路线。这使得快速入门变得容易。</p>
+
+<h4 id="24公交仿真模拟">2.4、公交仿真模拟</h4>
+<p>为了在 MATSim 中模拟公共交通，需要两个额外的输入文件：一个描述时间表，即线路、路线、停靠站点和出发时间。另一个描述了为线路服务的车辆：它们是大公共汽车、小型公共汽车、火车还是轻轨车辆，并描述了每辆车可以运送多少乘客。
+公共交通车辆本身的描述可以分为两部分：第一部分，必须描述车辆类型，说明这种车辆可以运送多少乘客（注意，“车辆”一词实际上可以指多辆车辆，例如应将具有多节车厢的火车指定为具有大量座位的长车）。在第二部分中，必须列出实际车辆。每辆车都有一个标识符，并且是先前指定的车辆类型。 (示例文件:ptVehicles.xml)显示了这样一个文件的示例，描述了一种车辆类型和该类型的两种车辆。</p>
+
+<ul>
+  <li>公交车示例文件：ptVehicles.xml
+```html
+&lt;?xml version=”1.0” encoding=”UTF-8”?&gt;</li>
+</ul>
+<vehicleDefinitions xmlns="http://www.matsim.org/files/dtd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.matsim.org/files/dtd 
+                     http://www.matsim.org/files/dtd/vehicleDefinitions_v1.0.xsd">
+<vehicleType id="1">
+        <description>Small Train</description>
+
+        <capacity>
+            <seats persons="50" />
+            <standingRoom persons="30" />
+        </capacity>
+
+        <length meter="50.0" />
+    </vehicleType>
+
+    <vehicle id="tr_1" type="1" />
+    <vehicle id="tr_2" type="1" />
+</vehicleDefinitions>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>公共交通时间表，通常仅称为transitSchedule.xml，是一个相当复杂的文件。它包含有关停靠设施（这些可以是公共汽车站、火车站或其他停靠点）和交通服务的信息.在第一部分中，需要定义停靠设施，为每个停靠设施提供坐标、标识符和对网络中链接的引用。该站点只能由在该指定路段上行驶的车辆提供服务。或者，可以指定停靠点的名称，以及当运输车辆在停靠点等待时是否有其他车辆被阻塞。最后一个属性对建模很有用，例如公共汽车站的区别，一个公共汽车站有一个海湾，而在另一个车站，公共汽车必须停在实际道路上。
+在停靠设施之后，描述了公交线路、它们的路线和时刻表。这是一个分层数据结构：每一行可以有一个或多个 routes，每条线路都有一个route profile、一个 network route和一个departures列表。示例文件：schedule.xml有一个简约但完整的运输时间表的例子。
+每条公交线路都必须有一个唯一的 ID。每条公交路线都有一个 ID，该 ID 在该线路中必须是唯一的，因此相同的路线 ID 可以用于不同的线路。 transportMode描述了线路在网络中的哪些link上运行（实际上，目前尚未强制执行。在模拟中可以让公共汽车在火车链路上运行。将来可能会强制执行）.
+routeProfile描述了这条路线服务的站点，而route本身描述了运输车辆的司机必须沿着的网络中的一系列链接（因此通常称为network route)。注意完整的路线，即车辆行驶的所有路段，必须在路线中列出，而不仅仅是停靠点所在的路段。所有指定的停靠点都应该按照指定的顺序沿着这条路线发生。每个给定的时间偏移量routeProfile中的 stop 描述了与实际出发时间的相对时间偏移。如果一辆公共汽车要在早上 7 点出发，并且停靠站 2 的离开偏移为00:03:00，则必须是读到公共汽车预计在 07:03 在特定站点出发。路线配置文件中的所有站点都必须定义一个出发偏移量，除了最后一个。所有站点，除了第一个，可以选择定义一个到达偏移量. 这对于停站几分钟的大型火车最有用在车站帮助路由算法找到正确时间的连接服务，即火车的预期到达时间。
+作为公交路线描述的最后一部分，应给出出发清单。每个出发点都有一个 id，它在路线内必须是唯一的，并给出了指定路线配置文件的第一站的出发时间。此外，出发指定应使用哪辆车运行服务。该车辆必须在上述公交车辆列表中定义。
+公交时刻表定义:schedule.xml
+
+```html
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;!DOCTYPE transitSchedule SYSTEM "http://www.matsim.org/files/dtd/transitSchedule_v1.dtd"&gt;
+&lt;transitSchedule&gt;
+    &lt;transitStops&gt;
+        &lt;stopFacility id="1" x="990.0"  y="0.0"   name="Adorf"    
+                                                  linkRefId="1" isBlocking="false"/&gt;
+        &lt;stopFacility id="2" x="1100.0" y="980.0" name="Beweiler" 
+                                                  linkRefId="2" isBlocking="true"/&gt;
+        &lt;stopFacility id="3" x="0.0"    y="10.0"  name="Cestadt"  
+                                                  linkRefId="3" isBlocking="false"/&gt;
+    &lt;/transitStops&gt;
+
+    &lt;transitLine id="Blue Line"&gt;
+        &lt;transitRoute id="1"&gt;
+            &lt;description&gt;Just a comment.&lt;/description&gt;
+
+            &lt;transportMode&gt;bus&lt;/transportMode&gt;
+
+            &lt;routeProfile&gt;
+                &lt;stop refId="1" departureOffset="00:00:00"/&gt;
+                &lt;stop refId="2" arrivalOffset="00:02:30" departureOffset="00:03:00" 
+                                                         awaitDeparture="true"/&gt;
+                &lt;stop refId="3" arrivalOffset="00:05:00" awaitDeparture="true"/&gt;
+            &lt;/routeProfile&gt;
+
+            &lt;route&gt;
+                &lt;link refId="1"/&gt;
+                &lt;link refId="2"/&gt;
+                &lt;link refId="3"/&gt;
+            &lt;/route&gt;
+
+            &lt;departures&gt;
+                &lt;departure id="1" departureTime="07:00:00" vehicleRefId="12"/&gt;
+                &lt;departure id="2" departureTime="07:05:00" vehicleRefId="23"/&gt;
+                &lt;departure id="3" departureTime="07:10:00" vehicleRefId="34"/&gt;
+            &lt;/departures&gt;
+
+        &lt;/transitRoute&gt;
+
+    &lt;/transitLine&gt;
+
+&lt;/transitSchedule&gt;
+
+</code></pre></div></div>
+
+<ul>
+  <li>公交验证由于其复杂性，公交时刻表通常包含一些小错误，这些错误会在模拟运行时返回错误。典型示例包括网络路径缺少链接，或者网络路径未按正确顺序通过所有定义的站点。为了确保在模拟开始之前计划没有任何此类问题，可以使用特殊的验证例程：语法如下：&gt; java -Xmx512m -cp /path/to/matsim.jar  org.matsim.pt.utils.TransitScheduleValidator /path/to/transitSchedule.xml /path/to/network.xml</li>
+</ul>
+
+<p>如果运行，此验证器将打印出错误或警告列表（如果发现），或显示计划似乎有效的消息。</p>
+
+<h4 id="25统计对比-count">2.5、统计对比 count</h4>
+<p>MATSim 提供了将模拟流量与现实世界值进行比较的功能。 Counts模块允许每小时比较链路上的流量。counts.xml显示了进行流量计数比较所需的数据。它以包含有关计数的一般描述性信息的标题开始，包括描述数据最新情况的年份。接下来，对于具有真实世界计数数据的每个链接，可以指定每小时的流量。网络link loc_id属性引用，在示例中，它是link_2属性cs_id（counting station identifier）可用于存储计数站的任意描述。大多数情况下，它用于记录原始真实字数统计站，以简化未来的数据比较。由一天中的小时指定的每小时出行量（从小时“1”开始计数）及其值是可选的：也就是说，不必为每个小时指定一个值。如果计数站的数据仅在一天中的某些时间可用（例如，仅在高峰时间），则可以从 XML 列表中省略其他时间。
+count文件示例：</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="nt">&lt;counts</span> <span class="na">xmlns:xsi=</span><span class="s">"http://www.w3.org/2001/XMLSchema-instance"</span> 
+        <span class="na">xsi:noNamespaceSchemaLocation=</span><span class="s">"http://matsim.org/files/dtd/counts_v1.xsd"</span> 
+        <span class="na">name=</span><span class="s">"test"</span> <span class="na">desc=</span><span class="s">"test counting stations"</span> <span class="na">year=</span><span class="s">"2014"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;count</span> <span class="na">loc_id=</span><span class="s">"2"</span> <span class="na">cs_id=</span><span class="s">"005"</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"1"</span> <span class="na">val=</span><span class="s">"10.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"2"</span> <span class="na">val=</span><span class="s">"1.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"3"</span> <span class="na">val=</span><span class="s">"2.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"4"</span> <span class="na">val=</span><span class="s">"3.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"5"</span> <span class="na">val=</span><span class="s">"4.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"6"</span> <span class="na">val=</span><span class="s">"5.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"7"</span> <span class="na">val=</span><span class="s">"6.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"8"</span> <span class="na">val=</span><span class="s">"7.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"9"</span> <span class="na">val=</span><span class="s">"8.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"10"</span> <span class="na">val=</span><span class="s">"9.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"11"</span> <span class="na">val=</span><span class="s">"10.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"12"</span> <span class="na">val=</span><span class="s">"11.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"13"</span> <span class="na">val=</span><span class="s">"12.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"14"</span> <span class="na">val=</span><span class="s">"13.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"15"</span> <span class="na">val=</span><span class="s">"14.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"16"</span> <span class="na">val=</span><span class="s">"15.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"17"</span> <span class="na">val=</span><span class="s">"16.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"18"</span> <span class="na">val=</span><span class="s">"17.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"19"</span> <span class="na">val=</span><span class="s">"18.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"20"</span> <span class="na">val=</span><span class="s">"19.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"21"</span> <span class="na">val=</span><span class="s">"20.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"22"</span> <span class="na">val=</span><span class="s">"21.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"23"</span> <span class="na">val=</span><span class="s">"22.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+        <span class="nt">&lt;volume</span> <span class="na">h=</span><span class="s">"24"</span> <span class="na">val=</span><span class="s">"23.0"</span><span class="nt">&gt;&lt;/volume&gt;</span>
+
+    <span class="nt">&lt;/count&gt;</span>
+
+<span class="nt">&lt;/counts&gt;</span>
+
+</code></pre></div></div>
+
+<h4 id="26单位和使用约定">2.6、单位和使用约定</h4>
+<h5 id="261单位units">2.6.1、单位，Units</h5>
+<p>MATSim 试图对实际单位做出尽可能少的假设，但在某些地方，没有任何假设是无法做到的。一般来说，MATSim 期望相似的值（例如所有距离）在任何使用它们的地方都使用相同的单位。下面简要概述了最重要的（预期的）单元。
+-距离
+距离单位最常用于link的长度。它们应该以与坐标系使用的相同单位来指定。这允许 MATSim 使用简单的三角测量，例如使用节点的坐标来计算直线距离。由于大多数通常使用的投影坐标系（参见 CoordinateSystems}）使用米作为距离单位，这是 MATSim 中最常用的距离单位。</p>
+
+<ul>
+  <li>
+    <p>时间虽然 MATSim 在多个地方支持hour、minute、second表示，但在内部它使用seconds作为默认时间单位。这意味着例如link的速度必须以每秒距离指定，通常为m/s。 需要注意的是评分参数，MATSim期望的是每小时的值。这是因为大多数行为参数（如时间值）通常是每分钟或每小时估计的，并且秒的相应值非常小，因此容易配置错误。</p>
+  </li>
+  <li>
+    <p>标识符MATSim 大量使用标识符，短 Id。此 Id 可以是任意字符串，但以下情况除外： Id 不应包含任何空格（包括制表符、换行符等）或逗号，因为这些字符通常用于在 Id 列表中将不同的 Id 相互分隔。</p>
+  </li>
+  <li>
+    <p>坐标系统：Coordinate Systems在正确的坐标系中准备数据， 在多个输入文件中，您需要指定坐标，例如对于网络的节点。强烈建议不要使用 WGS84 坐标（即 GPS 坐标，或任何其他类型的球面坐标；西-东方向的坐标范围为 -180 到 +180，南-90 到 +90 -北方向）。 MATSim 需要在代码的几个地方计算两点之间的距离。球坐标之间距离的计算非常复杂并且可能很慢。相反，MATSim 使用简单的毕达哥拉斯定理，但这要求坐标位于笛卡尔坐标系中。因此，强烈建议使用笛卡尔坐标系，最好是距离单位对应于一米的坐标系。
+在某些地方，MATSim 需要知道您的数据所在的坐标系。您有多种方法来指定您使用的坐标系。最简单的一种是使用所谓的“EPSG 代码”。大多数常用的坐标系都得到了标准化和编号。EPSG 代码唯一标识一个坐标系，可以直接被 MATSim 使用。作为替代方案，MATSim 还可以解析所谓 WKT 格式的坐标系描述。由于 WKT 格式更容易出错，因此建议尽可能使用 EPSG 代码。
+要为您的坐标系找到正确的 EPSG 代码（例如，对于 UTM 区域之一），网站 http:http://www.spatialreference.org 非常有用。在此网站上搜索您的坐标系，)例如对于“WGS84 UTM Zone 8N”（对于北半球 UTM Zone 8），可以找到匹配坐标系及其 EPSG 代码的列表。
+对于某些操作，MATSim 必须知道您的数据所在的坐标系。例如，某些分析可能会创建要在 Google Earth 中可视化的输出，其中坐标需要转换回 WGS84。您的数据使用的坐标系可以在配置文件中指定：</p>
+  </li>
+</ul>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"global"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"coordinateSystem"</span> <span class="na">value=</span><span class="s">"EPSG:32608"</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/module&gt;</span>
+
+</code></pre></div></div>
+
+<h4 id="27数据复用">2.7、数据复用</h4>
+<p>来自 PTV Visum 或 EMME 等其他建模工具的数据可以部分重复使用。通常只需很少的工作就可以转换网络拓扑。对于 Visum，http://matsim.org/javadoc/org/matsim/visum/package-summary.html部分代码可以将网络转换为 MATSim 的格式。但请注意，这只会转换网络拓扑（节点的位置，以及具有有限属性集的链接）。由于其他建模工具的工作方式不同（例如，使用速度-流量曲线来描述链接，BPR 函数是众所周知的函数之一），MATSim 可能有不同的解释（例如，link的容量是 MATSim 中的硬限制，与其他工具中的部分功能相比），导致在初始转换后需要手动编辑。
+复用需求数据通常更复杂。如果您有基于agent和基于活动的需求生成过程的输出，您可以将数据agent逐个转换为 MATSim 格式。如果只有起点-目的地矩阵或吸引力矩阵形式的聚合数据可用，则无法简单转换为复杂的agent计划，并且必须使用其他数据源重新生成需求。</p>
+
+<h2 id="3matsim关键文件说明">3、Matsim关键文件说明</h2>
+
+<h3 id="31系统模块说明">3.1、系统模块说明</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>索引</th>
+      <th>模块名称</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>JDEQSim</td>
+      <td>java离散事件排队仿真（Java Discrete Event Queue Simulation）</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>TimeAllocationMutator</td>
+      <td>时间分配突变器</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>changeMode</td>
+      <td>方式变化</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>controler</td>
+      <td>控制引擎</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>counts</td>
+      <td>计数模块</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>facilities</td>
+      <td>道路基础设施</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>global</td>
+      <td>全局参数</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>hermes</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>households</td>
+      <td>家庭关系</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>linkStats</td>
+      <td>道路状态</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>network</td>
+      <td>道路网络</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>parallelEventHandling</td>
+      <td>事件并行处理</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>planCalcScore</td>
+      <td>方案计算得分</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>plans</td>
+      <td>方案</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>planscalcroute</td>
+      <td>方案路线计算</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>ptCounts</td>
+      <td>公交计数统计</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>qsim</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>strategy</td>
+      <td>策略</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>subtourModeChoice</td>
+      <td>子出行方式选择</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td>transit</td>
+      <td>公交</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td>transitRouter</td>
+      <td>公交线路</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td>travelTimeCalculator</td>
+      <td>出行时间计算</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td>vehicles</td>
+      <td>车辆</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td>vspExperimental</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="样例文件">样例文件</h3>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="cp">&lt;!DOCTYPE config SYSTEM "http://www.matsim.org/files/dtd/config_v2.dtd"&gt;</span>
+<span class="nt">&lt;config&gt;</span>
+    <span class="c">&lt;!--JDEQSim引擎--&gt;</span>
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"JDEQSim"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!--车辆大小：7.5m?--&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"carSize"</span> <span class="na">value=</span><span class="s">"7.5"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"endTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!--need to be set accordingly when running sample scenarios. For example, for a 10 % sample, these factors need to be 0.1--&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"flowCapacityFactor"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"gapTravelSpeed"</span> <span class="na">value=</span><span class="s">"15.0"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"minimumInFlowCapacity"</span> <span class="na">value=</span><span class="s">"1800.0"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"squeezeTime"</span> <span class="na">value=</span><span class="s">"1800.0"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"storageCapacityFactor"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"TimeAllocationMutator"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- Default:true; Defines whether time mutation changes an activity's duration. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mutationAffectsDuration"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Default:1800.0; Defines how many seconds a time mutation can maximally shift a time. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mutationRange"</span> <span class="na">value=</span><span class="s">"1800.0"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"changeMode"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- Defines whether car availability is considered be considered or not. An agent has no car only if it has no license, or never access to a car. Default: true --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"ignoreCarAvailability"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Defines the mode switch behavior. Possible values [fromAllModesToSpecifiedModes, fromSpecifiedModesToSpecifiedModes] Default: fromSpecifiedModesToSpecifiedModes. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"modeSwitchBehavior"</span> <span class="na">value=</span><span class="s">"fromSpecifiedModesToSpecifiedModes"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Defines all the modes available, including chain-based modes, seperated by commas --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"modes"</span> <span class="na">value=</span><span class="s">"car,pt"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"controler"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- Compression algorithm to use when writing out data to files. Possible values: [none, gzip, lz4, zst] --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"compressionType"</span> <span class="na">value=</span><span class="s">"gzip"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Sets whether graphs showing some analyses should automatically be generated during the simulation. The generation of graphs usually takes a small amount of time that does not have any weight in big simulations, but add a significant overhead in smaller runs or in test cases where the graphical output is not even requested. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"createGraphs"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- true if at the end of a run, plans, network, config etc should be dumped to a file --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"dumpDataAtEnd"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Default=false. If enabled, the router takes travel times needed for turning moves into account. Cannot be used if the (Fast)AStarLandmarks routing or TravelTimeCalculator.separateModes is enabled. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"enableLinkToLinkRouting"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Default=xml; Specifies the file format for writing events. Currently supported: [xml, pb, json]
+        Multiple values can be specified separated by commas (','). --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"eventsFileFormat"</span> <span class="na">value=</span><span class="s">"xml"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Default=0. First Iteration of a simulation. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"firstIteration"</span> <span class="na">value=</span><span class="s">"0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Default=1000. Last Iteration of a simulation. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"lastIteration"</span> <span class="na">value=</span><span class="s">"1000"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Defines which mobility simulation will be used. Currently supported: qsim JDEQSim hermes 
+        Depending on the chosen mobsim, you'll have to add additional config modules to configure the corresponding mobsim.
+        For 'qsim', add a module 'qsim' to the config. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mobsim"</span> <span class="na">value=</span><span class="s">"qsim"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"outputDirectory"</span> <span class="na">value=</span><span class="s">"./output"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Possible values: failIfDirectoryExists, overwriteExistingFiles, deleteDirectoryIfExists --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"overwriteFiles"</span> <span class="na">value=</span><span class="s">"failIfDirectoryExists"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- The type of routing (least cost path) algorithm used, may have the values: [Dijkstra, AStarLandmarks, FastDijkstra, FastAStarLandmarks, SpeedyALT] --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"routingAlgorithmType"</span> <span class="na">value=</span><span class="s">"AStarLandmarks"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- An identifier for the current run which is used as prefix for output files and mentioned in output xml files etc. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"runId"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Comma-separated list of visualizer output file formats. `transims', `googleearth', and `otfvis'. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"snapshotFormat"</span> <span class="na">value=</span><span class="s">""</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- iterationNumber % writeEventsInterval == 0 defines in which iterations events are written to a file. `0' disables events writing completely. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"writeEventsInterval"</span> <span class="na">value=</span><span class="s">"10"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- iterationNumber % writePlansInterval == 0 defines (hopefully) in which iterations plans are written to a file. `0' disables plans writing completely.  Some plans in early iterations are always written --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"writePlansInterval"</span> <span class="na">value=</span><span class="s">"10"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- iterationNumber % writeSnapshotsInterval == 0 defines in which iterations snapshots are written to a file. `0' disables snapshots writing completely --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"writeSnapshotsInterval"</span> <span class="na">value=</span><span class="s">"1"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- iterationNumber % writeEventsInterval == 0 defines in which iterations trips CSV are written to a file. `0' disables trips writing completely. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"writeTripsInterval"</span> <span class="na">value=</span><span class="s">"10"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"counts"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- Transport modes that will be respected for the counts comparison. 'car' is default, which includes also bussed from the pt simulation module. Use this parameter in combination with 'filterModes' = true! --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"analyzedModes"</span> <span class="na">value=</span><span class="s">"car"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Specifies over how many iterations the link volumes should be averaged that are used for the counts comparison. Use 1 or 0 to only use the link volumes of a single iteration. This values cannot be larger than the value specified for writeCountsInterval --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"averageCountsOverIterations"</span> <span class="na">value=</span><span class="s">"5"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- factor by which to re-scale the simulated values.  necessary when simulation runs with something different from 100%.  needs to be adapted manually --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"countsScaleFactor"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- distance to distanceFilterCenterNode to include counting stations. The unit of distance is the Euclidean distance implied by the coordinate system --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"distanceFilter"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- node id for center node of distance filter --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"distanceFilterCenterNode"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- If true, link counts from legs performed on modes not included in the 'analyzedModes' parameter are ignored. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"filterModes"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- The Coordinates Reference System in which the coordinates are expressed in the input file. At import, the coordinates will be converted to the coordinate system defined in "global", and willbe converted back at export. If not specified, no conversion happens. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputCRS"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- input file name to counts package --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputCountsFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- possible values: `html', `kml', `txt', `all' --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"outputformat"</span> <span class="na">value=</span><span class="s">"txt"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Specifies how often the counts comparison should be calculated and written. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"writeCountsInterval"</span> <span class="na">value=</span><span class="s">"10"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"facilities"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- This defines how facilities should be created. Possible values: none fromFile setInScenario onePerActivityLinkInPlansFile onePerActivityLinkInPlansFileExceptWhenCoordinatesAreGiven onePerActivityLocationInPlansFile  --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"facilitiesSource"</span> <span class="na">value=</span><span class="s">"none"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- A prefix to be used for auto-generated IDs. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"idPrefix"</span> <span class="na">value=</span><span class="s">"f_auto_"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- The Coordinates Reference System in which the coordinates are expressed in the input file. At import, the coordinates will be converted to the coordinate system defined in "global", and willbe converted back at export. If not specified, no conversion happens. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputCRS"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputFacilitiesFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputFacilityAttributesFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"insistingOnUsingDeprecatedFacilitiesAttributeFile"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"global"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;</span><span class="err">!</span><span class="na">坐标系</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"coordinateSystem"</span> <span class="na">value=</span><span class="s">"Atlantis"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"defaultDelimiter"</span> <span class="na">value=</span><span class="s">";"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"insistingOnDeprecatedConfigVersion"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- 线程数量"global" number of threads.  This number is used, e.g., for replanning, but NOT in QSim.  This can typically be set to as many cores as you have available, or possibly even slightly more. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"numberOfThreads"</span> <span class="na">value=</span><span class="s">"2"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"randomSeed"</span> <span class="na">value=</span><span class="s">"4711"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"hermes"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- Simulation End Time --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"endTime"</span> <span class="na">value=</span><span class="s">"30:00:00"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"flowCapacityFactor"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mainMode"</span> <span class="na">value=</span><span class="s">"car"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"storageCapacityFactor"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- time in seconds.  Time after which the frontmost vehicle on a link is called `stuck' if it does not move. Set to Integer.MAX_VALUE to disable this behavior --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"stuckTime"</span> <span class="na">value=</span><span class="s">"10"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- treats PT as deterministic. PT vehicles will run with a steady speed. Should be used with separate network layers for PT and other network modes. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"useDeterministicPt"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"households"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputHouseholdAttributesFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"insistingOnUsingDeprecatedHouseholdsAttributeFile"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"linkStats"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- Specifies over how many iterations the link volumes should be averaged that are used for the link statistics. Use 1 or 0 to only use the link volumes of a single iteration. This values cannot be larger than the value specified for writeLinkStatsInterval --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"averageLinkStatsOverIterations"</span> <span class="na">value=</span><span class="s">"5"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Specifies how often the link stats should be calculated and written. Use 0 to disable the generation of link stats. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"writeLinkStatsInterval"</span> <span class="na">value=</span><span class="s">"10"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"network"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- The Coordinates Reference System in which the coordinates are expressed in the input file. At import, the coordinates will be converted to the coordinate system defined in "global", and willbe converted back at export. If not specified, no conversion happens. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputCRS"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputChangeEventsFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputNetworkFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"laneDefinitionsFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"timeVariantNetwork"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"parallelEventHandling"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- Estimated number of events during mobsim run. An optional optimization hint for the framework. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"estimatedNumberOfEvents"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Size of the events Queue. Increase for very large scenarios --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"eventsQueueSize"</span> <span class="na">value=</span><span class="s">"131072"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Number of threads for parallel events handler. _null_ means the framework decides by itself. 0 is currently not possible. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"numberOfThreads"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- If enabled, each event handler is assigned to its own thread. Note that enabling this feature disabled the numberOfThreads option! This feature is still experimental! --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"oneThreadPerHandler"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- If enabled, it is ensured that all events that are created during a time step of the mobility simulation are processed before the next time step is simulated. E.g. neccessary when within-day replanning is used. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"synchronizeOnSimSteps"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"planCalcScore"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- logit model scale parameter. default: 1.  Has name and default value for historical reasons (see Bryan Raney's phd thesis). --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"BrainExpBeta"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"PathSizeLogitBeta"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- fraction of iterations at which MSA score averaging is started. The matsim theory department suggests to use this together with switching off choice set innovation (where a similar switch exists), but it has not been tested yet. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"fractionOfIterationsToStartScoreMSA"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- new_score = (1-learningRate)*old_score + learningRate * score_from_mobsim.  learning rates close to zero emulate score averaging, but slow down initial convergence --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"learningRate"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- There used to be a plateau between duration=0 and duration=zeroUtilityDuration. This caused durations to evolve to zero once they were below zeroUtilityDuration, causing problems.  Only use this switch if you need to be backwards compatible with some old results.  (changed nov'13) --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"usingOldScoringBelowZeroUtilityDuration"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- write a plans file in each iteration directory which contains what each agent actually did, and the score it received. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"writeExperiencedPlans"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"scoringParameters"</span> <span class="nt">&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"earlyDeparture"</span> <span class="na">value=</span><span class="s">"-0.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"lateArrival"</span> <span class="na">value=</span><span class="s">"-18.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"marginalUtilityOfMoney"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"performing"</span> <span class="na">value=</span><span class="s">"6.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"subpopulation"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"utilityOfLineSwitch"</span> <span class="na">value=</span><span class="s">"-1.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"waiting"</span> <span class="na">value=</span><span class="s">"-0.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"waitingPt"</span> <span class="na">value=</span><span class="s">"-6.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"activityParams"</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"activityType"</span> <span class="na">value=</span><span class="s">"dummy"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"closingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"earliestEndTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"latestStartTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"minimalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"openingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"priority"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"scoringThisActivityAtAll"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!-- typical duration of activity.  needs to be defined and non-zero.  in sec. --&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDuration"</span> <span class="na">value=</span><span class="s">"02:00:00"</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!-- method to compute score at typical duration.  Options: | uniform | relative | Use uniform for backwards compatibility (all activities same score; higher proba to drop long acts). --&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDurationScoreComputation"</span> <span class="na">value=</span><span class="s">"relative"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"activityParams"</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"activityType"</span> <span class="na">value=</span><span class="s">"car interaction"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"closingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"earliestEndTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"latestStartTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"minimalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"openingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"priority"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"scoringThisActivityAtAll"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDurationScoreComputation"</span> <span class="na">value=</span><span class="s">"relative"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"activityParams"</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"activityType"</span> <span class="na">value=</span><span class="s">"pt interaction"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"closingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"earliestEndTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"latestStartTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"minimalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"openingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"priority"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"scoringThisActivityAtAll"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDurationScoreComputation"</span> <span class="na">value=</span><span class="s">"relative"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"activityParams"</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"activityType"</span> <span class="na">value=</span><span class="s">"bike interaction"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"closingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"earliestEndTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"latestStartTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"minimalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"openingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"priority"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"scoringThisActivityAtAll"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDurationScoreComputation"</span> <span class="na">value=</span><span class="s">"relative"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"activityParams"</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"activityType"</span> <span class="na">value=</span><span class="s">"drt interaction"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"closingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"earliestEndTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"latestStartTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"minimalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"openingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"priority"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"scoringThisActivityAtAll"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDurationScoreComputation"</span> <span class="na">value=</span><span class="s">"relative"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"activityParams"</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"activityType"</span> <span class="na">value=</span><span class="s">"taxi interaction"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"closingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"earliestEndTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"latestStartTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"minimalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"openingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"priority"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"scoringThisActivityAtAll"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDurationScoreComputation"</span> <span class="na">value=</span><span class="s">"relative"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"activityParams"</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"activityType"</span> <span class="na">value=</span><span class="s">"other interaction"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"closingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"earliestEndTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"latestStartTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"minimalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"openingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"priority"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"scoringThisActivityAtAll"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDurationScoreComputation"</span> <span class="na">value=</span><span class="s">"relative"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"activityParams"</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"activityType"</span> <span class="na">value=</span><span class="s">"walk interaction"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"closingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"earliestEndTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"latestStartTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"minimalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"openingTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"priority"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"scoringThisActivityAtAll"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDuration"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"typicalDurationScoreComputation"</span> <span class="na">value=</span><span class="s">"relative"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"modeParams"</span> <span class="nt">&gt;</span>
+                <span class="c">&lt;!-- [utils] alternative-specific constant.  Normally per trip, but that is probably buggy for multi-leg trips. --&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"constant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!-- [money] daily monetary constant. default=0 to be backwards compatible --&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"dailyMonetaryConstant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!-- [utils] daily utility constant. default=0 to be backwards compatible --&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"dailyUtilityConstant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!-- [utils/m] utility of traveling (e.g. walking or driving) per m, normally negative.  this is on top of the time (dis)utility. --&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"marginalUtilityOfDistance_util_m"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!-- [utils/hr] additional marginal utility of traveling.  normally negative.  this comes on top of the opportunity cost of time --&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"marginalUtilityOfTraveling_util_hr"</span> <span class="na">value=</span><span class="s">"-6.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mode"</span> <span class="na">value=</span><span class="s">"car"</span> <span class="nt">/&gt;</span>
+                <span class="c">&lt;!-- [unit_of_money/m] conversion of distance into money. Normally negative. --&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"monetaryDistanceRate"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"modeParams"</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"constant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"dailyMonetaryConstant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"dailyUtilityConstant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"marginalUtilityOfDistance_util_m"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"marginalUtilityOfTraveling_util_hr"</span> <span class="na">value=</span><span class="s">"-6.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mode"</span> <span class="na">value=</span><span class="s">"pt"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"monetaryDistanceRate"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"modeParams"</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"constant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"dailyMonetaryConstant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"dailyUtilityConstant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"marginalUtilityOfDistance_util_m"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"marginalUtilityOfTraveling_util_hr"</span> <span class="na">value=</span><span class="s">"-6.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mode"</span> <span class="na">value=</span><span class="s">"walk"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"monetaryDistanceRate"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"modeParams"</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"constant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"dailyMonetaryConstant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"dailyUtilityConstant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"marginalUtilityOfDistance_util_m"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"marginalUtilityOfTraveling_util_hr"</span> <span class="na">value=</span><span class="s">"-6.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mode"</span> <span class="na">value=</span><span class="s">"bike"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"monetaryDistanceRate"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"modeParams"</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"constant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"dailyMonetaryConstant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"dailyUtilityConstant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"marginalUtilityOfDistance_util_m"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"marginalUtilityOfTraveling_util_hr"</span> <span class="na">value=</span><span class="s">"-6.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mode"</span> <span class="na">value=</span><span class="s">"ride"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"monetaryDistanceRate"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+            <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"modeParams"</span> <span class="nt">&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"constant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"dailyMonetaryConstant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"dailyUtilityConstant"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"marginalUtilityOfDistance_util_m"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"marginalUtilityOfTraveling_util_hr"</span> <span class="na">value=</span><span class="s">"-6.0"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mode"</span> <span class="na">value=</span><span class="s">"other"</span> <span class="nt">/&gt;</span>
+                <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"monetaryDistanceRate"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;/parameterset&gt;</span>
+
+        <span class="nt">&lt;/parameterset&gt;</span>
+
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"plans"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- String: minOfDurationAndEndTime tryEndTimeThenDuration endTimeOnly. Anything besides minOfDurationAndEndTime will internally use a different (simpler) version of the TimeAllocationMutator. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"activityDurationInterpretation"</span> <span class="na">value=</span><span class="s">"tryEndTimeThenDuration"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Possible values: reject, useMainModeIdentifier --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"handlingOfPlansWithoutRoutingMode"</span> <span class="na">value=</span><span class="s">"reject"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- The Coordinates Reference System in which the coordinates are expressed in the input file. At import, the coordinates will be converted to the coordinate system defined in "global", and willbe converted back at export. If not specified, no conversion happens. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputCRS"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputPersonAttributesFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputPlansFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"insistingOnUsingDeprecatedPersonAttributeFile"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Defines how routes are stored in memory. Currently supported: LinkNetworkRoute, CompressedNetworkRoute. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"networkRouteType"</span> <span class="na">value=</span><span class="s">"LinkNetworkRoute"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- (not tested) will remove plan attributes that are presumably not used, such as activityStartTime. default=false. Use with Caution! --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"removingUnnecessaryPlanAttributes"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"planscalcroute"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- Some typical teleportation routing params are set by default, such as for walk and bike.  Setting this switch to "true" will clear them.  Note that this will also clear settings for helper modes such as for non_network_walk --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"clearDefaultTeleportedModeParams"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- All the modes for which the router is supposed to generate network routes (like car) --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"networkModes"</span> <span class="na">value=</span><span class="s">"car"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- strength of the randomness for the utility of money in routing under toll.  Leads to Pareto-optimal route with randomly drawn money-vs-other-attributes tradeoff. Technically the width parameter of a log-normal distribution. 3.0 seems to be a good value.  --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"routingRandomness"</span> <span class="na">value=</span><span class="s">"3.0"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"teleportedModeParameters"</span> <span class="nt">&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"beelineDistanceFactor"</span> <span class="na">value=</span><span class="s">"1.3"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mode"</span> <span class="na">value=</span><span class="s">"bike"</span> <span class="nt">/&gt;</span>
+            <span class="c">&lt;!-- Free-speed factor for a teleported mode. Travel time = teleportedModeFreespeedFactor * &lt;freespeed car travel time&gt;. Insert a line like this for every such mode. Please do not set teleportedModeFreespeedFactor as well as teleportedModeSpeed for the same mode, but if you do, +teleportedModeFreespeedFactor wins over teleportedModeSpeed. --&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"teleportedModeFreespeedFactor"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+            <span class="c">&lt;!-- Speed for a teleported mode. Travel time = (&lt;beeline distance&gt; * beelineDistanceFactor) / teleportedModeSpeed. Insert a line like this for every such mode. --&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"teleportedModeSpeed"</span> <span class="na">value=</span><span class="s">"4.166666666666667"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/parameterset&gt;</span>
+
+        <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"teleportedModeParameters"</span> <span class="nt">&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"beelineDistanceFactor"</span> <span class="na">value=</span><span class="s">"1.3"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mode"</span> <span class="na">value=</span><span class="s">"walk"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"teleportedModeFreespeedFactor"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"teleportedModeSpeed"</span> <span class="na">value=</span><span class="s">"0.8333333333333333"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/parameterset&gt;</span>
+
+        <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"teleportedModeParameters"</span> <span class="nt">&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"beelineDistanceFactor"</span> <span class="na">value=</span><span class="s">"1.3"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mode"</span> <span class="na">value=</span><span class="s">"non_network_walk"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"teleportedModeFreespeedFactor"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"teleportedModeSpeed"</span> <span class="na">value=</span><span class="s">"0.8333333333333333"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/parameterset&gt;</span>
+
+        <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"teleportedModeParameters"</span> <span class="nt">&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"beelineDistanceFactor"</span> <span class="na">value=</span><span class="s">"1.3"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mode"</span> <span class="na">value=</span><span class="s">"ride"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"teleportedModeFreespeedFactor"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"teleportedModeSpeed"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/parameterset&gt;</span>
+
+        <span class="nt">&lt;parameterset</span> <span class="na">type=</span><span class="s">"teleportedModeParameters"</span> <span class="nt">&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"beelineDistanceFactor"</span> <span class="na">value=</span><span class="s">"1.3"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mode"</span> <span class="na">value=</span><span class="s">"pt"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"teleportedModeFreespeedFactor"</span> <span class="na">value=</span><span class="s">"2.0"</span> <span class="nt">/&gt;</span>
+            <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"teleportedModeSpeed"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;/parameterset&gt;</span>
+
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"ptCounts"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- factor by which to re-scale the simulated values.  necessary when simulation runs with something different from 100%.  needs to be adapted manually --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"countsScaleFactor"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- distance to distanceFilterCenterNode to include counting stations. The unit of distance is the Euclidean distance implied by the coordinate system --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"distanceFilter"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- node id for center node of distance filter --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"distanceFilterCenterNode"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- input file containing the alighting (getting off) counts for pt --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputAlightCountsFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- input file containing the boarding (getting on) counts for pt --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputBoardCountsFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- input file containing the occupancy counts for pt --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputOccupancyCountsFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- possible values: `html', `kml', `txt', `all' --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"outputformat"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- every how many iterations (starting with 0) counts comparisons are generated --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"ptCountsInterval"</span> <span class="na">value=</span><span class="s">"10"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"qsim"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"endTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;</span><span class="err">!</span> <span class="na">样例比例</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"flowCapacityFactor"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- decides if waiting vehicles enter the network after or before the already driving vehicles were moved. Default: false --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"insertingWaitingVehiclesBeforeDrivingVehicles"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- If link dynamics is set as SeepageQ, set to false if all seep modes should perform seepage. Default is true (better option). --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"isRestrictingSeepage"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- If link dynamics is set as SeepageQ, set to true if seep mode do not consumes any space on the link. Default is false. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"isSeepModeStorageFree"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- default: FIFO; options: FIFO PassingQ SeepageQ --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"linkDynamics"</span> <span class="na">value=</span><span class="s">"FIFO"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- The (initial) width of the links of the network. Use positive floating point values. This is used only for visualisation. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"linkWidth"</span> <span class="na">value=</span><span class="s">"30.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- [comma-separated list] Defines which modes are congested modes. Technically, these are the modes that the departure handler of the netsimengine handles.  Effective cell size, effective lane width, flow capacity factor, and storage capacity factor need to be set with diligence.  Need to be vehicular modes to make sense. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"mainMode"</span> <span class="na">value=</span><span class="s">"car"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Shortens a link in the visualization, i.e. its start and end point are moved into towards the center. Does not affect traffic flow.  --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"nodeOffset"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Number of threads used for the QSim.  Note that this setting is independent from the "global" threads setting.  In contrast to earlier versions, the non-parallel special version is no longer there. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"numberOfThreads"</span> <span class="na">value=</span><span class="s">"1"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Boolean. `true': stuck vehicles are removed, aborting the plan; `false': stuck vehicles are forced into the next link. `false' is probably the better choice. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"removeStuckVehicles"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- If link dynamics is set as SeepageQ, set a seep mode. Default is bike. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"seepMode"</span> <span class="na">value=</span><span class="s">"bike"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Possible values: minOfEndtimeAndMobsimFinished, onlyUseEndtime --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"simEndtimeInterpretation"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Options: maxOfStarttimeAndEarliestActivityEnd onlyUseStarttime  --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"simStarttimeInterpretation"</span> <span class="na">value=</span><span class="s">"maxOfStarttimeAndEarliestActivityEnd"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- snapshotStyle. One of: equiDist queue withHoles withHolesAndShowHoles kinematicWaves  --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"snapshotStyle"</span> <span class="na">value=</span><span class="s">"equiDist"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"snapshotperiod"</span> <span class="na">value=</span><span class="s">"00:00:00"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"startTime"</span> <span class="na">value=</span><span class="s">"undefined"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"storageCapacityFactor"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- time in seconds.  Time after which the frontmost vehicle on a link is called `stuck' if it does not move. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"stuckTime"</span> <span class="na">value=</span><span class="s">"10.0"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"timeStepSize"</span> <span class="na">value=</span><span class="s">"00:00:01"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- options: queue withHoles kinematicWaves  --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"trafficDynamics"</span> <span class="na">value=</span><span class="s">"queue"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Set this parameter to true if lanes should be used, false if not. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"useLanes"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- If a route does not reference a vehicle, agents will use the vehicle with the same id as their own. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"usePersonIdForMissingVehicleId"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- If false, the qsim accumulates fractional flows up to one flow unit in every time step.  If true, flows are updated only if an agent wants to enter the link or an agent is added to buffer. Default is true. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"usingFastCapacityUpdate"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Defines what happens if an agent wants to depart, but the specified vehicle is not available. One of: teleport wait exception  --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"vehicleBehavior"</span> <span class="na">value=</span><span class="s">"teleport"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- If vehicles should all be the same default vehicle, or come from the vehicles file, or something else.  Possible values:  defaultVehicle modeVehicleTypesFromVehiclesData fromVehiclesData --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"vehiclesSource"</span> <span class="na">value=</span><span class="s">"defaultVehicle"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"strategy"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- the external executable will be called with a config file as argument.  This is the pathname to a possible skeleton config, to which additional information will be added.  Can be null. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"ExternalExeConfigTemplate"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- time out value (in seconds) after which matsim will consider the external strategy as failed --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"ExternalExeTimeOut"</span> <span class="na">value=</span><span class="s">"3600"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- root directory for temporary files generated by the external executable. Provided as a service; I don't think this is used by MATSim. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"ExternalExeTmpFileRootDir"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- fraction of iterations where innovative strategies are switched off.  Something like 0.8 should be good.  E.g. if you run from iteration 400 to iteration 500, innovation is switched off at iteration 480 --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"fractionOfIterationsToDisableInnovation"</span> <span class="na">value=</span><span class="s">"Infinity"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- maximum number of plans per agent.  ``0'' means ``infinity''.  Currently (2010), ``5'' is a good number --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"maxAgentPlanMemorySize"</span> <span class="na">value=</span><span class="s">"5"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- strategyName of PlanSelector for plans removal.  Possible defaults: WorstPlanSelector SelectRandom SelectExpBetaForRemoval ChangeExpBetaForRemoval PathSizeLogitSelectorForRemoval . The current default, WorstPlanSelector is not a good choice from a discrete choice theoretical perspective. Alternatives, however, have not been systematically tested. kai, feb'12 --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"planSelectorForRemoval"</span> <span class="na">value=</span><span class="s">"WorstPlanSelector"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"subtourModeChoice"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- Only for backwards compatibility.  Defines if only trips from modes list should change mode, or all trips.  Options: fromAllModesToSpecifiedModes fromSpecifiedModesToSpecifiedModes  --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"behavior"</span> <span class="na">value=</span><span class="s">"fromSpecifiedModesToSpecifiedModes"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Defines the chain-based modes, seperated by commas --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"chainBasedModes"</span> <span class="na">value=</span><span class="s">"car,bike"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Defines whether car availability must be considered or not. A agent has no car only if it has no license, or never access to a car --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"considerCarAvailability"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Defines all the modes available, including chain-based modes, seperated by commas --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"modes"</span> <span class="na">value=</span><span class="s">"car,pt,bike,walk"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"transit"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- The Coordinates Reference System in which the coordinates are expressed in the input file. At import, the coordinates will be converted to the coordinate system defined in "global", and willbe converted back at export. If not specified, no conversion happens. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"inputScheduleCRS"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"insistingOnUsingDeprecatedAttributeFiles"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- The type of transit routing algorithm used, may have the values: [DijkstraBased, SwissRailRaptor] --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"routingAlgorithmType"</span> <span class="na">value=</span><span class="s">"SwissRailRaptor"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Optional input file containing additional attributes for transit lines, stored as ObjectAttributes. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"transitLinesAttributesFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Comma-separated list of transportation modes that are handled as transit. Defaults to 'pt'. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"transitModes"</span> <span class="na">value=</span><span class="s">"pt"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Input file containing the transit schedule to be simulated. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"transitScheduleFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Optional input file containing additional attributes for transit stop facilities, stored as ObjectAttributes. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"transitStopsAttributesFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Set this parameter to true if transit should be simulated, false if not. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"useTransit"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"usingTransitInMobsim"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Input file containing the vehicles used by the departures in the transit schedule. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"vehiclesFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"transitRouter"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- additional time the router allocates when a line switch happens. Can be interpreted as a 'safety' time that agents need to safely transfer from one line to another --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"additionalTransferTime"</span> <span class="na">value=</span><span class="s">"0.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Factor with which direct walk generalized cost is multiplied before it is compared to the pt generalized cost.  Set to a very high value to reduce direct walk results. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"directWalkFactor"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- step size to increase searchRadius if no stops are found --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"extensionRadius"</span> <span class="na">value=</span><span class="s">"200.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- maximum beeline distance between stops that agents could transfer to by walking --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"maxBeelineWalkConnectionDistance"</span> <span class="na">value=</span><span class="s">"100.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- the radius in which stop locations are searched, given a start or target coordinate --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"searchRadius"</span> <span class="na">value=</span><span class="s">"1000.0"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"travelTimeCalculator"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- (only for backwards compatibility; only used if separateModes==false &amp;&amp; + filterModes==true)  Transport modes that will be respected by the travel time collector. 'car' is default which includes also buses from the pt simulation module. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"analyzedModes"</span> <span class="na">value=</span><span class="s">"car"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"calculateLinkToLinkTravelTimes"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"calculateLinkTravelTimes"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- (only for backwards compatiblity; only used if separateModes==false)  Only modes included in analyzedModes are included. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"filterModes"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- The lenght (in sec) of the time period that is splited into time bins; an additional time bin is created to aggregate all travel times collected after maxTime --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"maxTime"</span> <span class="na">value=</span><span class="s">"108000"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- (only for backwards compatibility) If false, link travel times are measured and aggregated over all vehicles using the link. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"separateModes"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- How to deal with congested time bins that have no link entry events. `optimistic' assumes free speed (too optimistic); 'experimental_LastMile' is experimental and probably too pessimistic. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"travelTimeAggregator"</span> <span class="na">value=</span><span class="s">"optimistic"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- The size of the time bin (in sec) into which the link travel times are aggregated for the router --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"travelTimeBinSize"</span> <span class="na">value=</span><span class="s">"900"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- possible values: TravelTimeCalculatorArray TravelTimeCalculatorHashMap  --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"travelTimeCalculator"</span> <span class="na">value=</span><span class="s">"TravelTimeCalculatorArray"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- How to deal with link entry times at different positions during the time bin. Currently supported: average, linearinterpolation --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"travelTimeGetter"</span> <span class="na">value=</span><span class="s">"average"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"vehicles"</span> <span class="nt">&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"vehiclesFile"</span> <span class="na">value=</span><span class="s">"null"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+    <span class="nt">&lt;module</span> <span class="na">name=</span><span class="s">"vspExperimental"</span> <span class="nt">&gt;</span>
+        <span class="c">&lt;!-- (do not use except of you have to) There was a problem with pt interaction scoring.  Some people solved it by overwriting the parameters of the pt interaction activity type.  Doing this now throws an Exception.  If you still insist on doing this, set the following to true. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"isAbleToOverwritePtInteractionParams"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"isGeneratingBoardingDeniedEvent"</span> <span class="na">value=</span><span class="s">"false"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- if an approximation of the opportunity cost of time is included into the radius calculation for location choice.`true' will be faster, but it is an approximation.  Default is `true'; `false' is available for backwards compatibility. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"isUsingOpportunityCostOfTimeForLocationChoice"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"logitScaleParamForPlansRemoval"</span> <span class="na">value=</span><span class="s">"1.0"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- Options: | ignore | info | warn | abort | .  When violating VSP defaults, this results in nothing, logfile infos, logfile warnings, or aborts.  Members of VSP should use `abort' or talk to kai. --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"vspDefaultsCheckingLevel"</span> <span class="na">value=</span><span class="s">"ignore"</span> <span class="nt">/&gt;</span>
+        <span class="c">&lt;!-- if true then writes output_events in output directory.  default is `false'. Will only work when lastIteration is multiple of events writing interval --&gt;</span>
+        <span class="nt">&lt;param</span> <span class="na">name=</span><span class="s">"writingOutputEvents"</span> <span class="na">value=</span><span class="s">"true"</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/module&gt;</span>
+
+<span class="nt">&lt;/config&gt;</span>
+
+</code></pre></div></div>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/tranmodel/matsim-run/" class="pagination--pager" title="下载与安装
+">上一页</a>
+    
+    
+      <a href="/tutorials/tranmodel/matsim-yuanli/" class="pagination--pager" title="Matsim原理
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,518 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>软件基本操作 - 技术博客</title>
+<meta name="description" content="1 、参数标定 1.1 基础数据的准备">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="软件基本操作">
+<meta property="og:url" content="http://localhost:4000/tutorials/model/calidation/">
+
+
+  <meta property="og:description" content="1 、参数标定 1.1 基础数据的准备">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/model/calidation/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/tranmodel/fourstep/"><span class="nav__sub-title">四阶段交通模型</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/fourstep/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_generate/">出行生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_distribution/">交通分布</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode_split/">方式划分</a></li>
+            
+              <li><a href="/tutorials/tranmodel/PA2OD/">PA2OD</a></li>
+            
+              <li><a href="/tutorials/tranmodel/transport-assignment/">交通分配</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">出行链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/tourbase/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/tour-generate/">出行链生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/utility-calculate/">效用计算</a></li>
+            
+              <li><a href="/tutorials/tranmodel/destination-choice/">目的地选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/Intermediate-stop/">中间停留点模型</a></li>
+            
+              <li><a href="/tutorials/tranmodel/half-tour/">半程出行链</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode-choice/">方式选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/time-split/">时段划分</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">活动链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen/">人口合成原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_use/">popgen使用</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_file/">popgen文件说明</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">智能体交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/matsim-base/">软件介绍</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-run/">下载与安装</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-config/">Matsim配置</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-yuanli/">Matsim原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-celue/">Matsim的策略</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-Score/">Matsim评分机制</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="软件基本操作">
+    <meta itemprop="description" content="1 、参数标定1.1 基础数据的准备">
+    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/model/calidation/" itemprop="url">软件基本操作
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#1-参数标定">1 、参数标定</a><ul><li><a href="#11-基础数据的准备">1.1 基础数据的准备</a></li><li><a href="#12-进行现状gamma函数标定">1.2 、进行现状Gamma函数标定</a></li><li><a href="#21-出行距离分布曲线">2.1 出行距离分布曲线</a></li><li><a href="#1曲线统计的方法">（1）曲线统计的方法</a></li><li><a href="#2检查调查数据出行距离分布是否合理分方式">（2）检查调查数据出行距离分布是否合理（分方式）</a></li><li><a href="#22-内部出行率">2.2 内部出行率</a></li><li><a href="#1计算">（1）计算</a></li><li><a href="#2比较">（2）比较</a></li><li><a href="#23-大区出行量">2.3 大区出行量</a></li></ul></li><li><a href="#3-结果怎么调">3 结果怎么调</a><ul><li><a href="#31-出行距离曲线的调整abc">3.1 出行距离曲线的调整（ABC）</a><ul><li><a href="#311-abc的关系分析">3.1.1 ABC的关系分析</a></li><li><a href="#312-eric的先进方法实际使用">3.1.2 Eric的先进方法（实际使用）</a></li></ul></li><li><a href="#32-经典调试方法">3.2 经典调试方法</a></li><li><a href="#33-内部出行率调整">3.3 内部出行率调整</a><ul><li><a href="#1直接调阻抗矩阵的对角线系数高了调低低了调高">（1）直接调阻抗矩阵的对角线系数，高了调低，低了调高；</a></li><li><a href="#2调整整体的小区内部平衡系数不过小区平衡系数不太好搞可以试试中区">（2）调整整体的小区内部平衡系数，不过小区平衡系数不太好搞，可以试试中区</a></li></ul></li></ul></li></ul></li><li><a href="#34-大区出行量">3.4 大区出行量</a><ul><li><a href="#1调生成">（1）调生成</a></li><li><a href="#2调阻抗">（2）调阻抗</a></li><li><a href="#3加k">（3）加K</a></li></ul></li></ul></li></ul></li></ul></li><li><a href="#4-交通分布应用">4 交通分布应用</a></li></ul>
+            </nav>
+          </aside>
+        
+        <h2 id="1-参数标定">1 、参数标定</h2>
+<h3 id="11-基础数据的准备">1.1 基础数据的准备</h3>
+
+<ul>
+  <li>（1）各目的的综合阻抗</li>
+  <li>（2）各目的的出行矩阵（调查）</li>
+  <li>（3）基于小区的PA（出行矩阵导出）在进行现状函数标定时，是分目的进行的，而不同目的的综合费用具有较大的差距，为了公平地考虑两地之间的阻抗，有两种方法，一种是以方式结构比例为权重求其加权平均值，二是对其效用取logsum。
+    <h3 id="12-进行现状gamma函数标定">1.2 、进行现状Gamma函数标定</h3>
+  </li>
+  <li>1.模型暂定使用重力模型作为交通分布模型，熵模型采用Gamma函数，函数形式如下：</li>
+  <li>2.根据居调结果得到目的的PA矩阵，初步使用小汽车的自由流行驶时间最为阻抗；</li>
+  <li>3.标定Gamma函数的a、b、c参数（分出行目的，操作方法见交通需求手册-交通分布）。## 2 、结果怎么看
+    <h3 id="21-出行距离分布曲线">2.1 出行距离分布曲线</h3>
+    <h3 id="1曲线统计的方法">（1）曲线统计的方法</h3>
+    <p>对于重力模型参数标定，标定结果的绝对数值较难分析，我们更为关注的是标定出来的阻抗函数曲线形态。
+注意，在分析阻抗函数曲线的时候，横轴（GC轴）并不需要从0开始，而是应该从有出行的GC开始，即如果调查得到的出行最小GC为8min，则阻抗函数的有效区间为（8min，+∞），因此无论是对于出行距离分布曲线还是阻抗函数的分析，都应从8min开始，不然反而会影响判断。
+无论对于任何人群和目的，其阻抗函数在有效作用的区间内，都应该是单调递减的。</p>
+    <h3 id="2检查调查数据出行距离分布是否合理分方式">（2）检查调查数据出行距离分布是否合理（分方式）</h3>
+  </li>
+  <li>1.Skim出小区间的出行距离（距离最短）；</li>
+  <li>2.根据居调结果得到分方式的PA矩阵（操作方法参考UserGuide——Matrix）；</li>
+  <li>3.应用TransCAD得到调查的各方式的出行距离分布（参照菜单Trip Length Distribution 旅行长度分布）；</li>
+  <li>4.检验合理性：平均出行距离的绝对值和相对值是否合理、出行距离分布是否合理（最好将第三步的结果粘贴到Excel中检查校核），CR系数是否够大。&gt; 关于CR系数是什么：Coincidence ratios
+A more rigorous way of checking trip length frequency distributions is through the use of coincidence ratios. This is most easily understood as the area under both curves divided by the area under at least one of the curves, when the observed and modeled trip length frequency distributions are plotted. Mathematically, the sum of the lower value of the two distributions at each increment of time or distance is divided by the sum of the higher value of the two distributions at each increment. Generally, the coincidence ratio measures the percent of area that “coincides” for the two curves.
+The procedure to calculate the coincidence of distributions is as follows:
+​
+where CR is the Coincidence Ratio; PMT is the proportion of modeled distribution in interval T; POT is the proportion of observed distribution in interval T; and T is the histogram interval for time, distance, or other impedance measure (e.g., 0-4.9 minutes, 5.0-9.9 minutes, etc.)
+The coincidence ratio lies between 0 and 1.0, where a ratio of 1.0 indicates identical distributions. Figure 6.4 shows an example application of the coincidence ratio.
+<img src="./3.3.3-参数标定与校核.assert/1664259909263-6bf52b78-9eb8-435c-9c7d-6cda08af8a6a.png" alt="image.png" /></li>
+</ul>
+
+<h3 id="22-内部出行率">2.2 内部出行率</h3>
+<h3 id="1计算">（1）计算</h3>
+<p>内部出行率除了与出行特征相关外，受小区尺度影响较大，因此建议分地带进行统计内部出行率。</p>
+<h3 id="2比较">（2）比较</h3>
+<p>一般来说内部出行率的绝对值不会偏差很大，误差应该尽量控制小一些。</p>
+<h3 id="23-大区出行量">2.3 大区出行量</h3>
+<p>​</p>
+<h2 id="3-结果怎么调">3 结果怎么调</h2>
+<h3 id="31-出行距离曲线的调整abc">3.1 出行距离曲线的调整（ABC）</h3>
+<h4 id="311-abc的关系分析">3.1.1 ABC的关系分析</h4>
+<p>在进行摩擦系数标定时，首先选择合适的阻抗函数，常用的阻抗函数有负指数、幂函数、和复合型（Gamma函数）。对于Gamma函数，其表达式如下，可以看出，当c=0时，则可以看做幂函数，当b=0时，则可以看做幂函数，因此标定时常采用Gamma函数。
+ f (d_{ij} ) = a ⋅ d_{ij}^{-b} ⋅ e^{-c⋅(d ij )}
+<img src="./3.3.3-参数标定与校核.assert/113738066136d2512746d34c21a80c43.svg" alt="数学公式" /></p>
+
+<p>为获取不同a/b/c的取值下，Gamma函数对应的阻抗函数曲线发生的相应变化，进行如下分析。
+首先对Gamma函数求一阶导数，得到：
+\dot{f(x)}=-a<em>x^{-b-1}</em> e^{-cx}(b+cx)
+<img src="./3.3.3-参数标定与校核.assert/93544a9812ae2be0c0e5871e417f3e64.svg" alt="数学公式" /></p>
+
+<p>由上式，如果a或者c小于0，则x→∞，\dot{f(x)}&gt;0
+<img src="./3.3.3-参数标定与校核.assert/87687d6d19ac73528aeb4faa6ee8e6be.svg" alt="数学公式" />
+，即阻抗函数会出现“<strong>翘尾巴</strong>”的现象，与实际不符，因此a和c都是正值。
+​
+又由-a*x^{-b-1}\cdot e^{-cx}
+<img src="./3.3.3-参数标定与校核.assert/c76fd690b9c89e1c3c9e10012a8bf778.svg" alt="数学公式" />
+&lt;0，因此，阻抗函数是否存在极值点以及极值点的位置与bc有关。若b为负值，则存在极值点，极值点的位置为x=|b/c|
+<img src="./3.3.3-参数标定与校核.assert/680945a8dc7369f9573f6a4868e7b48a.svg" alt="数学公式" />
+，否则，不存在极值点，阻抗函数为<strong>单调递减</strong>的。
+<img src="./3.3.3-参数标定与校核.assert/1664260634265-a05a14f4-942f-4ebf-87a1-130e11b4d072.png" alt="image.png" />
+<img src="./3.3.3-参数标定与校核.assert/1664260658378-2f6fc618-da85-4e22-86ae-bcda9ab01c70.png" alt="image.png" /></p>
+
+<p>关于abc对于阻抗函数趋势的影响：</p>
+
+<ul>
+  <li>A:只影响阻抗函数的函数值，对于其分布无影响；</li>
+  <li>B:当b值为正，则x^{-b-1}
+<img src="./3.3.3-参数标定与校核.assert/7e3a7bb7da960bd3d552b796846b6a6e.svg" alt="数学公式" />
+随b值的增大而减小，但是当x大于1时，其减小的幅度小于括号内b值增加的幅度，因此导数整体的绝对值是增大的，<strong>即b越大，阻抗函数越快地收敛，出行距离也就越小。</strong></li>
+  <li>当b值为负，则由极值点出现的位置，也就是x=|b/c|
+<img src="./3.3.3-参数标定与校核.assert/680945a8dc7369f9573f6a4868e7b48a.svg" alt="数学公式" />
+可以推测，|b|越大，极值点出现的越晚，出行距离越长；|b|<strong>越小，极值点出现的越早，出行距离越短。</strong></li>
+  <li>C: e^{-cx}
+<img src="./3.3.3-参数标定与校核.assert/7137a4212c9df358179ca9ff3db63a49.svg" alt="数学公式" />
+随c值的增大而减小，cx随c值的增大而增大，e^{-cx}
+<img src="./3.3.3-参数标定与校核.assert/7137a4212c9df358179ca9ff3db63a49.svg" alt="数学公式" />
+减小的幅度小于cx
+<img src="./3.3.3-参数标定与校核.assert/6b17a51734cfde01db88e9467bde0b9a.svg" alt="数学公式" />
+增加的幅度，因此导数整体的绝对值是增大的，即c越大，阻抗函数越快地收敛，出行距离也就越小。​
+    <h4 id="312-eric的先进方法实际使用">3.1.2 Eric的先进方法（实际使用）</h4>
+    <p>初步标定得到的abc是否合理，是否能够精准地模拟交通分布情况？一般有三个指标来进行判断，分别是:</p>
+  </li>
+  <li>模型值与调查值的出行距离分布曲线;</li>
+  <li>大区之间的出行量;</li>
+  <li>区内出行比例。并且根据三个指标中模型值与调查值的偏离程度来对abc进行调整。
+对于初步标定的摩阻函数，可以以综合GC为横坐标，以摩阻系数为纵坐标，绘制摩阻函数图，如下图所示。根据最基础的重力模型计算方法可知，某一阻抗区间出行量的分布与该区间的摩阻系数大小成正比关系。因此可以通过比较模型与调查的出行距离分布曲线，来分析标定得到的阻抗函数曲线与“真实”摩阻系数之间的差异。
+<img src="./3.3.3-参数标定与校核.assert/1664261015589-9bce5711-e99b-4cfb-8af2-973fb23fa40e.png" alt="image.png" />
+<img src="./3.3.3-参数标定与校核.assert/1664261038204-9d444022-6e1e-4d11-aa49-f61c85e529cd.png" alt="image.png" /></li>
+</ul>
+
+<h3 id="32-经典调试方法">3.2 经典调试方法</h3>
+<p>1.整理居调结果到小区层，得到各个小区分目的的PA量；
+2.应用上一步中得到的a、b、c参数、阻抗矩阵作为输入，进行交通分布，得到PA矩阵（分出行目的，操作方法见交通需求手册-交通分布）；
+3.统计分布后的分目的的平均出行距离和出行距离分布，与调查值的平均出行距离和出行距离分布进行比较；
+4.对a、b、c参数进行微调，重新进行分布，直到模型分布的出行距离与调查的出行距离分布较为一致为止。</p>
+<h3 id="33-内部出行率调整">3.3 内部出行率调整</h3>
+<h6 id="1直接调阻抗矩阵的对角线系数高了调低低了调高">（1）直接调阻抗矩阵的对角线系数，高了调低，低了调高；</h6>
+<h6 id="2调整整体的小区内部平衡系数不过小区平衡系数不太好搞可以试试中区">（2）调整整体的小区内部平衡系数，不过小区平衡系数不太好搞，可以试试中区</h6>
+<p>​</p>
+<h3 id="34-大区出行量">3.4 大区出行量</h3>
+<h6 id="1调生成">（1）调生成</h6>
+<p>有些大区出行量是产生吸引不均衡导致的，可以检查一下，调整一下大区的PA均衡系数；</p>
+<h6 id="2调阻抗">（2）调阻抗</h6>
+<p>大区之间的某些道路、公交参数是不是给高了/低了。</p>
+<h6 id="3加k">（3）加K</h6>
+<p>其实大区出行量误差不大的情况下，应该直接加K就可以了。</p>
+<h2 id="4-交通分布应用">4 交通分布应用</h2>
+<p>1.应用调整后的a、b、c参数、阻抗矩阵以及交通生成得到的小区PA交通量作为输入，进行交通分布，得到模型的PA矩阵（分出行目的，操作方法见交通需求手册-交通分布）；
+2.统计分布后的分目的的平均出行距离和出行距离分布，与调查值的平均出行距离和出行距离分布进行比较，如不一致，则继续调整，若基本一致，则分布完成。</p>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/tranmodel/transport-assignment/" class="pagination--pager" title="交通分配
+">上一页</a>
+    
+    
+      <a href="/tutorials/tranmodel/matsim-base/" class="pagination--pager" title="软件介绍
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,0 +1,467 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>目的地选择 - 技术博客</title>
+<meta name="description" content="出行目的选择模型为集计模型，用以确定每个TAZ的出行者选择不同出行终点的概率。模型通过考虑周边交通小区的工作岗位数、学校学位数、与娱乐相关的土地面积等，确定不同人群、出行目的选择周边交通小区的概率。 宏观交通模型中TAZ众多，被选择为出行目的地，需要考虑的因素很多，如目的地TAZ小区的大小/吸引量，起点TAZ到目的地TAZ的距离/阻抗，与目的地TAZ相关的常数项（ASC）等因素。">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="目的地选择">
+<meta property="og:url" content="http://localhost:4000/tutorials/tranmodel/destination-choice/">
+
+
+  <meta property="og:description" content="出行目的选择模型为集计模型，用以确定每个TAZ的出行者选择不同出行终点的概率。模型通过考虑周边交通小区的工作岗位数、学校学位数、与娱乐相关的土地面积等，确定不同人群、出行目的选择周边交通小区的概率。 宏观交通模型中TAZ众多，被选择为出行目的地，需要考虑的因素很多，如目的地TAZ小区的大小/吸引量，起点TAZ到目的地TAZ的距离/阻抗，与目的地TAZ相关的常数项（ASC）等因素。">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/tranmodel/destination-choice/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/tranmodel/fourstep/"><span class="nav__sub-title">四阶段交通模型</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/fourstep/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_generate/">出行生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_distribution/">交通分布</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode_split/">方式划分</a></li>
+            
+              <li><a href="/tutorials/tranmodel/PA2OD/">PA2OD</a></li>
+            
+              <li><a href="/tutorials/tranmodel/transport-assignment/">交通分配</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">出行链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/tourbase/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/tour-generate/">出行链生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/utility-calculate/">效用计算</a></li>
+            
+              <li><a href="/tutorials/tranmodel/destination-choice/" class="active">目的地选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/Intermediate-stop/">中间停留点模型</a></li>
+            
+              <li><a href="/tutorials/tranmodel/half-tour/">半程出行链</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode-choice/">方式选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/time-split/">时段划分</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">活动链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen/">人口合成原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_use/">popgen使用</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_file/">popgen文件说明</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">智能体交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/matsim-base/">软件介绍</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-run/">下载与安装</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-config/">Matsim配置</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-yuanli/">Matsim原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-celue/">Matsim的策略</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-Score/">Matsim评分机制</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="目的地选择">
+    <meta itemprop="description" content="出行目的选择模型为集计模型，用以确定每个TAZ的出行者选择不同出行终点的概率。模型通过考虑周边交通小区的工作岗位数、学校学位数、与娱乐相关的土地面积等，确定不同人群、出行目的选择周边交通小区的概率。宏观交通模型中TAZ众多，被选择为出行目的地，需要考虑的因素很多，如目的地TAZ小区的大小/吸引量，起点TAZ到目的地TAZ的距离/阻抗，与目的地TAZ相关的常数项（ASC）等因素。">
+    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/tranmodel/destination-choice/" itemprop="url">目的地选择
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#1主目的地选择">1、主目的地选择</a><ul><li><a href="#11单约束目的地选择">1.1、单约束目的地选择</a></li><li><a href="#12-双约束目的地选择">1.2 双约束目的地选择</a><ul><li><a href="#121约束平衡问题">1.2.1、约束平衡问题</a></li><li><a href="#123长方形双约束与正方形双约束">1.2.3、长方形双约束与正方形双约束</a></li><li><a href="#122双约束计算">1.2.2、双约束计算</a></li></ul></li></ul></li><li><a href="#2中间停留点选择橡皮筋模型">2、中间停留点选择——橡皮筋模型</a></li><li><a href="#经验总结">经验总结</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>出行目的选择模型为集计模型，用以确定每个TAZ的出行者选择不同出行终点的概率。模型通过考虑周边交通小区的工作岗位数、学校学位数、与娱乐相关的土地面积等，确定不同人群、出行目的选择周边交通小区的概率。
+宏观交通模型中TAZ众多，被选择为出行目的地，需要考虑的因素很多，如目的地TAZ小区的大小/吸引量，起点TAZ到目的地TAZ的距离/阻抗，与目的地TAZ相关的常数项（ASC）等因素。</p>
+
+<h2 id="1主目的地选择">1、主目的地选择</h2>
+<p>按照国际通行的最佳方式，对于不同类型（按出行目的分）的出行链，需要满足的约束条件不同：</p>
+
+<ul>
+  <li>对于通勤（HWH）和通学（HEH）这两类刚性出行链，在主目的地选择过程中，两类出行的数量应等于对应目的地的岗位/学位数量，因此需要采用双约束（Doubly constraint）的方式，使得最终生成的出行链（Tour）同时满足家庭端和工作地/学校端的条件约束。</li>
+  <li>对于其他非刚性的出行（即非HWH或HEH的出行），只需采用单约束条件（Singly constraint），满足出行生成端（家庭或工作地）的条件约束。</li>
+</ul>
+
+<h3 id="11单约束目的地选择">1.1、单约束目的地选择</h3>
+<p>主要是针对非刚性出行，满足出行生成端的约束。</p>
+
+<p>P_{ijpc}=\frac{e^{θ^d_{pc}}∗U_{ijpc}}{\sum_je^{θ^d_{pc}∗U_{ijpc}}}</p>
+
+<p><img src="/assets/images/transport_model/tour_constrant_s.png" alt="image.png" /></p>
+
+<h3 id="12-双约束目的地选择">1.2 双约束目的地选择</h3>
+<p>双约束条件下的目的地选择，以logsum的二维矩阵为基础(seed matrix),通过IPF过程来满足出行产生端和出行吸引端两端的约束平衡。</p>
+
+<h4 id="121约束平衡问题">1.2.1、约束平衡问题</h4>
+<p>在模型中允许通过三种不同的预处理方式来满足IPF过程对于产生和吸引两端总量达到一致的前提约束：</p>
+
+<ul>
+  <li>使用出行产生端的总量作为平衡条件下的总量；</li>
+  <li>目的地端的对应岗位总量作为平衡条件下的总量；</li>
+  <li>同时调整两端的量，获得一个中间的平衡点作为总量；</li>
+</ul>
+
+<h4 id="123长方形双约束与正方形双约束">1.2.3、长方形双约束与正方形双约束</h4>
+
+<ul>
+  <li><strong><em>长方形双约束</em></strong>：主要针对工作通勤而言，基于TAZ的数据统计维度，常常能获取不同类别的工作人群，比如说高收入，中收入，低收入，但是对于岗位，很难从 调查或者其他大数据获取某个TAZ的高收入岗位数是多少，中收入岗位数，低收入岗位数是多少，因此针对工作通勤，需要将多个不同收入的人群的阻抗矩阵拼凑起来，形如长方形，(z<em>n)</em>n维，同时满足行 不同收入人群的人数和总岗位的约束。</li>
+  <li><strong><em>正方形约束</em></strong>：主要针对通学而言，既满足产生端学生人数的约束，又满足吸引端学位的约束。</li>
+</ul>
+
+<h4 id="122双约束计算">1.2.2、双约束计算</h4>
+<p>对于双约束条件下的目的地选择，概率计算公式如下：
+P_{ijpc}=\frac{B_{jp}e^{θ^d_{pc}}∗U_{ijpc}}{\sum_jB_{ip}e^{\theta^d_{pc}*U_{ijpc}}}</p>
+
+<p>其中：B_{jp} —— 对于目的地为TAZ(j)且目的为p（上班/上学）的平衡系数，该系数表示了IPF过程的调整结果。 由上，目的地选择得到的出行需求计算如下式：
+DayTourD_{ijpc}=P_{ijpc}∗ DayTourD_{ipc}</p>
+
+<p>对于单约束和双约束下的目的地选择模型，均满足小区出去总量等于所有小区对该小区吸引的总量，满足公式如下：
+DayTourD_{ipc}=\sum_jDayTourD_{ijpc}</p>
+
+<h2 id="2中间停留点选择橡皮筋模型">2、中间停留点选择——橡皮筋模型</h2>
+<p>前面提到，出行链的类别除了HWH，HOH等只包含主要目的地的简单两段出行链外，还具有HCWH，HWSH等含有中间停留点的出行链。 含有中间停留点的出行链建立在主链构建的基础上，即HCWH的出行，是针对某一类上班的人群，在从家到工作地上班的半程出行链过程中，还含有送孩子上学的需求， 送孩子上学的目的地应建立在选定主目的地work之后,因此，对于Home端和work端已经固定的基础上，去选择送孩子上学的目的地，类似于固定了橡皮筋的两端（home,work）, 然后中间的shcool端是可以不断拉伸的,拉伸的越远，阻抗越大，反之则越小。 集计出行链模型允许在主目的地选择的基础上增加次目的地选择建模，在去程和回程中间，基于橡皮筋法，对中间停留点基于广义阻抗实现MNL目的地选择， 并且假设中间停留点的方式选择与对应的去程/回程方式保持一致。</p>
+
+<h2 id="经验总结">经验总结</h2>
+
+<ul>
+  <li>hwh采用长方形的双约束，因为产生量可以细分为高、中、低、有车、无车等不同人群，而岗位无法得知是高收入岗位还是低收入岗位，因此双约束计算时， 只能采用多个矩阵一起实现长方形双约束；</li>
+  <li>小学生人口数据没有学位数据准确，以学位数据为准，以社区为边界，完成同一社区的学生和学位的平衡；</li>
+  <li>小学生，中学生，大学生的上学属于正方形的双约束</li>
+  <li>其他出行目的都是单约束；</li>
+  <li>hwh的出行具有强约束性，而实际情况中，我们想拥有精确人口和岗位是不现实的，可能需要对局部区域引入factor进行调整；</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/tranmodel/utility-calculate/" class="pagination--pager" title="效用计算
+">上一页</a>
+    
+    
+      <a href="/tutorials/tranmodel/Intermediate-stop/" class="pagination--pager" title="中间停留点模型
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

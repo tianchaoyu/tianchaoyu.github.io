@@ -1,0 +1,469 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>交通分配 - 技术博客</title>
+<meta name="description" content="道路交通分配 1、引言 交通流分配是四阶段模型的最后一个阶段，其本质是两种机制相互作用的结果。    系统用户即各种车辆试图通过在网络上选择最佳路线来达到自身出行费用最小的目标；   路网提供给用户的服务水平与系统被使用的情况密切相关，道路上的车流量越大，用户遇到的阻力即对应的新形势阻抗越高。用一定的模型来描述两种机制及其相互作用，并求解网咯上交通流量在平滑状态下的合理分布，即交通分配模型。">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="交通分配">
+<meta property="og:url" content="http://localhost:4000/tutorials/tranmodel/transport-assignment/">
+
+
+  <meta property="og:description" content="道路交通分配 1、引言 交通流分配是四阶段模型的最后一个阶段，其本质是两种机制相互作用的结果。    系统用户即各种车辆试图通过在网络上选择最佳路线来达到自身出行费用最小的目标；   路网提供给用户的服务水平与系统被使用的情况密切相关，道路上的车流量越大，用户遇到的阻力即对应的新形势阻抗越高。用一定的模型来描述两种机制及其相互作用，并求解网咯上交通流量在平滑状态下的合理分布，即交通分配模型。">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/tranmodel/transport-assignment/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/tranmodel/fourstep/"><span class="nav__sub-title">四阶段交通模型</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/fourstep/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_generate/">出行生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_distribution/">交通分布</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode_split/">方式划分</a></li>
+            
+              <li><a href="/tutorials/tranmodel/PA2OD/">PA2OD</a></li>
+            
+              <li><a href="/tutorials/tranmodel/transport-assignment/" class="active">交通分配</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">出行链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/tourbase/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/tour-generate/">出行链生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/utility-calculate/">效用计算</a></li>
+            
+              <li><a href="/tutorials/tranmodel/destination-choice/">目的地选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/Intermediate-stop/">中间停留点模型</a></li>
+            
+              <li><a href="/tutorials/tranmodel/half-tour/">半程出行链</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode-choice/">方式选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/time-split/">时段划分</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">活动链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen/">人口合成原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_use/">popgen使用</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_file/">popgen文件说明</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">智能体交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/matsim-base/">软件介绍</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-run/">下载与安装</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-config/">Matsim配置</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-yuanli/">Matsim原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-celue/">Matsim的策略</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-Score/">Matsim评分机制</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="交通分配">
+    <meta itemprop="description" content="道路交通分配1、引言交通流分配是四阶段模型的最后一个阶段，其本质是两种机制相互作用的结果。  系统用户即各种车辆试图通过在网络上选择最佳路线来达到自身出行费用最小的目标；  路网提供给用户的服务水平与系统被使用的情况密切相关，道路上的车流量越大，用户遇到的阻力即对应的新形势阻抗越高。用一定的模型来描述两种机制及其相互作用，并求解网咯上交通流量在平滑状态下的合理分布，即交通分配模型。">
+    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/tranmodel/transport-assignment/" itemprop="url">交通分配
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#道路交通分配">道路交通分配</a></li><li><a href="#1引言">1、引言</a></li><li><a href="#2交通分配方法">2、交通分配方法</a><ul><li><a href="#21全有全无分配">2.1、全有全无分配</a></li><li><a href="#22stoch-分配法">2.2、STOCH 分配法</a></li><li><a href="#23递增分配法">2.3、递增分配法</a></li><li><a href="#24容量限制法">2.4、容量限制法</a></li><li><a href="#25用户平衡法ue">2.5、用户平衡法（UE）</a></li><li><a href="#26随机用户平衡法sue">2.6、随机用户平衡法（SUE）</a></li><li><a href="#27系统优化分配so">2.7、系统优化分配（SO）</a></li></ul></li><li><a href="#3路段性能函数延误函数">3、路段性能函数，延误函数</a></li><li><a href="#4多方式多类型交通分配mma">4、多方式多类型交通分配（MMA）</a></li></ul>
+            </nav>
+          </aside>
+        
+        <h1 id="道路交通分配">道路交通分配</h1>
+<h1 id="1引言">1、引言</h1>
+<p>交通流分配是四阶段模型的最后一个阶段，其本质是两种机制相互作用的结果。</p>
+<ul>
+  <li>系统用户即各种车辆试图通过在网络上选择最佳路线来达到自身出行费用最小的目标；</li>
+  <li>路网提供给用户的服务水平与系统被使用的情况密切相关，道路上的车流量越大，用户遇到的阻力即对应的新形势阻抗越高。用一定的模型来描述两种机制及其相互作用，并求解网咯上交通流量在平滑状态下的合理分布，即交通分配模型。</li>
+</ul>
+
+<p>1）输入要素：</p>
+<ul>
+  <li>出行需求OD矩阵表；</li>
+  <li>道路网络基础；</li>
+</ul>
+
+<p>2）平稳问题</p>
+<ul>
+  <li>wardrop第一平衡原理：道路使用者都确切知道网络的交通状态并试图选择最短路径时，网络达到平衡状态。在考虑拥挤对行驶时间影响的网络中，当网络达到平衡状态时，每个OD对的各条被使用的径路具有相等而且最小的行驶时间，没有被使用的径路的行驶时间大于或等于最小行驶时间。</li>
+  <li>wardrop第二平衡原理：系统平衡下，拥挤的路网上的交通流应该按照平均或总的出行成本最小依据来分配。</li>
+</ul>
+
+<h1 id="2交通分配方法">2、交通分配方法</h1>
+<h2 id="21全有全无分配">2.1、全有全无分配</h2>
+<p>采用全有全无分配法，O-D 对间的所有交通流都分配到 O-D 之间的最短路径上。该模型与现实不相符的地方是每个 O-D 之间只采用一条路径，即使另外的路径的出行时间或费用相同或非常接近也不采用。另外，将交通流量分配到路段上时，没有考虑路段是否有足够的通行能力或严重的交通拥堵，所输入的出行时间为固定值，不随着路段的拥堵程度而变化 。</p>
+<h2 id="22stoch-分配法">2.2、STOCH 分配法</h2>
+<p>STOCH 分配法（Dial, 1971）是将每个 O-D 之间的交通流量分配到连接该 O-D 的多条可选路径上。分配到一条路径上的流量所占的比例是选择该路径的概率，路径的选择概率是由 logit 路径选择模型计算的。一般说来，和其他可选路径相比，时间越短的路径，被选择的概率越大。但是，STOCH 分配法并不将流量分配到所有的可选路径上，只分配某些有限的较为“合理的”路段上。一条合理的路段是使出行者离出行起点越来越远，离出行终点越来越近。在 STOCH 分配中路段出行时间输入的固定值，出行时间不随路段流量的变化而改变。因此，该模型不是一种平衡方法。</p>
+<h2 id="23递增分配法">2.3、递增分配法</h2>
+<p>递增分配法是逐步分配交通流量的一种方法。在每一步分配中，根据全有全无分配法分配一定比例的总流量。每步分配后，根据路段流量重新计算出行时间。当采用的递增次数足够多时，该分配法类似于平衡分配法，但是，该方法不能保证产生平衡解。在路段流量与出行时间之间可能存在不一致，会导致方案评估计算的错误。另外，递增分配法还受到流量分配时，O-D 对的处理顺序的影响，加大了分配结果中包含进一步的偏差的可能性。</p>
+<h2 id="24容量限制法">2.4、容量限制法</h2>
+<p>容量限制法试图通过循环迭代全有全无流量分配和根据反映路段通行能力的拥挤函数计算路段出行时间，来近似计算平衡解。遗憾的是，该方法不能收敛，在某些路段上可能会跳来跳去地反复分配流量（Sheffi, 1985，第 113 页）。在一些软件包中，容量限制法试图通过平均出行时间和最近迭代中一组流量的平均值来减轻这个问题 。
+这种方法不仅不能收敛为一个平衡解，并且还有产生另外一个问题的可能，即其计算结果非常依赖于具体的迭代次数。多执行一次迭代或者少执行一次迭代，常常会给出截然不同的结果</p>
+<h2 id="25用户平衡法ue">2.5、用户平衡法（UE）</h2>
+<p>用户平衡法采用一个迭代过程达到平衡的结果，即出行者改变路径不可能再改进出行时间。在每次迭代中都计算路网中各路段的流量，其中考虑到路段通行能力的限制和与路段流量相关的出行时间。UE 问题的推导可以归结为一个数学规划问题，使用Frank-Wolf 方法来求解。</p>
+<h2 id="26随机用户平衡法sue">2.6、随机用户平衡法（SUE）</h2>
+<p>随机用户平衡法是用户平衡法的一种通用表述，它假定出行者没有完整的路网属性信息，或者他们对出行费用的感受不同。SUE 分配程序比确定性的 UE 分配模型的结果更接近现实，因为 SUE 允许使用吸引力小的路径，也可以使用吸引力较大的路径。吸引力小的路径具有较低的利用率，但不会象 UE 方法中那样总是出现零流量。TransCAD 使用逐次平均法（MSA）来计算 SUE，这也是已知的唯一的可以收敛的方法（Sheffi and Powell, 1982; Sheffi, 1985）。由于该方法的特点，需要使用较多次数的迭代循环。</p>
+<h2 id="27系统优化分配so">2.7、系统优化分配（SO）</h2>
+<p>系统优化分配是一种使整个路网总的出行时间达到最小的分配方法。采用 SO 分配的结果是，出行者若改变他们的路径，便会增加系统的总出行时间，尽管某出行者有可能减少自己的出行时间。SO 分配法可以认为是一种拥堵最小化的模型，其中出行者被告诉使用指定的某条路径。显然 SO 分配模型不是一个符合行为现实的模型，但它有可能有效地分析 ITS 智能交通系统方案。</p>
+
+<h1 id="3路段性能函数延误函数">3、路段性能函数，延误函数</h1>
+<p>交通分配程序都根据路段性能函数（link performance functions）迭代更新出行时间。路段性能函数是用数学公式来描述出行时间和路段流量之间关系。</p>
+
+<p>1）BPR函数</p>
+
+<p><img src="/assets/images/transport_model/BPR.png" alt="" /></p>
+
+<p>2）Akcelik</p>
+
+<p><img src="/assets/images/transport_model/Akcelik.png" alt="" /></p>
+
+<h1 id="4多方式多类型交通分配mma">4、多方式多类型交通分配（MMA）</h1>
+<p>MMA 模型是一种基于广义费用的分配模型，它允许按照特殊模式和用户级别同时将出行分配到道路网。这种模型能够准确地描述所有类型收费设施和 HOV 设施的影响。每种级别和方式都有不同的独立路网、拥堵影响（小汽车当量）、时间价值（Value of Time）以及出行费用。</p>
+
+<p><strong>数据输入</strong>:</p>
+<ul>
+  <li>小汽车当量：用于确定每种车辆类型的拥堵影响 ；</li>
+  <li>其它设定：确定不能用于特殊方式或用户类型的路段选择集；</li>
+  <li>按照路段或者是通过不同的方式添加的固定费率；</li>
+  <li>应用于不同方式的按里程计算费率；</li>
+  <li>每种方式或用户类型的特定时间价值；</li>
+  <li>每种方式或用户类型的 OD 矩阵</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/tranmodel/PA2OD/" class="pagination--pager" title="PA转OD
+">上一页</a>
+    
+    
+      <a href="/tutorials/model/calidation/" class="pagination--pager" title="软件基本操作
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

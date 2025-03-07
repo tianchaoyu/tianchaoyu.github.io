@@ -1,0 +1,560 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>出行生成 - 技术博客</title>
+<meta name="description" content="前言    出行生成的目的是预测在研究范围内每个区域所产生和吸引的出行数量。在这个阶段只分别关注出发于和结束于每个区域的出行数量，而并不将出行的起始点和目的地联系起来。   任何基于家庭的出行被认为是从家庭端产生的，任何不基于家庭的出行被认为是从起始点产生的，而任何以家庭之外的活动场所为目的地的出行被认为是被该场所吸引。   需要注意区分OD和概念和PA的概念,出行产生是建立出行数量或频率与出行者的、区域的以及交通网络的特性之间的关系 。">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="出行生成">
+<meta property="og:url" content="http://localhost:4000/tutorials/tranmodel/trip_generate/">
+
+
+  <meta property="og:description" content="前言    出行生成的目的是预测在研究范围内每个区域所产生和吸引的出行数量。在这个阶段只分别关注出发于和结束于每个区域的出行数量，而并不将出行的起始点和目的地联系起来。   任何基于家庭的出行被认为是从家庭端产生的，任何不基于家庭的出行被认为是从起始点产生的，而任何以家庭之外的活动场所为目的地的出行被认为是被该场所吸引。   需要注意区分OD和概念和PA的概念,出行产生是建立出行数量或频率与出行者的、区域的以及交通网络的特性之间的关系 。">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/tranmodel/trip_generate/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/tranmodel/fourstep/"><span class="nav__sub-title">四阶段交通模型</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/fourstep/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_generate/" class="active">出行生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_distribution/">交通分布</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode_split/">方式划分</a></li>
+            
+              <li><a href="/tutorials/tranmodel/PA2OD/">PA2OD</a></li>
+            
+              <li><a href="/tutorials/tranmodel/transport-assignment/">交通分配</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">出行链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/tourbase/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/tour-generate/">出行链生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/utility-calculate/">效用计算</a></li>
+            
+              <li><a href="/tutorials/tranmodel/destination-choice/">目的地选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/Intermediate-stop/">中间停留点模型</a></li>
+            
+              <li><a href="/tutorials/tranmodel/half-tour/">半程出行链</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode-choice/">方式选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/time-split/">时段划分</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">活动链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen/">人口合成原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_use/">popgen使用</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_file/">popgen文件说明</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">智能体交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/matsim-base/">软件介绍</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-run/">下载与安装</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-config/">Matsim配置</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-yuanli/">Matsim原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-celue/">Matsim的策略</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-Score/">Matsim评分机制</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="出行生成">
+    <meta itemprop="description" content="前言  出行生成的目的是预测在研究范围内每个区域所产生和吸引的出行数量。在这个阶段只分别关注出发于和结束于每个区域的出行数量，而并不将出行的起始点和目的地联系起来。  任何基于家庭的出行被认为是从家庭端产生的，任何不基于家庭的出行被认为是从起始点产生的，而任何以家庭之外的活动场所为目的地的出行被认为是被该场所吸引。  需要注意区分OD和概念和PA的概念,出行产生是建立出行数量或频率与出行者的、区域的以及交通网络的特性之间的关系 。">
+    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/tranmodel/trip_generate/" itemprop="url">出行生成
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#前言">前言</a><ul><li><a href="#主要计算方法">主要计算方法</a></li></ul></li><li><a href="#出行产生">出行产生</a><ul><li><a href="#出行产生的主要影响因素">出行产生的主要影响因素</a></li><li><a href="#交叉分类">交叉分类</a><ul><li><a href="#1出行率分类">（1）出行率分类</a></li><li><a href="#2-出行生成计算">(2) 出行生成计算</a></li><li><a href="#3-参数标定与校核">(3) 参数标定与校核</a></li></ul></li></ul></li></ul></li><li><a href="#出行吸引">出行吸引</a><ul><li><a href="#计算方法">计算方法</a><ul><li><a href="#1基于分区的回归模型">（1）基于分区的回归模型</a></li><li><a href="#2因变量出行量">（2）因变量：出行量</a></li><li><a href="#3自变量">（3）自变量：</a></li></ul></li></ul></li></ul></li></ul></li><li><a href="#吸引计算公式">吸引计算公式</a></li><li><a href="#参数标定">参数标定</a></li></ul></li><li><a href="#出行平衡">出行平衡</a></li></ul>
+            </nav>
+          </aside>
+        
+        <h1 id="前言">前言</h1>
+<ul>
+  <li>出行生成的目的是预测在研究范围内每个区域所产生和吸引的出行数量。在这个阶段只分别关注出发于和结束于每个区域的出行数量，而并不将出行的起始点和目的地联系起来。</li>
+  <li>任何基于家庭的出行被认为是从家庭端产生的，任何不基于家庭的出行被认为是从起始点产生的，而任何以家庭之外的活动场所为目的地的出行被认为是被该场所吸引。</li>
+  <li>需要注意区分OD和概念和PA的概念,出行产生是建立出行数量或频率与出行者的、区域的以及交通网络的特性之间的关系 。</li>
+</ul>
+
+<h2 id="主要计算方法">主要计算方法</h2>
+
+<ul>
+  <li>交叉分类法:城镇区域人口按某些社会经济特征分成相对均匀的类别。然后，通过经验估计每类中每户家庭或个人的平均出行量。这样就产生一个用于预测出行产生量的查寻表。</li>
+  <li>回归模型: 通常使用两种回归方法。第一种方法使用集计到区域级别的数据，以区域的户均出行数为因变量，以平均区域特征为自变量。第二种使用家庭级别或个人级别的个体数据，以每个家庭或个人的出行量为因变量，以家庭或个人的特征为自变量。</li>
+  <li>离散选择模型:离散选择模型使用基于家庭或个人的个体数据去估计家庭或个人出行产生的概率。将这些离散的结果综合起来就可得到总的出行产生数量。### 2.1、出行产生的影响因素</li>
+</ul>
+
+<h1 id="出行产生">出行产生</h1>
+
+<h2 id="出行产生的主要影响因素">出行产生的主要影响因素</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>因素</th>
+      <th>例子</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>个人特性</td>
+      <td>性别</td>
+    </tr>
+    <tr>
+      <td>个人特性</td>
+      <td>年龄</td>
+    </tr>
+    <tr>
+      <td>个人特性</td>
+      <td>个人收入</td>
+    </tr>
+    <tr>
+      <td>个人特性</td>
+      <td>职业</td>
+    </tr>
+    <tr>
+      <td>家庭特性</td>
+      <td>家庭大小</td>
+    </tr>
+    <tr>
+      <td>家庭特性</td>
+      <td>车辆拥有量</td>
+    </tr>
+    <tr>
+      <td>家庭特性</td>
+      <td>孩子的数量和年龄</td>
+    </tr>
+    <tr>
+      <td>家庭特性</td>
+      <td>家庭收入</td>
+    </tr>
+    <tr>
+      <td>区域特性</td>
+      <td>土地使用</td>
+    </tr>
+    <tr>
+      <td>区域特性</td>
+      <td>居民密度</td>
+    </tr>
+    <tr>
+      <td>区域特性</td>
+      <td>可达性</td>
+    </tr>
+    <tr>
+      <td>交通网络特性</td>
+      <td>服务水平</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="交叉分类">交叉分类</h2>
+
+<p>一般按人群类别和出行目的的交叉分类</p>
+<h4 id="1出行率分类">（1）出行率分类</h4>
+
+<ul>
+  <li>出行目的：HBW,HBO,HBB,HBS,HBSP,HBESC(工作、其他、商务、购物、送孩子上学等)</li>
+  <li>拥车类型：CA,NC（有车、无车）</li>
+  <li>地带类型：type1,type2,type3</li>
+  <li>家庭结构：HI,MI,LI（高中低收入）</li>
+  <li>特殊群体：流动、暂住、学生、退休、失业、农民等</li>
+</ul>
+
+<p>常见交叉分类类别如下：
+<img src="/assets/images/transport_model/pop_types.png" alt="交叉分类" /></p>
+
+<h4 id="2-出行生成计算">(2) 出行生成计算</h4>
+
+<p><img src="/assets/images/transport_model/formulate_trip_p.png" alt="交叉分类" /></p>
+
+<h4 id="3-参数标定与校核">(3) 参数标定与校核</h4>
+
+<ul>
+  <li>划分模型参数地带，基于不同地带的调查数据，标定不同目的下不同群体的出行率。</li>
+  <li>基于模型中区，校核模型计算的出行总量与交通调查的出行总量。</li>
+</ul>
+
+<h1 id="出行吸引">出行吸引</h1>
+
+<p>出行吸引模型采用多元回归分析法，即根据各交通分区的人口数、岗位数、学位数及各类用地建筑量，预测各交通分区对于各出行目的的出行吸引率，进而求出各交通分区对不同出行目的出行吸引量。</p>
+
+<h2 id="计算方法">计算方法</h2>
+<h6 id="1基于分区的回归模型">（1）基于分区的回归模型</h6>
+<ul>
+  <li>基于中区数据</li>
+  <li>常数项（截距）取0</li>
+  <li>逐步回归分析(考虑所有可能的变量，逐步分析选择最有效的变量)</li>
+  <li>无须按照拥车类型分开(可在参数校核步骤划分)</li>
+</ul>
+
+<h6 id="2因变量出行量">（2）因变量：出行量</h6>
+<h6 id="3自变量">（3）自变量：</h6>
+<ul>
+  <li>人口（统计数据的人口）</li>
+  <li>学位（统计口径）</li>
+  <li>大学生（统计口径）</li>
+  <li>岗位数（商业岗位、工业岗位、办公岗位）</li>
+  <li>不同用地的占地面积</li>
+  <li>医院床位</li>
+  <li>景区面积</li>
+</ul>
+
+<h2 id="吸引计算公式">吸引计算公式</h2>
+
+<p><img src="/assets/images/transport_model/formulate_trip_a.png" alt="吸引" /></p>
+
+<h2 id="参数标定">参数标定</h2>
+<p>不同出行目的的吸引量与城市用地特征、片区经济发展水平、工作岗位等要素密切相关。不同区位、不同交通可达性的交通小区，其相同用地性质和同样岗位数，出行吸引量也同样存在显著差异。为此，根据不同交
+通分区的用地和出行特征，进行相应的回归分析。对回归变量，采用逐步回归和相关变量统计检验的方法，进行组合和筛选。最终得到分地带和分目的出行吸引模型。</p>
+
+<ul>
+  <li>交通吸引模型构建完成后，输入各交通小区的办公岗位数、商业岗位数、工业岗位数、学位数、常住人口数和旅游用地面积，便可得到该交通小区对各出行群体的出行吸引量。</li>
+  <li>基于中区的模型吸引量与调查数据进行对比分析。</li>
+</ul>
+
+<h1 id="出行平衡">出行平衡</h1>
+
+<p>如果仅考虑区内出行，而不考虑出入境出行和过境出行，某类出行目的的出行产生和吸引在分析区域内的总量应该是相等的。然而，出行产生模型和吸引模型是分别预测每个交通小区的产生量和吸引量，所以无法保证出行产生和吸引在分析区域内的总量相等。 因此， 需要经过“出行平衡过
+程”， 使两者在总数上相等。 这里需要先比较出行产生模型和吸引模型的精确程度， 一般认为出行产生模型要比吸引模型精确。 这是因为， 一方面，出行产生模型属于“非集计模型”， 模型系数估计值的精度较高； 另一方面，
+输入模型的解释变量来自于人口普查，其可靠程度一般高于来自于经济普查的就业和土地利用数据。所以在实践中，往往采用按比例调整每个小区出行吸引量来拟合产生总量的方法，使分析区域内的出行产生量和吸引量在总数上相等</p>
+
+<ul>
+  <li>对于非基家出行来说，其起讫点均不是出行者家的所在，出行者在一天的行程中仅途径这些点所在的小区，所以进入和离开该小区的非基家出行量是相等的。</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/tranmodel/fourstep/" class="pagination--pager" title="四阶段交通模型理论
+">上一页</a>
+    
+    
+      <a href="/tutorials/tranmodel/trip_distribution/" class="pagination--pager" title="交通分布
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

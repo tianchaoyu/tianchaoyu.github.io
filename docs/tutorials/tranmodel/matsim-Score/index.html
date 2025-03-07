@@ -1,0 +1,586 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Matsim评分机制 - 技术博客</title>
+<meta name="description" content="Good Plans and Bad Plans, Score and Utility Matsim依赖于协同进化算法，每个智能体在移动仿真中执行多个方案，并给每一个方案打分，通过维护多个方案来学习，通过修改方案来保持进化提高。整个进化过程包括下面三大部分：">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="Matsim评分机制">
+<meta property="og:url" content="http://localhost:4000/tutorials/tranmodel/matsim-Score/">
+
+
+  <meta property="og:description" content="Good Plans and Bad Plans, Score and Utility Matsim依赖于协同进化算法，每个智能体在移动仿真中执行多个方案，并给每一个方案打分，通过维护多个方案来学习，通过修改方案来保持进化提高。整个进化过程包括下面三大部分：">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/tranmodel/matsim-Score/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/tranmodel/fourstep/"><span class="nav__sub-title">四阶段交通模型</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/fourstep/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_generate/">出行生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_distribution/">交通分布</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode_split/">方式划分</a></li>
+            
+              <li><a href="/tutorials/tranmodel/PA2OD/">PA2OD</a></li>
+            
+              <li><a href="/tutorials/tranmodel/transport-assignment/">交通分配</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">出行链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/tourbase/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/tour-generate/">出行链生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/utility-calculate/">效用计算</a></li>
+            
+              <li><a href="/tutorials/tranmodel/destination-choice/">目的地选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/Intermediate-stop/">中间停留点模型</a></li>
+            
+              <li><a href="/tutorials/tranmodel/half-tour/">半程出行链</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode-choice/">方式选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/time-split/">时段划分</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">活动链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen/">人口合成原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_use/">popgen使用</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_file/">popgen文件说明</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">智能体交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/matsim-base/">软件介绍</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-run/">下载与安装</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-config/">Matsim配置</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-yuanli/">Matsim原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-celue/">Matsim的策略</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-Score/" class="active">Matsim评分机制</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Matsim评分机制">
+    <meta itemprop="description" content="Good Plans and Bad Plans, Score and UtilityMatsim依赖于协同进化算法，每个智能体在移动仿真中执行多个方案，并给每一个方案打分，通过维护多个方案来学习，通过修改方案来保持进化提高。整个进化过程包括下面三大部分：">
+    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/tranmodel/matsim-Score/" itemprop="url">Matsim评分机制
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#good-plans-and-bad-plans-score-and-utility">Good Plans and Bad Plans, Score and Utility</a><ul><li><a href="#1方案评价基本效用函数公式">1、方案评价基本效用函数公式</a><ul><li><a href="#11活动q的效用公式">1.1、活动q的效用公式</a></li><li><a href="#111活动q执行的效用活动地点的开放时间需要加以考虑">1.1.1、活动q执行的效用（活动地点的开放时间需要加以考虑）</a></li><li><a href="#112活动q的等待时间">1.1.2、活动q的等待时间</a></li><li><a href="#113活动迟到惩罚">1.1.3、活动迟到惩罚</a></li><li><a href="#114提前离开的惩罚">1.1.4、提前离开的惩罚</a></li><li><a href="#115定义停留时间不够久的惩罚">1.1.5、定义停留时间不够久的惩罚</a></li></ul></li><li><a href="#12基于活动q的出行效用计算公式">1.2、基于活动q的出行效用计算公式</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <h2 id="good-plans-and-bad-plans-score-and-utility">Good Plans and Bad Plans, Score and Utility</h2>
+<p>Matsim依赖于协同进化算法，每个智能体在移动仿真中执行多个方案，并给每一个方案打分，通过维护多个方案来学习，通过修改方案来保持进化提高。整个进化过程包括下面三大部分：</p>
+
+<ul>
+  <li>移动仿真：智能体选择某个方案，通过在模型路网中进行仿真测试，也叫做网络加载</li>
+  <li>计划打分：根据每个方案在仿真测试中的结果进行打分</li>
+  <li>重新计划：主要包括如下步骤：</li>
+  <li>如果智能体的方案数量超过最大值（配置文件中定义），然后根据方案选择器（选择）删除计划，减少方案的数量，每个智能体维护的方案数量是固定的，有配置文件觉得</li>
+  <li>计划会被复制、修改，然后选择用于下一次迭代（选择集扩展、创新）。</li>
+  <li>所有其他个体人在各自的计划之间进行选择。需要注意的是，Replanning的三个步骤必须配合工作方法：计划删除步骤应删除“坏”计划，创新步骤应生成“好”计划，而选择通常应选择好计划。这里，“好”的意思是“能够在mobsim/scoring中获得高分”。幸运的是，由于其进化的概念，该方法是相当稳健的：创新步骤并不总是产生好的解决方案。但是如果一些解决方案是好的，并导致高分，也已经足够。<img src="./（1）关于matsim的评分机制.assert/matsim_scores.PNG" alt="下载失败" /></li>
+</ul>
+
+<h3 id="1方案评价基本效用函数公式">1、方案评价基本效用函数公式</h3>
+<p>基础方程为，方案的效用值 等于 活动效应$S(act,q)
+<img src="./（1）关于matsim的评分机制.assert/cddba0116e57070f1b0477258844d5ed.svg" alt="数学公式" />
+，加上 出行效用值
+<img src="./（1）关于matsim的评分机制.assert/4c3cee807431c158b3b05b8462886cda.svg" alt="数学公式" />
+S(trav,mde(q)) 
+<img src="./（1）关于matsim的评分机制.assert/4e0eedd09ae902aa2d4f7696b96c0b68.svg" alt="数学公式" />
+$。
+S_{p l a n}=\sum_{q=0}^{N-1} S_{a c t, q}+\sum_{q=0}^{N-1} S_{t r a v, \operatorname{mode}(q)}
+<img src="./（1）关于matsim的评分机制.assert/a97c14c46d19f845b5d35136f4c3036f.svg" alt="数学公式" /></p>
+
+<ul>
+  <li>$S_{pln}
+<img src="./（1）关于matsim的评分机制.assert/72cc3006c589d5051cab9eb23e23a448.svg" alt="数学公式" />
+$: 方案计划的总效用</li>
+  <li>$S_{a c t, q}
+<img src="./（1）关于matsim的评分机制.assert/8feabacfec6236829b9689e17e2a91c6.svg" alt="数学公式" />
+$:所有活动的总效用</li>
+  <li>$S_{t r a v, mode}
+<img src="./（1）关于matsim的评分机制.assert/d55ab9a5f5272836fd0d11521ada967a.svg" alt="数学公式" />
+$:出行过程的总效用</li>
+  <li>$N
+<img src="./（1）关于matsim的评分机制.assert/459f3c80a50b7be28751b0869ef5386a.svg" alt="数学公式" />
+$表示活动的总数</li>
+  <li>$q
+<img src="./（1）关于matsim的评分机制.assert/34c7b563b30bde3c748139530686798e.svg" alt="数学公式" />
+$表示基于活动q的出行
+    <h4 id="11活动q的效用公式">1.1、活动q的效用公式</h4>
+    <p>S_{\text {act }, q}=S_{d u r, q}+S_{\text {wait }, q}+S_{\text {late.ar }, q}+S_{\text {early.dp, } q}+S_{\text {short.dur, } q}
+<img src="./（1）关于matsim的评分机制.assert/382a6e0961e3d03af774680919381137.svg" alt="数学公式" /></p>
+  </li>
+</ul>
+
+<h4 id="111活动q执行的效用活动地点的开放时间需要加以考虑">1.1.1、活动q执行的效用（活动地点的开放时间需要加以考虑）</h4>
+<p>S_{d u r, q}=\beta_{d u r} \cdot t_{t y p, q} \cdot \ln \left(t_{d u r, q} / t_{0, q}\right)
+<img src="./（1）关于matsim的评分机制.assert/7ea6c0172561765bb43cecd7344bfd95.svg" alt="数学公式" /></p>
+
+<ul>
+  <li>$ t_{d u r, q}
+<img src="./（1）关于matsim的评分机制.assert/9a75564fa4407c52956128bb179642a7.svg" alt="数学公式" />
+$ 执行活动的时长</li>
+  <li>$beta_{d u r}
+<img src="./（1）关于matsim的评分机制.assert/13ab6112edddbabaa666f7e83b25c2f8.svg" alt="数学公式" />
+$ 与活动持续时间的边际效用（或时间作为一种资源的边际效用）有关，对所有活动都是一样的</li>
+  <li>$t_{0, q}
+<img src="./（1）关于matsim的评分机制.assert/618a303d324d44ab40ff6172bf46f774.svg" alt="数学公式" />
+$ 是效用开始为正的持续时间，</li>
+  <li>该公式默认设置的属性， typicalDurationScoreComputation=relative 定义如下： 通过该设置，$t(0,q)
+<img src="./（1）关于matsim的评分机制.assert/0e750ff1c3255c34f1bd9b69e0e165e6.svg" alt="数学公式" />
+$由表达式</li>
+  <li>$t{0,q}=t{t y p,q} \cdot exp(−1/prio(q)）
+<img src="./（1）关于matsim的评分机制.assert/001434681a2971f15c8ec91a6b88ae4b.svg" alt="数学公式" />
+$ 其中p(rioq)是一个可配置参数。</li>
+  <li>因此可将上述等式重写为:=\beta_{\text {perf }} \cdot t_{t y p, q} \cdot \ln \left(t_{d u r, q} / t_{t y p, q}\right)+\beta_{\text {perf }} \cdot t_{t y p, q} \cdot \frac{1}{p r i o_{q}} .
+<img src="./（1）关于matsim的评分机制.assert/d616fe8e2823bf8d384aa02cb692320b.svg" alt="数学公式" /></li>
+</ul>
+
+<p>在典型持续时间（t(dur, q)=t(typ, q)）下，第一项为零，因此具有相同prio(q)值的所有活动类型，在其典型持续时间下产生相同的相对分数 β(perf)/prio(q)（每小时）。此外，所有活动的斜率为
+\frac{\partial}{\partial t_{d u r, q}}\left(\beta_{p e r f} \cdot t_{t y p, q} \cdot \ln \left(t_{d u r, q} / t_{t y p, q}\right)+\beta_{p e r f} \cdot t_{t y p, q} \cdot \frac{1}{p r i o_{q}}\right)=\frac{\beta_{p e r f} \cdot t_{t y p, q}}{t_{\text {dur }, q}}
+<img src="./（1）关于matsim的评分机制.assert/bcb2e7b4a2e5fe6a31120211f6498374.svg" alt="数学公式" /></p>
+
+<p>下图显示了这种函数如何对t(typ)、prio(q)或 β(perf)的变化作出反应。<img src="./（1）关于matsim的评分机制.assert/matsim_type_time.PNG" alt="下载失败" />
+上图：改变典型持续时间的效果。中间：改变优先级的效果。底部：改变性能的影响。注意，在上图中，典型持续时间的分数与典型持续时间成正比。</p>
+
+<h4 id="112活动q的等待时间">1.1.2、活动q的等待时间</h4>
+<p>S_{\text {wait }, q}=\beta_{\text {wait }} \cdot t_{\text {wait }, q}
+<img src="./（1）关于matsim的评分机制.assert/9deb37ee08538924a3031401d435fbd7.svg" alt="数学公式" /></p>
+
+<ul>
+  <li>$beta_{\text {wait }} 
+<img src="./（1）关于matsim的评分机制.assert/8248498cebd2d51328f219b997963437.svg" alt="数学公式" />
+$等待时间的边际效用</li>
+  <li>$t_{\text {wait }, q} 
+<img src="./（1）关于matsim的评分机制.assert/1fd257bd8f4de4f5fe8ba1d190cdb78d.svg" alt="数学公式" />
+$表示等待时间</li>
+</ul>
+
+<h4 id="113活动迟到惩罚">1.1.3、活动迟到惩罚</h4>
+
+<p>S_{\text { late.ar, } q}=\left{\begin{array}{ll}
+\beta_{\text {late.ar }} \cdot\left(t_{\text {start }, q}-t_{\text {latest.ar }, q}\right) &amp; \text { if } t_{\text {start }, q}&gt;t_{\text {latest.ar }, q} <br />
+0 &amp; \text { else }
+\end{array}\right.
+<img src="./（1）关于matsim的评分机制.assert/c401fdad18079dbb32006020b03ab090.svg" alt="数学公式" /></p>
+
+<ul>
+  <li>t_{\text {start }, q} 活动开始的时间</li>
+  <li>t_{\text {latest.ar }, q} 没有惩罚的时候，例如：针对强时间效用，上班打卡 ，电影开场</li>
+  <li>指定迟到惩罚，其中t(start, q)是活动q的开始时间，t(latest.ar)是最晚的无惩罚活动开始时间</li>
+</ul>
+
+<h4 id="114提前离开的惩罚">1.1.4、提前离开的惩罚</h4>
+
+<p>S_{\text {early.dp }}=\left{\begin{array}{ll}
+\beta_{\text {early.dp }} \cdot\left(t_{\text {end }, q}-t_{\text {earliest.dp }, q}\right) &amp; \text { if } t_{\text {end }, q}&gt;t_{\text {earliest.dp }, q} <br />
+0 &amp; \text { else }
+\end{array}\right.
+<img src="./（1）关于matsim的评分机制.assert/86737773ea557f9ebd4b1ea3c21faa74.svg" alt="数学公式" /></p>
+
+<ul>
+  <li>$t_{\text {end }, q}
+<img src="./（1）关于matsim的评分机制.assert/1e04318da1a0f30b247067a9d0ed262f.svg" alt="数学公式" />
+$ 是实际活动结束时间</li>
+  <li>$t_{\text {earliest.dp }, q}
+<img src="./（1）关于matsim的评分机制.assert/ff2f25e08a98c8bb45543a102c5b3c49.svg" alt="数学公式" />
+$是最早可以结束活动的时间</li>
+</ul>
+
+<h4 id="115定义停留时间不够久的惩罚">1.1.5、定义停留时间不够久的惩罚</h4>
+
+<p>S_{\text {short.dur }, q}=\left{\begin{array}{ll}
+\beta_{\text {short.dur }} \cdot\left(t_{\text {short.dur }, q}-t_{d u r, q}\right) &amp; \text { if } t_{d u r, q}&lt;t_{\text {short.dur }, q} <br />
+0 &amp; \text { else }
+\end{array}\right.
+<img src="./（1）关于matsim的评分机制.assert/aa9ddea83c72d826d231731269d75dbf.svg" alt="数学公式" /></p>
+
+<ul>
+  <li>$t_{\text {short.dur }, q}
+<img src="./（1）关于matsim的评分机制.assert/dda23ee87e6c8feca483fa989599caa9.svg" alt="数学公式" />
+$ 活动持续的最短时间</li>
+  <li>$ beta_{\text {short.dur }}
+<img src="./（1）关于matsim的评分机制.assert/f5c771c728f3280be869a4d9ff4c663e.svg" alt="数学公式" />
+$ 一般取0，除非有更好的数据标定</li>
+  <li>对活动过短的惩罚，其中t(short.dur)是最短的活动持续时间。我们通常建议将 β(short.dur)保留为0（如果有找到更好的模拟数值，可以替换该数值）。</li>
+</ul>
+
+<h3 id="12基于活动q的出行效用计算公式">1.2、基于活动q的出行效用计算公式</h3>
+
+<p>\begin{array}{l}
+S_{\text {trav }, q}=\quad C_{\text {mode }(q)}+\beta_{\text {trav }, \text { mode }(q)} \cdot t_{\text {trav }, q}+\beta_{m} \cdot \Delta m_{q}<br />
++\left(\beta_{d, \text { mode }(q)}+\beta_{m} \cdot \gamma_{d, \text { mode }(q)}\right) \cdot d_{\text {trav }, q}+\beta_{\text {transfer }} \cdot x_{\text {transfer }, q}
+\end{array}
+<img src="./（1）关于matsim的评分机制.assert/539efde808252e1a6166341a9e5c19d6.svg" alt="数学公式" /></p>
+
+<ul>
+  <li>$C_{\text {mode }(q)}
+<img src="./（1）关于matsim的评分机制.assert/ef0473f9b72d9e909123e4462b4f4dc1.svg" alt="数学公式" />
+$：常数项，基于mode的常数项</li>
+  <li>$beta_{\text {trav }, \text { mode }(q)} 
+<img src="./（1）关于matsim的评分机制.assert/fdb31436fdfe77ad5fd0e2f964ad772f.svg" alt="数学公式" />
+$：基于方式mode的出行时间的边际效用</li>
+  <li>$t_{\text {trav }, q} 
+<img src="./（1）关于matsim的评分机制.assert/f1aee056f437496149e9f5665d4112e4.svg" alt="数学公式" />
+$： 活动q到活动q+1的出行时间</li>
+  <li>$beta_{m}
+<img src="./（1）关于matsim的评分机制.assert/7e1cf7938e9759066486cf54bf282048.svg" alt="数学公式" />
+$：费用的边际效用（通常是正的）</li>
+  <li>$Delta m_{q}
+<img src="./（1）关于matsim的评分机制.assert/2faf0bafa8ea27910ed55ca198c54a46.svg" alt="数学公式" />
+$：是由票价或整个出行段的通行费引起的货币预算变化（通常为负数或零）</li>
+  <li>$beta_{d, \text { mode }(q)} 
+<img src="./（1）关于matsim的评分机制.assert/524af48cfd07c87eae3dec6a3ee71953.svg" alt="数学公式" />
+$：距离的边际效用(通常为负数或零)</li>
+  <li>$gamma_{d, \text { mode }(q)}
+<img src="./（1）关于matsim的评分机制.assert/ea3a72773e5eb4f3cda8efd7e2d22c36.svg" alt="数学公式" />
+$ the mode-specic monetary distance rate (normally negative or zero)</li>
+  <li>$d_{\text {trav }, q}
+<img src="./（1）关于matsim的评分机制.assert/eba6b4a430a9aec1909baf4e8bee5b60.svg" alt="数学公式" />
+$ 是活动位置 q 和 q + 1 之间出行的距离。</li>
+  <li>$beta_{\text {transfer }}
+<img src="./（1）关于matsim的评分机制.assert/56718ea35a847541d8e1371fa62ad31a.svg" alt="数学公式" />
+$ 是公共交通换乘罚金（通常为负数）。</li>
+  <li>$x_{\text {transfer }, q}
+<img src="./（1）关于matsim的评分机制.assert/5c150e4c95a1de719cbc461788b68326.svg" alt="数学公式" />
+$ 是一个 0/1 变量，指示前一个leg和当前leg之间是否发生了转移。</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/tranmodel/matsim-celue/" class="pagination--pager" title="Matsim的策略
+">上一页</a>
+    
+    
+      <a href="/tutorials/tranmodel/pop-gen/" class="pagination--pager" title="人口合成原理
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

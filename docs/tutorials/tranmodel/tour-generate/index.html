@@ -1,0 +1,482 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>出行链生成 - 技术博客</title>
+<meta name="description" content="出行链生成模型是研究人员出行链产生的总量模型，是交通需求分析工作中最基本的部分。 出行链的发生受社会经济、人口岗位、土地利用、机动车发展水平等多种因素的影响。 0、基本定义">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="出行链生成">
+<meta property="og:url" content="http://localhost:4000/tutorials/tranmodel/tour-generate/">
+
+
+  <meta property="og:description" content="出行链生成模型是研究人员出行链产生的总量模型，是交通需求分析工作中最基本的部分。 出行链的发生受社会经济、人口岗位、土地利用、机动车发展水平等多种因素的影响。 0、基本定义">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/tranmodel/tour-generate/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/tranmodel/fourstep/"><span class="nav__sub-title">四阶段交通模型</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/fourstep/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_generate/">出行生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_distribution/">交通分布</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode_split/">方式划分</a></li>
+            
+              <li><a href="/tutorials/tranmodel/PA2OD/">PA2OD</a></li>
+            
+              <li><a href="/tutorials/tranmodel/transport-assignment/">交通分配</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">出行链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/tourbase/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/tour-generate/" class="active">出行链生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/utility-calculate/">效用计算</a></li>
+            
+              <li><a href="/tutorials/tranmodel/destination-choice/">目的地选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/Intermediate-stop/">中间停留点模型</a></li>
+            
+              <li><a href="/tutorials/tranmodel/half-tour/">半程出行链</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode-choice/">方式选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/time-split/">时段划分</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">活动链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen/">人口合成原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_use/">popgen使用</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_file/">popgen文件说明</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">智能体交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/matsim-base/">软件介绍</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-run/">下载与安装</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-config/">Matsim配置</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-yuanli/">Matsim原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-celue/">Matsim的策略</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-Score/">Matsim评分机制</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="出行链生成">
+    <meta itemprop="description" content="出行链生成模型是研究人员出行链产生的总量模型，是交通需求分析工作中最基本的部分。 出行链的发生受社会经济、人口岗位、土地利用、机动车发展水平等多种因素的影响。0、基本定义">
+    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/tranmodel/tour-generate/" itemprop="url">出行链生成
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#0基本定义">0、基本定义</a></li><li><a href="#1人群分组参考">1、人群分组参考</a></li><li><a href="#2出行链理论">2、出行链理论</a></li><li><a href="#4出行生成计算">4、出行生成计算</a></li><li><a href="#总结">总结</a></li></ul>
+            </nav>
+          </aside>
+        
+        <p>出行链生成模型是研究人员出行链产生的总量模型，是交通需求分析工作中最基本的部分。 出行链的发生受社会经济、人口岗位、土地利用、机动车发展水平等多种因素的影响。</p>
+<h2 id="0基本定义">0、基本定义</h2>
+
+<ul>
+  <li><strong>活动（activity）</strong>：个体为了满足自身或家庭在经济方面的、生理方面的和社会等方面的需要，而在某件事情中的实体参与；</li>
+  <li><strong>出行（trip)</strong>：基于活动目的，采用一种或多种交通方式从一个地点到另一个地点的过程，例如：家-单位的上班出行（HB Work）、购物-家的购物回家（HB Shop）、单位-客户（FB Business）等；</li>
+  <li><strong>活动链（activity chain）</strong>:以24小时为单位，将出行者一系列活动按照先后顺序依次连接起来所形成的链条。</li>
+  <li><strong>出行链（tour)</strong>：从起点出发, 经过若干中途停留点后, 最终返回起点的一连串出行组合，如家-单位-家（HWH）、单位-餐厅-单位（FEF）等；</li>
+  <li><strong>基家（HB tour）</strong>&amp; 非基家（NHB tour）出行链：起终点都是家的出行链；起终点不是家的出行链为非基家出行链。</li>
+  <li><strong>主要停留点（PD，Primary Destination）</strong>：指优先级最高（如通勤）或耗时最长或距离起点最远的活动的中间停留点。</li>
+  <li><strong>次要停留点（SD，Secondary Destination ）</strong>：指PD以外的中间停留点，如Home-Escort-Work-Home中的Escort。</li>
+  <li>
+    <p><img src="/assets/images/transport_model/1664349404354-e018a2fc-b347-4964-8fa3-f30ea80bc67a.png" alt="image.png" /></p>
+  </li>
+  <li><strong>简单链</strong>：仅有一个中间停留点的出行链，如HWH；</li>
+  <li><strong>复杂链</strong>：中间含有两个及以上的中间停留点的出行链，例如：HWSH(家-工作-购物-家),HCWH(家-送孩子上学-工作-家）；</li>
+  <li><strong>去程（前半程）</strong>：出行链起点到主要停留点的半程，例如：HWH的HW；HCWH的主要停留点为work,前半程链为HCW。</li>
+  <li><strong>回程（后半程）</strong>：出行链主要停留点回到起点的半程，例如： HWH的WH；HWSH的主要停留点为work,后半程链为WSH。</li>
+  <li><strong>半程（half tour)</strong>：24小时内无法回到起点的tour，不含起点，仅1个停留点;</li>
+  <li><strong>基本出行链</strong>：从调查的出行链中归并、筛选后，用于分析与出行链建模的出行链。
+<img src="/assets/images/transport_model/1664349404358-64065483-3d59-4e05-8fdb-70a8975660a6.png" alt="image.png" /></li>
+</ul>
+
+<h2 id="1人群分组参考">1、人群分组参考</h2>
+<ul>
+  <li>工作人群</li>
+  <li>高收入有车</li>
+  <li>中收入有车</li>
+  <li>中收入无车</li>
+  <li>低收入有车</li>
+  <li>低收入无车</li>
+  <li>特殊群体：</li>
+  <li>农民</li>
+  <li>大学生</li>
+  <li>中学生</li>
+  <li>小学生</li>
+  <li>退休人员</li>
+</ul>
+
+<h2 id="2出行链理论">2、出行链理论</h2>
+<p>出行链目的类型参考
+<strong>基于家的出行</strong></p>
+
+<ul>
+  <li>基于家的工作再回家（<strong>HWH</strong>，Home-Work-Home） 以家为起点出发去工作，在当天工作结束后从工作地点返回家的出行链。</li>
+  <li>基于家的上小学再回家（<strong>HEH</strong>，Home-Education-Home） 以家为起点出发去上小学，在当天学习结束后从学校返回家的出行链。</li>
+  <li>基于家的上中学再回家（<strong>HMH</strong>，Home-MiddleSchool-Home） 以家为起点出发去上中学，在当天学习结束后从学校返回家的出行链。</li>
+  <li>基于家的上大学再回家（<strong>HUH</strong>，Home-University-Home） 以家为起点出发去高校学，在当天学习结束后从学校返回家的出行链。</li>
+  <li>基于家的商务出行再回家（<strong>HBH</strong>，Home-Bussiness-Home） 以家为起点的商务出行，在当天办公结束后返回家的出行链。</li>
+  <li>基于家的购物再回家（<strong>HSH</strong>，Home-Shopping-Home） 以家为起点出发去购物，在购物结束后从购物地点返回家的出行链。</li>
+  <li>基于家的其它出行再回家（<strong>HOH</strong>，Home-Other-Home） 以家为起点出发进行其它类型的出行，在当天的出行结束后，从出行的目的地返回家的出行链。</li>
+  <li>
+    <p>基于家的送小孩再回家（<strong>HCH</strong>，Home- Escort -Home） 以家为起点出发去送小孩，在送孩子上学后返回家的出行链。<strong>以非家的地点作为起点出行，在当天的出行结束后，从出行目的地返回非家的出行起点</strong>，目前武汉宏观模型主要考虑的是基于工作地的出行。</p>
+  </li>
+  <li>基于工作地的外出吃饭再返回工作地（<strong>FAF</strong>，Office-Eatingout -Office） 以工作地为起点，外出吃饭，在吃完饭后，返回工作地点的出行链。</li>
+  <li>基于工作地的商务出行，再返回工作地（<strong>FBF</strong>，Office-Business -Office） 以工作地为起点，外出商务办公，在办公结束后，返回工作地点的出行链。</li>
+  <li>
+    <p>基于工作地的其他出行，再返回工作地（<strong>FOF</strong>，Office- Other -Office） 以工作地为起点的其他类型的出行，当天结束后，返回工作地点的出行链。除了以上基于一个目的地的出行链，武汉tour base model还考虑了<strong>多个目的地的出行链</strong>，主要有：</p>
+  </li>
+  <li>基于家的送孩子上学、去工作再回家（<strong>HCWH</strong>，Home-Escort-Work-Home） 以家为起点先送孩子上学，将孩子送到学校后，再去工作地点工作，在当天工作结束后从工作地点返回家的出行链，其中工作地作为主要目的地，学校作为家端到工作地端中间的短暂停留点。</li>
+  <li>基于家的去工作、外出吃饭再回家（<strong>HWAH</strong>，Home-Work-Eat-Home） 以家为起点先去工作地点工作，在当天工作结束后，从工作地点出发，去饭店等餐饮场所吃饭，就餐结束后返回家的出行链，工作地作为主目的地，外出吃饭点作为工作端到家端的中间停留点。## 3、交叉类别
+人群和出行目的交叉分类中，实际上有很多人群不具备某种出行，可手动调整。</li>
+</ul>
+
+<h2 id="4出行生成计算">4、出行生成计算</h2>
+<p>在每一个片区内，每一个人群分组，对每一个出行链类型，这个片区的这一类人群分组的总人口数乘 以这个出行链的生成率(Tour Rate)，对于交通小区，其全天的总出行需求满足以下关系：</p>
+
+<p><img src="/assets/images/transport_model/tour_generate.png" alt="image.png" /></p>
+
+<h2 id="总结">总结</h2>
+<ul>
+  <li>出行链的生成和传统四阶段的出行生成相似，但表示的物理意义不同，出行链生成的是全天tour的总数，四阶段出行生成 结果是全天trip的总数，具有P和A的概念；</li>
+  <li>如果将tour换成trip,对于两段出行链，则一个tour等于两个trip;</li>
+</ul>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/tranmodel/tourbase/" class="pagination--pager" title="理论基础
+">上一页</a>
+    
+    
+      <a href="/tutorials/tranmodel/utility-calculate/" class="pagination--pager" title="效用计算
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

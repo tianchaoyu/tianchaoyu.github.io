@@ -1,0 +1,487 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.26.2 by Michael Rose
+  Copyright 2013-2024 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+
+<html lang="zh-CN" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>方式划分 - 技术博客</title>
+<meta name="description" content="1、引言 交通方式划分是四阶段模型预测中的第三阶段。用于分析和预测个体或个体组群在进行某种类型的出行时，对不同运输方式的选择。一般说来，其目的是预测各出行方式所占的分额或出行数目。">
+
+
+  <meta name="author" content="tianchaoyu">
+  
+  <meta property="article:author" content="tianchaoyu">
+  
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="技术博客">
+<meta property="og:title" content="方式划分">
+<meta property="og:url" content="http://localhost:4000/tutorials/tranmodel/mode_split/">
+
+
+  <meta property="og:description" content="1、引言 交通方式划分是四阶段模型预测中的第三阶段。用于分析和预测个体或个体组群在进行某种类型的出行时，对不同运输方式的选择。一般说来，其目的是预测各出行方式所占的分额或出行数目。">
+
+
+
+  <meta property="og:image" content="http://localhost:4000/assets/images/site-logo.jpg">
+
+
+
+
+
+  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/tutorials/tranmodel/mode_split/">
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+
+  <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script type="text/javascript">
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+  
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css"></noscript>
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+    <nav class="skip-links">
+  <ul>
+    <li><a href="#site-nav" class="screen-reader-shortcut">转到主导航栏</a></li>
+    <li><a href="#main" class="screen-reader-shortcut">转到内容</a></li>
+    <li><a href="#footer" class="screen-reader-shortcut">转到底部</a></li>
+  </ul>
+</nav>
+
+    
+
+<div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        
+        <a class="site-title" href="/">
+          技术博客
+          <span class="site-subtitle">一名交通模数师的日常</span>
+        </a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a
+                href="/tools/"
+                 title="工具软件介绍"
+                
+              >Tools</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/theme/"
+                 title="交通专题库"
+                
+              >Theme</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/tutorials/"
+                 title="知识库"
+                
+              >Tutorials</a>
+            </li><li class="masthead__menu-item">
+              <a
+                href="/about/"
+                 title="关于博主"
+                
+              >About</a>
+            </li></ul>
+        
+        <button class="search__toggle" type="button">
+          <span class="visually-hidden">切换搜索</span>
+          <i class="fas fa-search"></i>
+        </button>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">切换菜单</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+      
+    
+    
+      <nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">切换菜单</label>
+  <ul class="nav__items">
+    
+      
+      
+        <li>
+          
+            <a href="/tutorials/tranmodel/fourstep/"><span class="nav__sub-title">四阶段交通模型</span></a>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/fourstep/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_generate/">出行生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/trip_distribution/">交通分布</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode_split/" class="active">方式划分</a></li>
+            
+              <li><a href="/tutorials/tranmodel/PA2OD/">PA2OD</a></li>
+            
+              <li><a href="/tutorials/tranmodel/transport-assignment/">交通分配</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">出行链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/tourbase/">理论基础</a></li>
+            
+              <li><a href="/tutorials/tranmodel/tour-generate/">出行链生成</a></li>
+            
+              <li><a href="/tutorials/tranmodel/utility-calculate/">效用计算</a></li>
+            
+              <li><a href="/tutorials/tranmodel/destination-choice/">目的地选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/Intermediate-stop/">中间停留点模型</a></li>
+            
+              <li><a href="/tutorials/tranmodel/half-tour/">半程出行链</a></li>
+            
+              <li><a href="/tutorials/tranmodel/mode-choice/">方式选择</a></li>
+            
+              <li><a href="/tutorials/tranmodel/time-split/">时段划分</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">活动链交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen/">人口合成原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_use/">popgen使用</a></li>
+            
+              <li><a href="/tutorials/tranmodel/pop-gen_file/">popgen文件说明</a></li>
+            
+          </ul>
+          
+        </li>
+      
+        <li>
+          
+            <span class="nav__sub-title">智能体交通模型</span>
+          
+
+          
+          <ul>
+            
+              <li><a href="/tutorials/tranmodel/matsim-base/">软件介绍</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-run/">下载与安装</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-config/">Matsim配置</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-yuanli/">Matsim原理</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-celue/">Matsim的策略</a></li>
+            
+              <li><a href="/tutorials/tranmodel/matsim-Score/">Matsim评分机制</a></li>
+            
+          </ul>
+          
+        </li>
+      
+    
+  </ul>
+</nav>
+
+    
+  
+  </div>
+
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="方式划分">
+    <meta itemprop="description" content="1、引言交通方式划分是四阶段模型预测中的第三阶段。用于分析和预测个体或个体组群在进行某种类型的出行时，对不同运输方式的选择。一般说来，其目的是预测各出行方式所占的分额或出行数目。">
+    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">
+            <a href="http://localhost:4000/tutorials/tranmodel/mode_split/" itemprop="url">方式划分
+</a>
+          </h1>
+          
+
+
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right sticky">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
+              <ul class="toc__menu"><li><a href="#1引言">1、引言</a></li><li><a href="#2方式选择影响因素">2、方式选择影响因素</a><ul><li><a href="#21交通特性">2.1、交通特性</a></li><li><a href="#22出行者属性">2.2、出行者属性</a></li><li><a href="#23地区属性">2.3、地区属性</a></li><li><a href="#24出行时间特性">2.4、出行时间特性</a></li></ul></li><li><a href="#3交通阻抗计算">3、交通阻抗计算</a><ul><li><a href="#31个体出行阻抗计算">3.1、个体出行阻抗计算</a></li><li><a href="#32公交出行阻抗计算">3.2、公交出行阻抗计算</a></li></ul></li><li><a href="#4多层logit模型">4、多层Logit模型</a><ul><li><a href="#41方式效用计算">4.1、方式效用计算</a><ul><li><a href="#411基于不同比例的综合效用计算">4.1.1、基于不同比例的综合效用计算</a></li><li><a href="#412基于logsum的综合效用计算">4.1.2、基于logsum的综合效用计算</a></li></ul></li><li><a href="#42不同方式的选择概率">4.2、不同方式的选择概率：</a></li></ul></li></ul>
+            </nav>
+          </aside>
+        
+        <h1 id="1引言">1、引言</h1>
+<p>交通方式划分是四阶段模型预测中的第三阶段。用于分析和预测个体或个体组群在进行某种类型的出行时，对不同运输方式的选择。一般说来，其目的是预测各出行方式所占的分额或出行数目。</p>
+
+<p>交通方式是指完成交通出行所采用的交通手段，以综合交通规划为例包括：铁路、公路、水运、航空和管道；城市交通规划的交通方式包括：步行，自行车，私家车，出租车，公交车，轨道交通。</p>
+
+<h1 id="2方式选择影响因素">2、方式选择影响因素</h1>
+<h2 id="21交通特性">2.1、交通特性</h2>
+
+<ul>
+  <li>出行目的：出行目的不同，对交通服务质量要求不同；</li>
+  <li>运行时间和出行距离；</li>
+  <li>出行费用</li>
+  <li>舒适性；</li>
+  <li>安全性；</li>
+  <li>准时性；</li>
+  <li>换乘次数和候车时间；</li>
+</ul>
+
+<h2 id="22出行者属性">2.2、出行者属性</h2>
+
+<ul>
+  <li>职业、性别、年龄、收入</li>
+  <li>家庭属性</li>
+  <li>
+    <h2 id="23地区属性">2.3、地区属性</h2>
+  </li>
+  <li>居住人口密度，人口规模</li>
+  <li>交通设施水平；</li>
+  <li>地形、气候；</li>
+  <li>停车场和停车费等</li>
+</ul>
+
+<h2 id="24出行时间特性">2.4、出行时间特性</h2>
+<ul>
+  <li>工作日和非工作日出行差异；</li>
+  <li>高峰和非高峰出行差异；</li>
+</ul>
+
+<h1 id="3交通阻抗计算">3、交通阻抗计算</h1>
+<h2 id="31个体出行阻抗计算">3.1、个体出行阻抗计算</h2>
+<p>个体出行包括步行，非机动车（自行车、电动自行车）、摩托车、出租车、私家车及单位配车等，其阻抗计算如下：</p>
+
+<p><img src="/assets/images/transport_model/GC_MODE.png" alt="" /></p>
+
+<h2 id="32公交出行阻抗计算">3.2、公交出行阻抗计算</h2>
+<p>相比个体交通“无等候”，“零换乘”，“门到门”的特点，公共交通出行包含更多的阶段，包括前往车站，后车、换乘、下车后前往目的地等，相应的公共交通出行时间可以分为步行时间、车内时间、等车时间，等车时间。
+其出行成本为：
+GC= Time+Fare/Vot
+Time = WalkT+IVTT+WaitT+BoardT+Penalty
+式中：</p>
+<ul>
+  <li>WalkT表示步行时间；</li>
+  <li>IVTT表示车内时间；</li>
+  <li>WaitT表示等车时间；</li>
+  <li>BoardT表示登车时间；</li>
+  <li>Penalty表示换乘惩罚；</li>
+  <li>Fare为公交票价；</li>
+</ul>
+
+<h1 id="4多层logit模型">4、多层Logit模型</h1>
+
+<p><img src="/assets/images/transport_model/logit_mode.png" alt="" /></p>
+
+<h2 id="41方式效用计算">4.1、方式效用计算</h2>
+<h3 id="411基于不同比例的综合效用计算">4.1.1、基于不同比例的综合效用计算</h3>
+
+<p>不同方式的比例值，初始值由交通调查得到，后续值由模型上一次迭代计算得到。
+1）不同方式(考虑接驳)出行阻抗：</p>
+
+<p><img src="/assets/images/transport_model/GC_by_mode.png" alt="" /></p>
+
+<h3 id="412基于logsum的综合效用计算">4.1.2、基于logsum的综合效用计算</h3>
+<p>1）不同方式的出行阻抗：</p>
+
+<p><img src="/assets/images/transport_model/logit_gc.png" alt="" /></p>
+
+<h2 id="42不同方式的选择概率">4.2、不同方式的选择概率：</h2>
+
+<p><img src="/assets/images/transport_model/mode_split.png" alt="" /></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+
+      </footer>
+
+      
+
+      
+  <nav class="pagination">
+    
+      <a href="/tutorials/tranmodel/trip_distribution/" class="pagination--pager" title="交通分布
+">上一页</a>
+    
+    
+      <a href="/tutorials/tranmodel/PA2OD/" class="pagination--pager" title="PA转OD
+">下一页</a>
+    
+  </nav>
+
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+      
+    </div>
+
+    
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><form class="search-content__form" onkeydown="return event.key != 'Enter';" role="search">
+    <label class="sr-only" for="search">
+      输入您要搜索的关键词...
+    </label>
+    <input type="search" id="search" class="search-input" tabindex="-1" placeholder="输入您要搜索的关键词..." />
+  </form>
+  <div id="results" class="results"></div></div>
+
+      </div>
+    
+
+    <div id="footer" class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>关注:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://github.com/tianchaoyu" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> Github</a></li>
+        
+      
+    
+
+    
+      <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+    
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2025 <a href="http://localhost:4000">技术博客</a>. 技术来自于 <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+
+
+
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
+
+
+
+
+
+
+  </body>
+</html>

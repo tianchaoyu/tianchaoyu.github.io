@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-06T21:56:30+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">技术博客</title><subtitle>交通模型与仿真知识实践</subtitle><author><name>tianchaoyu</name><email>tianchaoyu@gmail.com</email></author><entry><title type="html">如何更新github博客</title><link href="http://localhost:4000/tools/Perspective/" rel="alternate" type="text/html" title="如何更新github博客" /><published>2025-03-04T00:00:00+08:00</published><updated>2025-03-04T00:00:00+08:00</updated><id>http://localhost:4000/tools/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E6%9C%AC%E5%9C%B0jekyll-cache%E6%9B%B4%E6%96%B0github.io%E5%8D%9A%E5%AE%A2</id><content type="html" xml:base="http://localhost:4000/tools/Perspective/"><![CDATA[<h1 id="jekyll本地文件编辑">jekyll本地文件编辑</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-07T17:38:38+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">技术博客</title><subtitle>交通模型与仿真知识实践</subtitle><author><name>tianchaoyu</name><email>tianchaoyu@gmail.com</email></author><entry><title type="html">如何更新github博客</title><link href="http://localhost:4000/tools/gitbook-blog/" rel="alternate" type="text/html" title="如何更新github博客" /><published>2025-03-04T00:00:00+08:00</published><updated>2025-03-04T00:00:00+08:00</updated><id>http://localhost:4000/tools/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E6%9C%AC%E5%9C%B0jekyll-cache%E6%9B%B4%E6%96%B0github.io%E5%8D%9A%E5%AE%A2</id><content type="html" xml:base="http://localhost:4000/tools/gitbook-blog/"><![CDATA[<h1 id="jekyll本地文件编辑">jekyll本地文件编辑</h1>
 
 <ul>
   <li>参考jekyll格式，进行本地文件编辑</li>
   <li>配置好相关文件
     <ul>
+      <li>配置_config.yml文件下scope目录，collections；</li>
+      <li>配置_data目录，_data/navigation.yml文件,每个知识库的链接</li>
       <li>指定本地化文件输出路径：_config.yml-&gt;destination: docs</li>
     </ul>
   </li>
