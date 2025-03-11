@@ -1,4 +1,49 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-07T17:38:38+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">技术博客</title><subtitle>交通模型与仿真知识实践</subtitle><author><name>tianchaoyu</name><email>tianchaoyu@gmail.com</email></author><entry><title type="html">如何更新github博客</title><link href="http://localhost:4000/tools/gitbook-blog/" rel="alternate" type="text/html" title="如何更新github博客" /><published>2025-03-04T00:00:00+08:00</published><updated>2025-03-04T00:00:00+08:00</updated><id>http://localhost:4000/tools/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E6%9C%AC%E5%9C%B0jekyll-cache%E6%9B%B4%E6%96%B0github.io%E5%8D%9A%E5%AE%A2</id><content type="html" xml:base="http://localhost:4000/tools/gitbook-blog/"><![CDATA[<h1 id="jekyll本地文件编辑">jekyll本地文件编辑</h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2025-03-11T16:12:41+08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">技术博客</title><subtitle>交通模型与仿真知识实践</subtitle><author><name>tianchaoyu</name><email>tianchaoyu@gmail.com</email></author><entry><title type="html">minimal-mistakes 对数学公式的支持</title><link href="http://localhost:4000/tools/MathJax/" rel="alternate" type="text/html" title="minimal-mistakes 对数学公式的支持" /><published>2025-03-10T00:00:00+08:00</published><updated>2025-03-10T00:00:00+08:00</updated><id>http://localhost:4000/tools/Minimal%20Mistakes%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%EF%BC%8C%E4%BB%8E%E8%80%8C%E6%94%AF%E6%8C%81%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F</id><content type="html" xml:base="http://localhost:4000/tools/MathJax/"><![CDATA[<p>在 Minimal Mistakes 主题中支持数学公式，可以通过集成 MathJax</p>
+
+<h1 id="mathjax支持">MathJax支持</h1>
+
+<ol>
+  <li>
+    <p>在 <code class="language-plaintext highlighter-rouge">_config.yml</code> 文件中添加如下配置</p>
+
+    <p>markdown: kramdown</p>
+  </li>
+  <li>从minimal mistakes主题中, 复制 <code class="language-plaintext highlighter-rouge">_includes/head.html</code> 文件到个人博客 <code class="language-plaintext highlighter-rouge">_includes</code> 文件夹下；
+    <ul>
+      <li>在 <code class="language-plaintext highlighter-rouge">_includes/head.html</code> 文件中添加如下配置</li>
+    </ul>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">&lt;!--数学公式支持--&gt;</span>
+ <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">async</span>
+   <span class="na">src=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;/script&gt;</span>
+    
+ <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/x-mathjax-config"</span><span class="nt">&gt;</span>
+   <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nc">Config</span><span class="p">({</span>
+     <span class="na">tex2jax</span><span class="p">:</span> <span class="p">{</span>
+       <span class="na">inlineMath</span><span class="p">:</span> <span class="p">[[</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="se">\</span><span class="s1">$</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="se">\</span><span class="s1">$</span><span class="dl">'</span><span class="p">]],</span>
+       <span class="na">processEscapes</span><span class="p">:</span> <span class="kc">true</span>
+     <span class="p">},</span>
+     <span class="dl">"</span><span class="s2">HTML-CSS</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="na">linebreaks</span><span class="p">:</span> <span class="p">{</span> <span class="na">automatic</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span> <span class="p">},</span>
+     <span class="dl">"</span><span class="s2">SVG</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="na">linebreaks</span><span class="p">:</span> <span class="p">{</span> <span class="na">automatic</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span> <span class="p">}</span>
+   <span class="p">});</span>
+ <span class="nt">&lt;/script&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>在文件头中添加</li>
+</ol>
+
+<ul>
+  <li>mathjax: true</li>
+</ul>
+
+<ol>
+  <li>编译运行</li>
+</ol>
+
+<h1 id="添加公式效果如下">添加公式效果如下：</h1>
+
+\[x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\]]]></content><author><name>tianchaoyu</name><email>tianchaoyu@gmail.com</email></author><category term="notebook" /><summary type="html"><![CDATA[在 Minimal Mistakes 主题中支持数学公式，可以通过集成 MathJax]]></summary></entry><entry><title type="html">如何更新github博客</title><link href="http://localhost:4000/tools/gitbook-blog/" rel="alternate" type="text/html" title="如何更新github博客" /><published>2025-03-04T00:00:00+08:00</published><updated>2025-03-04T00:00:00+08:00</updated><id>http://localhost:4000/tools/%E5%A6%82%E4%BD%95%E9%80%9A%E8%BF%87%E6%9C%AC%E5%9C%B0jekyll-cache%E6%9B%B4%E6%96%B0github.io%E5%8D%9A%E5%AE%A2</id><content type="html" xml:base="http://localhost:4000/tools/gitbook-blog/"><![CDATA[<h1 id="jekyll本地文件编辑">jekyll本地文件编辑</h1>
 
 <ul>
   <li>参考jekyll格式，进行本地文件编辑</li>

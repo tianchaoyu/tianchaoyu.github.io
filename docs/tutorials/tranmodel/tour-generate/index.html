@@ -37,7 +37,7 @@
 
 
 
-  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+  <meta property="article:published_time" content="2025-03-11T16:12:41+08:00">
 
 
 
@@ -64,7 +64,7 @@
   <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script type="text/javascript">
+<script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
   
 </script>
@@ -76,6 +76,22 @@
 
 
 
+
+<!--数学公式支持-->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\$','\$']],
+      processEscapes: true
+    },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+    "SVG": { linebreaks: { automatic: true } }
+  });
+</script>
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
@@ -280,7 +296,7 @@
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="出行链生成">
     <meta itemprop="description" content="出行链生成模型是研究人员出行链产生的总量模型，是交通需求分析工作中最基本的部分。 出行链的发生受社会经济、人口岗位、土地利用、机动车发展水平等多种因素的影响。0、基本定义">
-    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    <meta itemprop="datePublished" content="2025-03-11T16:12:41+08:00">
     
 
     <div class="page__inner-wrap">
@@ -357,12 +373,12 @@
   <li>基于家的购物再回家（<strong>HSH</strong>，Home-Shopping-Home） 以家为起点出发去购物，在购物结束后从购物地点返回家的出行链。</li>
   <li>基于家的其它出行再回家（<strong>HOH</strong>，Home-Other-Home） 以家为起点出发进行其它类型的出行，在当天的出行结束后，从出行的目的地返回家的出行链。</li>
   <li>
-    <p>基于家的送小孩再回家（<strong>HCH</strong>，Home- Escort -Home） 以家为起点出发去送小孩，在送孩子上学后返回家的出行链。<strong>以非家的地点作为起点出行，在当天的出行结束后，从出行目的地返回非家的出行起点</strong>，目前武汉宏观模型主要考虑的是基于工作地的出行。</p>
+    <p>基于家的送小孩再回家（<strong>HCH</strong>，Home- Escort -Home） 以家为起点出发去送小孩，在送孩子上学后返回家的出行链。<strong>以非家的地点作为起点出行，在当天的出行结束后，从出行目的地返回非家的出行起点</strong>，目前宏观模型主要考虑的是基于工作地的出行。</p>
   </li>
   <li>基于工作地的外出吃饭再返回工作地（<strong>FAF</strong>，Office-Eatingout -Office） 以工作地为起点，外出吃饭，在吃完饭后，返回工作地点的出行链。</li>
   <li>基于工作地的商务出行，再返回工作地（<strong>FBF</strong>，Office-Business -Office） 以工作地为起点，外出商务办公，在办公结束后，返回工作地点的出行链。</li>
   <li>
-    <p>基于工作地的其他出行，再返回工作地（<strong>FOF</strong>，Office- Other -Office） 以工作地为起点的其他类型的出行，当天结束后，返回工作地点的出行链。除了以上基于一个目的地的出行链，武汉tour base model还考虑了<strong>多个目的地的出行链</strong>，主要有：</p>
+    <p>基于工作地的其他出行，再返回工作地（<strong>FOF</strong>，Office- Other -Office） 以工作地为起点的其他类型的出行，当天结束后，返回工作地点的出行链。除了以上基于一个目的地的出行链，tour base model还考虑了<strong>多个目的地的出行链</strong>，主要有：</p>
   </li>
   <li>基于家的送孩子上学、去工作再回家（<strong>HCWH</strong>，Home-Escort-Work-Home） 以家为起点先送孩子上学，将孩子送到学校后，再去工作地点工作，在当天工作结束后从工作地点返回家的出行链，其中工作地作为主要目的地，学校作为家端到工作地端中间的短暂停留点。</li>
   <li>基于家的去工作、外出吃饭再回家（<strong>HWAH</strong>，Home-Work-Eat-Home） 以家为起点先去工作地点工作，在当天工作结束后，从工作地点出发，去饭店等餐饮场所吃饭，就餐结束后返回家的出行链，工作地作为主目的地，外出吃饭点作为工作端到家端的中间停留点。## 3、交叉类别
@@ -390,7 +406,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-11T16:12:41+08:00">March 11, 2025</time></p>
 
       </footer>
 

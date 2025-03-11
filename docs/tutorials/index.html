@@ -60,7 +60,7 @@
   <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script type="text/javascript">
+<script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
   
 </script>
@@ -72,6 +72,22 @@
 
 
 
+
+<!--数学公式支持-->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\$','\$']],
+      processEscapes: true
+    },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+    "SVG": { linebreaks: { automatic: true } }
+  });
+</script>
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
@@ -294,6 +310,34 @@
 
           
             <p><a href="/tutorials/tranmodel/fourstep/" class="btn btn--primary">开始学习</a></p>
+          
+        </div>
+      </div>
+    </div>
+  
+    <div class="feature__item">
+      <div class="archive__item">
+        
+          <div class="archive__item-teaser">
+            <img src="/assets/images/tutorials/deep-learn.png" alt="机器学习与人工智能" />
+            
+          </div>
+        
+
+        <div class="archive__item-body">
+          
+            <h2 class="archive__item-title">机器学习与人工智能</h2>
+          
+
+          
+            <div class="archive__item-excerpt">
+              <p>由【机器学习、人工智能、图神经网络和大模型】四部分组成。</p>
+
+            </div>
+          
+
+          
+            <p><a href="/tutorials/deeplearning/main/" class="btn btn--primary">开始学习</a></p>
           
         </div>
       </div>

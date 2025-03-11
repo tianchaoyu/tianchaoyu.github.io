@@ -10,8 +10,8 @@
   <head>
     <meta charset="utf-8">
 
-<!-- begin _includes/seo.html --><title>模型分块 - 技术博客</title>
-<meta name="description" content="```python from itertools import islice">
+<!-- begin _includes/seo.html --><title>minimal-mistakes 对数学公式的支持 - 技术博客</title>
+<meta name="description" content="在 Minimal Mistakes 主题中支持数学公式，可以通过集成 MathJax">
 
 
   <meta name="author" content="tianchaoyu">
@@ -23,11 +23,11 @@
 <meta property="og:type" content="article">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:site_name" content="技术博客">
-<meta property="og:title" content="模型分块">
-<meta property="og:url" content="http://localhost:4000/tutorials/python/islice/">
+<meta property="og:title" content="minimal-mistakes 对数学公式的支持">
+<meta property="og:url" content="http://localhost:4000/tools/MathJax/">
 
 
-  <meta property="og:description" content="```python from itertools import islice">
+  <meta property="og:description" content="在 Minimal Mistakes 主题中支持数学公式，可以通过集成 MathJax">
 
 
 
@@ -37,14 +37,14 @@
 
 
 
-  <meta property="article:published_time" content="2025-03-11T16:12:41+08:00">
+  <meta property="article:published_time" content="2025-03-10T00:00:00+08:00">
 
 
 
 
 
 
-<link rel="canonical" href="http://localhost:4000/tutorials/python/islice/">
+<link rel="canonical" href="http://localhost:4000/tools/MathJax/">
 
 
 
@@ -171,113 +171,19 @@
 
 <div id="main" role="main">
   
-  <div class="sidebar sticky">
-  
-  
-    
-      
-      
-      
-      
-    
-    
-      <nav class="nav__list">
-  
-  <input id="ac-toc" name="accordion-toc" type="checkbox" />
-  <label for="ac-toc">切换菜单</label>
-  <ul class="nav__items">
-    
-      
-      
-        <li>
-          
-            <span class="nav__sub-title">入门篇-环境配置与基础语法</span>
-          
-
-          
-          <ul>
-            
-              <li><a href="/tutorials/python/basic-th/">环境配置</a></li>
-            
-              <li><a href="/tutorials/python/basic-yufa/">基础语法</a></li>
-            
-              <li><a href="/tutorials/python/git_branch/">版本控制</a></li>
-            
-          </ul>
-          
-        </li>
-      
-        <li>
-          
-            <span class="nav__sub-title">进阶篇-数据分析与工程应用</span>
-          
-
-          
-          <ul>
-            
-              <li><a href="/tutorials/python/data-add/">数据加载</a></li>
-            
-              <li><a href="/tutorials/python/pandas/">pandas应用</a></li>
-            
-              <li><a href="/tutorials/python/numpy/">numpy应用</a></li>
-            
-              <li><a href="/tutorials/python/matlpotlib/">matlpotlib可视化</a></li>
-            
-              <li><a href="/tutorials/python/mul-process/">多进程管理</a></li>
-            
-              <li><a href="/tutorials/python/mul-threads/">多线程管理</a></li>
-            
-              <li><a href="/tutorials/python/log-book/">日志记录</a></li>
-            
-              <li><a href="/tutorials/python/minio/">minio文件传输</a></li>
-            
-              <li><a href="/tutorials/python/decorator/">装饰器</a></li>
-            
-              <li><a href="/tutorials/python/magic_function/">魔术函数</a></li>
-            
-              <li><a href="/tutorials/python/email-send/">邮件发送</a></li>
-            
-              <li><a href="/tutorials/python/error_info/">错误提示</a></li>
-            
-              <li><a href="/tutorials/python/ftp/">ftp文件传输</a></li>
-            
-              <li><a href="/tutorials/python/islice/" class="active">模型分块</a></li>
-            
-              <li><a href="/tutorials/python/bat/">bat批命令</a></li>
-            
-              <li><a href="/tutorials/python/pipline/">管道</a></li>
-            
-              <li><a href="/tutorials/python/sphinx/">自动注释</a></li>
-            
-              <li><a href="/tutorials/python/XML/">XML文件格式解析</a></li>
-            
-              <li><a href="/tutorials/python/memory_space/">内存硬盘监控</a></li>
-            
-          </ul>
-          
-        </li>
-      
-    
-  </ul>
-</nav>
-
-    
-  
-  </div>
-
 
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
-    <meta itemprop="headline" content="模型分块">
-    <meta itemprop="description" content="```pythonfrom itertools import islice">
-    <meta itemprop="datePublished" content="2025-03-11T16:12:41+08:00">
+    <meta itemprop="headline" content="minimal-mistakes 对数学公式的支持">
+    <meta itemprop="description" content="在 Minimal Mistakes 主题中支持数学公式，可以通过集成 MathJax">
+    <meta itemprop="datePublished" content="2025-03-10T00:00:00+08:00">
     
 
     <div class="page__inner-wrap">
       
         <header>
           <h1 id="page-title" class="page__title" itemprop="headline">
-            <a href="http://localhost:4000/tutorials/python/islice/" itemprop="url">模型分块
+            <a href="http://localhost:4000/tools/MathJax/" itemprop="url">minimal-mistakes 对数学公式的支持
 </a>
           </h1>
           
@@ -288,19 +194,59 @@
 
       <section class="page__content" itemprop="text">
         
-          <aside class="sidebar__right sticky">
+          <aside class="sidebar__right ">
             <nav class="toc">
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> 目录</h4></header>
-              
+              <ul class="toc__menu"><li><a href="#mathjax支持">MathJax支持</a></li><li><a href="#添加公式效果如下">添加公式效果如下：</a></li></ul>
             </nav>
           </aside>
         
-        <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">itertools</span> <span class="kn">import</span> <span class="n">islice</span>
+        <p>在 Minimal Mistakes 主题中支持数学公式，可以通过集成 MathJax</p>
 
-<span class="k">def</span> <span class="nf">chunk_list</span><span class="p">(</span><span class="n">it</span><span class="p">,</span><span class="n">limit</span><span class="p">):</span>
-    <span class="n">it</span> <span class="o">=</span> <span class="nf">iter</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nf">iter</span><span class="p">(</span><span class="k">lambda</span><span class="p">:</span><span class="nf">list</span><span class="p">(</span><span class="nf">islice</span><span class="p">(</span><span class="n">it</span><span class="p">,</span><span class="n">limit</span><span class="p">)),[])</span>
-</code></pre></div></div>
+<h1 id="mathjax支持">MathJax支持</h1>
+
+<ol>
+  <li>
+    <p>在 <code class="language-plaintext highlighter-rouge">_config.yml</code> 文件中添加如下配置</p>
+
+    <p>markdown: kramdown</p>
+  </li>
+  <li>从minimal mistakes主题中, 复制 <code class="language-plaintext highlighter-rouge">_includes/head.html</code> 文件到个人博客 <code class="language-plaintext highlighter-rouge">_includes</code> 文件夹下；
+    <ul>
+      <li>在 <code class="language-plaintext highlighter-rouge">_includes/head.html</code> 文件中添加如下配置</li>
+    </ul>
+
+    <div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c">&lt;!--数学公式支持--&gt;</span>
+ <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/javascript"</span> <span class="na">async</span>
+   <span class="na">src=</span><span class="s">"https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"</span><span class="nt">&gt;</span>
+ <span class="nt">&lt;/script&gt;</span>
+    
+ <span class="nt">&lt;script </span><span class="na">type=</span><span class="s">"text/x-mathjax-config"</span><span class="nt">&gt;</span>
+   <span class="nx">MathJax</span><span class="p">.</span><span class="nx">Hub</span><span class="p">.</span><span class="nc">Config</span><span class="p">({</span>
+     <span class="na">tex2jax</span><span class="p">:</span> <span class="p">{</span>
+       <span class="na">inlineMath</span><span class="p">:</span> <span class="p">[[</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="s1">$</span><span class="dl">'</span><span class="p">],</span> <span class="p">[</span><span class="dl">'</span><span class="se">\</span><span class="s1">$</span><span class="dl">'</span><span class="p">,</span><span class="dl">'</span><span class="se">\</span><span class="s1">$</span><span class="dl">'</span><span class="p">]],</span>
+       <span class="na">processEscapes</span><span class="p">:</span> <span class="kc">true</span>
+     <span class="p">},</span>
+     <span class="dl">"</span><span class="s2">HTML-CSS</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="na">linebreaks</span><span class="p">:</span> <span class="p">{</span> <span class="na">automatic</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span> <span class="p">},</span>
+     <span class="dl">"</span><span class="s2">SVG</span><span class="dl">"</span><span class="p">:</span> <span class="p">{</span> <span class="na">linebreaks</span><span class="p">:</span> <span class="p">{</span> <span class="na">automatic</span><span class="p">:</span> <span class="kc">true</span> <span class="p">}</span> <span class="p">}</span>
+   <span class="p">});</span>
+ <span class="nt">&lt;/script&gt;</span>
+</code></pre></div>    </div>
+  </li>
+  <li>在文件头中添加</li>
+</ol>
+
+<ul>
+  <li>mathjax: true</li>
+</ul>
+
+<ol>
+  <li>编译运行</li>
+</ol>
+
+<h1 id="添加公式效果如下">添加公式效果如下：</h1>
+
+\[x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}\]
 
         
       </section>
@@ -312,7 +258,7 @@
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-11T16:12:41+08:00">March 11, 2025</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-10T00:00:00+08:00">March 10, 2025</time></p>
 
       </footer>
 
@@ -321,12 +267,11 @@
       
   <nav class="pagination">
     
-      <a href="/tutorials/python/ftp/" class="pagination--pager" title="ftp文件传输
+      <a href="/tools/gitbook-blog/" class="pagination--pager" title="如何更新github博客
 ">上一页</a>
     
     
-      <a href="/tutorials/python/bat/" class="pagination--pager" title="bat批命令
-">下一页</a>
+      <a href="#" class="pagination--pager disabled">下一页</a>
     
   </nav>
 

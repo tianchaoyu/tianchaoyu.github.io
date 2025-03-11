@@ -37,7 +37,7 @@
 
 
 
-  <meta property="article:published_time" content="2025-03-07T17:38:38+08:00">
+  <meta property="article:published_time" content="2025-03-11T16:12:41+08:00">
 
 
 
@@ -64,7 +64,7 @@
   <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="技术博客 Feed">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script type="text/javascript">
+<script>
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
   
 </script>
@@ -76,6 +76,22 @@
 
 
 
+
+<!--数学公式支持-->
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [['$','$'], ['\$','\$']],
+      processEscapes: true
+    },
+    "HTML-CSS": { linebreaks: { automatic: true } },
+    "SVG": { linebreaks: { automatic: true } }
+  });
+</script>
     <!-- start custom head snippets -->
 
 <!-- insert favicons. use https://realfavicongenerator.net/ -->
@@ -280,7 +296,7 @@
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="效用计算">
     <meta itemprop="description" content="0、效用理论">
-    <meta itemprop="datePublished" content="2025-03-07T17:38:38+08:00">
+    <meta itemprop="datePublished" content="2025-03-11T16:12:41+08:00">
     
 
     <div class="page__inner-wrap">
@@ -323,7 +339,7 @@
 </ul>
 
 <h2 id="2tour的效用计算">2、tour的效用计算</h2>
-<p>和传统的四阶段模型只考虑trip的效用不同，基于出行链模型考虑的是整个链条的效用，这样能模拟前后两个出行trip之间的相关性，体现了出行行为方式的闭环，提高模型的精度。 一般而言，大多数出行，去程和返程的交通方式变换的不多。方式切换的概率大概在10%左右。Tour Base Model的框架，允许考虑方式切换的状况，只是对计算机资源消耗会很严重。 武汉活动链模型将去程和回程的出行方式分别进行了考虑。将出行链去程的方式(m)定义为主方式，主方式选择只面向去程方式选择。
+<p>和传统的四阶段模型只考虑trip的效用不同，基于出行链模型考虑的是整个链条的效用，这样能模拟前后两个出行trip之间的相关性，体现了出行行为方式的闭环，提高模型的精度。 一般而言，大多数出行，去程和返程的交通方式变换的不多。方式切换的概率大概在10%左右。Tour Base Model的框架，允许考虑方式切换的状况，只是对计算机资源消耗会很严重。 活动链模型将去程和回程的出行方式分别进行了考虑。将出行链去程的方式(m)定义为主方式，主方式选择只面向去程方式选择。
 方式切换选择示意图：
 <img src="/assets/images/transport_model/1664349506674-eccbe3d3-7e2e-48ae-ac70-cb1199944ef9.png" alt="image.png" /></p>
 
@@ -410,7 +426,7 @@ U_{ijpc}=β_{dpc}ln(\sum_me^{U_{ijpcm}})+ln(\sum_kσ_{jpk}∗ SizeVariable_{jpk}
 
 <ul>
   <li><strong>线形关系和非线形关系</strong> 从效用函数可知，,这是一个线形关系的函数，通常而言，短距离出行，2-3km与5-6km都增加1公里，对人的感受是一样的，但是10-&gt;11km和100-101km对人的感受肯定是不一样的； 3元到4元，100元到101元，人的感受是不一样的，因此在某些程度上应该线形关系，但是当短距离和远距离同时出现时，可能线形关系无法表征个体对成本的感受，因此可能需要考虑dumping操作，引入非线形关系。</li>
-  <li><strong>MNL和NL的问题</strong> 武汉模型采用的MNL模型，即在logsum后的的lamda的取值都是1，如果取值不为1则是NL模型；</li>
+  <li><strong>MNL和NL的问题</strong> 模型采用的MNL模型，即在logsum后的的lamda的取值都是1，如果取值不为1则是NL模型；</li>
   <li><strong>特殊群体特殊方式的特殊成本考虑</strong></li>
   <li><strong>出租车费用</strong>：出租车的费用严格根据里程阶梯收费</li>
   <li><strong>停车费</strong>：根据停留时常阶梯收费</li>
@@ -427,7 +443,7 @@ U_{ijpc}=β_{dpc}ln(\sum_me^{U_{ijpcm}})+ln(\sum_kσ_{jpk}∗ SizeVariable_{jpk}
 
         
 
-  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-07T17:38:38+08:00">March 7, 2025</time></p>
+  <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> 更新时间:</strong> <time class="dt-published" datetime="2025-03-11T16:12:41+08:00">March 11, 2025</time></p>
 
       </footer>
 
